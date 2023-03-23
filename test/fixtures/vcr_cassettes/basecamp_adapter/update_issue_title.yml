@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/8514015012.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"Updated Title 1700000000"}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"content":"Updated Title 1700000000"}'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/8514015012.json
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{"content":"Updated Title 1700000000"}'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

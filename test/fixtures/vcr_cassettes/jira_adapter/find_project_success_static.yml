@@ -1,0 +1,37 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project/LAC
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Authorization: 
+      - Basic [YOUR_ENCODED_AUTH]
+      User-Agent: 
+      - Faraday v1.0
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json;charset=UTF-8
+    body: 
+      encoding: UTF-8
+      string: |
+        {
+          "id": "10004",
+          "key": "LAC",
+          "name": "Legacy Application Components",
+          "projectTypeKey": "software",
+          "lead": {
+            "accountId": "5e9360a3088a7e0c0f4c55f3"
+          },
+          "description": "Project for maintaining legacy components"
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.0.0

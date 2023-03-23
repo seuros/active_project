@@ -1,0 +1,11 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project
+  response:
+    status:
+      code: 400
+      message: Bad Request
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

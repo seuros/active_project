@@ -1,0 +1,12 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/invalidCardIdThatDoesNotExist123?fields=id,name,desc,closed,idList,idBoard,due,dueComplete,idMembers&key=<TRELLO_API_KEY>&list=true&token=<TRELLO_API_TOKEN>
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    body: invalid id
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/8514015012.json
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Bearer YOUR_ACCESS_TOKEN
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Id:
+      - abc123def456
+      Date:
+      - Mon, 20 Mar 2025 23:38:56 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 8514015012,
+          "status": "active",
+          "created_at": "2025-03-15T10:00:00Z",
+          "updated_at": "2025-03-20T15:30:00Z",
+          "title": "Test Todo Item",
+          "description": "This is a test todo item description",
+          "due_on": "2025-03-31",
+          "starts_on": null,
+          "assignees": [
+            {
+              "id": 12345,
+              "name": "John Doe",
+              "email_address": "john@example.com",
+              "type": "Person"
+            }
+          ],
+          "completion_subscribers": [],
+          "completer": null,
+          "completed": false,
+          "content": "This is the todo content",
+          "creator": {
+            "id": 54321,
+            "name": "Jane Smith",
+            "email_address": "jane@example.com",
+            "type": "Person"
+          },
+          "parent": {
+            "id": 123456789,
+            "title": "Parent Todolist",
+            "type": "Todolist",
+            "url": "https://3.basecampapi.com/999999999/buckets/41789030/todosets/123456789"
+          },
+          "bucket": {
+            "id": 41789030,
+            "name": "Test Project",
+            "type": "Project"
+          },
+          "url": "https://3.basecampapi.com/999999999/buckets/41789030/todos/8514015012",
+          "app_url": "https://3.basecamp.com/999999999/buckets/41789030/todos/8514015012",
+          "comments_count": 0,
+          "comments_url": "https://3.basecampapi.com/999999999/buckets/41789030/recordings/8514015012/comments"
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

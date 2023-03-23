@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/000000.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/activeproject) v0.1.0
+      Authorization:
+      - "<BASECAMP_AUTH_HEADER>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-04-09T09:19:40Z"}'
+      X-Request-Id:
+      - 0b2fad6c-01dc-427d-89f9-b7e8215138f4
+      X-Runtime:
+      - '0.016311'
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - BYPASS
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 92d8ec625ddbecb0-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

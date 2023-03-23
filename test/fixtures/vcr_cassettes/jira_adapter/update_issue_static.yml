@@ -1,0 +1,410 @@
+---
+http_interactions:
+- request:
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"summary":"Updated Summary Static 2025-03-20","description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"Updated description static test at 2025-03-20."}]}]},"priority":{"name":"High"}}}'
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - Basic <JIRA_BASIC_AUTH>
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+    method: PUT
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10
+  response:
+    body:
+      encoding: UTF-8
+      string: '{"id":"1234567890","key":"LAC-10","self":"https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 20 Mar 2025 00:00:00 GMT
+      Server:
+      - Atlassian Edge
+      Strict-Transport-Security:
+      - max-age=31536000
+      Transfer-Encoding:
+      - chunked
+      X-Arequestid:
+      - abcdef1234567890abcdef1234567890
+      X-Asessionid:
+      - abcdef1234567890
+      X-Atlassian-Traceid:
+      - abcdef1234567890abcdef1234567890
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '1; mode=block'
+    status:
+      code: 200
+      message: OK
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: put
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "fields": {
+            "summary": "Updated Summary Static 1700000000",
+            "description": {
+              "type": "doc",
+              "version": 1,
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Updated description static test at 1700000000."
+                    }
+                  ]
+                }
+              ]
+            },
+            "priority": {
+              "name": "High"
+            }
+          }
+        }
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+      Server:
+      - AtlassianProxy/1.24.1.1
+      X-Aaccountid:
+      - "12345"
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=315360000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ""
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project/search?maxResults=50&startAt=0
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:39:02 GMT
+      Server:
+      - AtlassianProxy/1.24.1.1
+      X-Aaccountid:
+      - "12345"
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=315360000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "values": [
+            {
+              "self": "https://clickup-core-team.atlassian.net/rest/api/3/project/LAC",
+              "id": "10000",
+              "key": "LAC",
+              "name": "Live Agent Chat",
+              "projectTypeKey": "software",
+              "simplified": false,
+              "style": "classic",
+              "isPrivate": false,
+              "lead": {
+                "self": "https://clickup-core-team.atlassian.net/rest/api/3/user?accountId=5b10a2844c20165700ede21g",
+                "accountId": "5b10a2844c20165700ede21g",
+                "displayName": "John Doe",
+                "active": true
+              }
+            },
+            {
+              "self": "https://clickup-core-team.atlassian.net/rest/api/3/project/DEV",
+              "id": "10001",
+              "key": "DEV",
+              "name": "Development",
+              "projectTypeKey": "software",
+              "simplified": false,
+              "style": "classic",
+              "isPrivate": false,
+              "lead": {
+                "self": "https://clickup-core-team.atlassian.net/rest/api/3/user?accountId=5b10a2844c20165700ede21h",
+                "accountId": "5b10a2844c20165700ede21h",
+                "displayName": "Jane Smith",
+                "active": true
+              }
+            }
+          ],
+          "total": 2,
+          "maxResults": 50,
+          "startAt": 0
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: put
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "fields": {
+            "summary": "Updated Summary Static 1700000000",
+            "description": {
+              "type": "doc",
+              "version": 1,
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Updated description static test at 1700000000."
+                    }
+                  ]
+                }
+              ]
+            },
+            "priority": {
+              "name": "High"
+            }
+          }
+        }
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+      Server:
+      - AtlassianProxy/1.24.1.1
+      X-Aaccountid:
+      - "12345"
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=315360000; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: ""
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: put
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "fields": {
+            "summary": "Updated Summary Static 1700000000",
+            "description": {
+              "type": "doc",
+              "version": 1,
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Updated description static test at 1700000000."
+                    }
+                  ]
+                }
+              ]
+            },
+            "priority": {
+              "name": "High"
+            }
+          }
+        }
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic YOUR_BASE64_ENCODED_AUTH_STRING
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: ""
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: put
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"summary":"Updated Summary Static 1700000000","description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"Updated description static test at 1700000000."}]}]},"priority":{"name":"High"}}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic YOUR_BASE64_AUTH_STRING=
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: ""
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10?fields=summary,description,status,assignee,reporter,created,updated,project,issuetype,duedate,priority
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic YOUR_BASE64_AUTH_STRING=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "12345",
+          "key": "LAC-10",
+          "fields": {
+            "summary": "Updated Summary Static 1700000000",
+            "description": {
+              "type": "doc",
+              "version": 1,
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Updated description static test at 1700000000."
+                    }
+                  ]
+                }
+              ]
+            },
+            "status": {
+              "name": "In Progress"
+            },
+            "assignee": {
+              "accountId": "123456:abc123",
+              "displayName": "John Doe"
+            },
+            "reporter": {
+              "accountId": "789012:xyz456",
+              "displayName": "Jane Smith"
+            },
+            "created": "2025-03-15T10:00:00.000+0000",
+            "updated": "2025-03-20T15:30:00.000+0000",
+            "project": {
+              "id": "10000",
+              "key": "LAC",
+              "name": "Live Agent Chat"
+            },
+            "issuetype": {
+              "name": "Task"
+            },
+            "duedate": "2025-03-31",
+            "priority": {
+              "name": "High"
+            }
+          }
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

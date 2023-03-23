@@ -1,0 +1,11 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/members/me/boards?fields=id,name,desc&key=invalid-key&token=invalid-token
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

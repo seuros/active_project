@@ -1,0 +1,29 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/search
+    body:
+      encoding: UTF-8
+      string: '{"jql":"project = ''LAC'' ORDER BY created DESC","startAt":0,"maxResults":50,"fields":["summary","description","status","assignee","reporter","created","updated","project","issuetype","duedate","priority"]}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - Basic [YOUR_ENCODED_AUTH]
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Cache-Control:
+      - no-cache, no-store, no-transform
+    body:
+      encoding: ASCII-8BIT
+      string: '{"expand":"names,schema","startAt":0,"maxResults":50,"total":42,"issues":[{"id":"12345","key":"LAC-123","fields":{"summary":"Example Issue","project":{"id":"10004","key":"LAC","name":"LAC Project"},"status":{"name":"In Progress"},"assignee":{"displayName":"John Doe"},"created":"2025-04-01T14:23:45.000+0000"}}]}'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1
