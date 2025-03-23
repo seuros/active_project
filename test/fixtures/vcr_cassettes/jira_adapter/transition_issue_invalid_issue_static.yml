@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/NONEXISTENT-789/transitions
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "errorMessages": [
+            "Issue Does Not Exist"
+          ],
+          "errors": {}
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

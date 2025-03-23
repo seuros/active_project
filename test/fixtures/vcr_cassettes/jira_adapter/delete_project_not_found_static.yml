@@ -1,0 +1,31 @@
+--- 
+http_interactions: 
+- request: 
+    method: delete
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project/NONEXISTENTPROJECTKEY
+    body: 
+      encoding: UTF-8
+      string: ""
+    headers: 
+      Accept: 
+      - application/json
+      Authorization: 
+      - Basic [YOUR_ENCODED_AUTH]
+      User-Agent: 
+      - Faraday v1.0
+  response: 
+    status: 
+      code: 404
+      message: Not Found
+    headers: 
+      Content-Type: 
+      - application/json;charset=UTF-8
+    body: 
+      encoding: UTF-8
+      string: |
+        {
+          "errorMessages": ["No project could be found with key 'NONEXISTENTPROJECTKEY'."],
+          "errors": {}
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.0.0

@@ -1,0 +1,27 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41789030.json
+  response:
+    status:
+      code: 200
+      message: OK
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todosets/8514014690/todolists.json
+  response:
+    status:
+      code: 200
+      message: OK
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8519480733/todos.json
+  response:
+    status:
+      code: 200
+      message: OK
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

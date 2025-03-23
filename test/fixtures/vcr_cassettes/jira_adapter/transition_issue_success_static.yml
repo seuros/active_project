@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10/transitions
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "transitions": [
+            {
+              "id": "31",
+              "name": "Done",
+              "to": {
+                "self": "https://clickup-core-team.atlassian.net/rest/api/3/status/10001",
+                "description": "The issue is considered finished.",
+                "iconUrl": "https://clickup-core-team.atlassian.net/images/icons/subtask.gif",
+                "name": "Done",
+                "id": "10001"
+              }
+            }
+          ]
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10/transitions
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "transition": {
+            "id": "31"
+          }
+        }
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: ""
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

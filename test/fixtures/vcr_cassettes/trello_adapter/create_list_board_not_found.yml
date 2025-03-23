@@ -1,0 +1,10 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/boards/invalidBoardIdThatDoesNotExist123/lists?key=<TRELLO_API_KEY>&name=Test%20List%20for%20Invalid%20Board&token=<TRELLO_API_TOKEN>
+  response:
+    status:
+      code: 404
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

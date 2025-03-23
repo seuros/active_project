@@ -1,0 +1,11 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41808873.json
+  response:
+    status:
+      code: 200
+      message: OK
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

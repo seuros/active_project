@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41808873/todolists.json
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "Test Todolist 1700000000",
+          "description": "Test todolist created by ActiveProject gem."
+        }
+    headers:
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Bearer YOUR_ACCESS_TOKEN
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Location:
+      - https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41808873/todolists/123456789
+      X-Request-Id:
+      - abc123def456
+      Date:
+      - Mon, 20 Mar 2025 23:39:02 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 123456789,
+          "status": "active",
+          "created_at": "2025-03-20T23:39:02Z",
+          "updated_at": "2025-03-20T23:39:02Z",
+          "name": "Test Todolist 1700000000",
+          "description": "Test todolist created by ActiveProject gem.",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41808873/todolists/123456789",
+          "creator": {
+            "id": 987654321,
+            "name": "Test User",
+            "email_address": "test@example.com"
+          },
+          "completed": false,
+          "completed_ratio": "0/0",
+          "project": {
+            "id": 41808873,
+            "name": "Test Project"
+          }
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41789030.json
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Bearer YOUR_ACCESS_TOKEN
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Request-Id:
+      - abc123def456
+      Date:
+      - Mon, 20 Mar 2025 23:38:48 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 41789030,
+          "status": "active",
+          "created_at": "2025-03-15T10:00:00Z",
+          "updated_at": "2025-03-20T15:30:00Z",
+          "name": "Test Project",
+          "description": "Project for testing ActiveProject gem",
+          "purpose": "project",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/41789030",
+          "app_url": "https://3.basecamp.com/<BASECAMP_ACCOUNT_ID>/projects/41789030",
+          "dock": [
+            {
+              "id": 8514014690,
+              "title": "To-dos",
+              "name": "todoset",
+              "enabled": true,
+              "position": 1,
+              "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todosets/8514014690"
+            }
+          ]
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

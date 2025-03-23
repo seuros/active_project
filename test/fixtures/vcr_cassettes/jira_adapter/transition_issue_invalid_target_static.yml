@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10/transitions
+    body:
+      encoding: US-ASCII
+      string: ""
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.7.10
+      Authorization:
+      - Basic ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 20 Mar 2025 23:38:44 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "transitions": [
+            {
+              "id": "21",
+              "name": "In Progress",
+              "to": {
+                "self": "https://clickup-core-team.atlassian.net/rest/api/3/status/3",
+                "description": "This issue is being actively worked on.",
+                "iconUrl": "https://clickup-core-team.atlassian.net/images/icons/progress.gif",
+                "name": "In Progress",
+                "id": "3"
+              }
+            }
+          ]
+        }
+    http_version: HTTP/1.1
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

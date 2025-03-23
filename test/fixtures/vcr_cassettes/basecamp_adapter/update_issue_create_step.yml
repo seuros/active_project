@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated 1700000000"}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Location:
+      - https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890
+    body:
+      encoding: UTF-8
+      string: '{
+        "id": 1234567890,
+        "content": "To-do to be updated 1700000000",
+        "description": "",
+        "assignees": [],
+        "completed": false,
+        "created_at": "2025-03-20T00:00:00Z",
+        "updated_at": "2025-03-20T00:00:00Z",
+        "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890",
+        "parent": {
+          "id": 8514014894,
+          "type": "Todolist",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894"
+        }
+      }'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

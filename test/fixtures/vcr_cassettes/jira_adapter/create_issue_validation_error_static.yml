@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "fields": {
+            "project": {
+              "key": "LAC"
+            },
+            "summary": "Test Issue with Invalid Type Static 1700000000",
+            "issuetype": {
+              "name": "NonExistentIssueType123"
+            },
+            "description": {
+              "type": "doc",
+              "version": 1,
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "This should fail validation."
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - Basic YOUR_BASE64_AUTH_STRING
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "errorMessages": [],
+          "errors": {
+            "issuetype": "The issue type 'NonExistentIssueType123' is not valid."
+          }
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue
+    body:
+      encoding: UTF-8
+      string: '{"fields":{"project":{"key":"LAC"},"summary":"Test Issue with Invalid
+        Type Static 1700000000","issuetype":{"name":"NonExistentIssueType123"},"description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"This
+        should fail validation."}]}]}}}'
+    headers:
+      Accept:
+      - application/json
+      Authorization:
+      - Basic [YOUR_ENCODED_AUTH]
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v1.0
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "errorMessages": [],
+          "errors": {
+            "issuetype": "The issue type selected is invalid."
+          }
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

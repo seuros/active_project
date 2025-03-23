@@ -1,0 +1,11 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/boards/?defaultLists=true&key=<TRELLO_API_KEY>&name=Test%20Board%20Invalid%20Org%201700000000&token=<TRELLO_API_TOKEN>
+  response:
+    status:
+      code: 400
+      message: Bad Request
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

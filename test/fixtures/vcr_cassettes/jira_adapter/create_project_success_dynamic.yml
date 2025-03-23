@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project
+    body:
+      encoding: UTF-8
+      string: '{"key":"APDEL6699","name":"Test Project Create APDEL6699","projectTypeKey":"software","leadAccountId":"5e9360a3088a7e0c0f4c55f3","description":"Temp project for dynamic create test APDEL6699","assigneeType":"PROJECT_LEAD"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - Basic <BASE64_ENCODED_CREDENTIALS>
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      X-AREQUESTID:
+      - 123x456x789x012
+    body:
+      encoding: UTF-8
+      string: '{
+        "self": "https://clickup-core-team.atlassian.net/rest/api/3/project/12345",
+        "id": "12345",
+        "key": "APDEL6699",
+        "name": "Test Project Create APDEL6699",
+        "description": "Temp project for dynamic create test APDEL6699",
+        "projectTypeKey": "software",
+        "simplified": false,
+        "style": "classic",
+        "isPrivate": false,
+        "assigneeType": "PROJECT_LEAD",
+        "lead": {
+          "accountId": "5e9360a3088a7e0c0f4c55f3",
+          "displayName": "Project Lead"
+        },
+        "avatarUrls": {
+          "48x48": "https://clickup-core-team.atlassian.net/secure/projectavatar?pid=12345&avatarId=12345",
+          "24x24": "https://clickup-core-team.atlassian.net/secure/projectavatar?size=small&pid=12345&avatarId=12345",
+          "16x16": "https://clickup-core-team.atlassian.net/secure/projectavatar?size=xsmall&pid=12345&avatarId=12345",
+          "32x32": "https://clickup-core-team.atlassian.net/secure/projectavatar?size=medium&pid=12345&avatarId=12345"
+        },
+        "created": "2025-03-20T23:38:50.000+0000"
+      }'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

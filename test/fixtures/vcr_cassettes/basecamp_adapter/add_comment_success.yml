@@ -1,0 +1,88 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated 1700000000"}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Location:
+      - https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890
+    body:
+      encoding: UTF-8
+      string: '{
+        "id": 1234567890,
+        "content": "To-do to be updated 1700000000",
+        "description": "",
+        "assignees": [],
+        "completion_subscribers": [],
+        "completed": false,
+        "created_at": "2025-03-20T00:00:00Z",
+        "updated_at": "2025-03-20T00:00:00Z",
+        "due_on": null,
+        "starts_on": null,
+        "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890",
+        "app_url": "https://3.basecamp.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890",
+        "parent": {
+          "id": 8514014894,
+          "title": "To-do List",
+          "type": "Todolist",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894",
+          "app_url": "https://3.basecamp.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894"
+        }
+      }'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/recordings/8514015012/comments.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"Test comment from VCR test at 1700000000"}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Authorization:
+      - Bearer <ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: '{
+        "id": 123456789,
+        "content": "Test comment from VCR test at 1700000000",
+        "created_at": "2025-03-20T00:00:00Z",
+        "updated_at": "2025-03-20T00:00:00Z",
+        "creator": {
+          "id": 987654321,
+          "name": "API User",
+          "email": "user@example.com"
+        },
+        "parent": {
+          "id": 8514015012,
+          "type": "Todo",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/8514015012"
+        }
+      }'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,210 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"Updated Title 1700000000","description":"Updated description text.","due_on":"2025-04-23"}'
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+      Authorization:
+        - Bearer <ACCESS_TOKEN>
+      User-Agent:
+        - Faraday v2.9.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 1234567890,
+          "content": "Updated Title 1700000000",
+          "description": "Updated description text.",
+          "assignees": [],
+          "completed": false,
+          "created_at": "2025-04-08T12:00:00Z",
+          "updated_at": "2025-04-09T00:12:00Z",
+          "due_on": "2025-04-23",
+          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890",
+          "parent": {
+            "id": 8514014894,
+            "type": "Todolist",
+            "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894"
+          }
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890/completion.json
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+      Authorization:
+        - Bearer <ACCESS_TOKEN>
+      User-Agent:
+        - Faraday v2.9.0
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: get
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890.json
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+      Authorization:
+        - Bearer <ACCESS_TOKEN>
+      User-Agent:
+        - Faraday v2.9.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+        - application/json; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 1069479523,
+          "status": "active",
+          "visible_to_clients": false,
+          "created_at": "2022-12-11T13:25:58.169Z",
+          "updated_at": "2022-11-22T17:56:30.804Z",
+          "title": "Updated Title 1700000000",
+          "inherits_status": true,
+          "type": "Todo",
+          "url": "https://3.basecampapi.com/195539477/buckets/2085958499/todos/1069479523.json",
+          "app_url": "https://3.basecamp.com/195539477/buckets/2085958499/todos/1069479523",
+          "bookmark_url": "https://3.basecampapi.com/195539477/my/bookmarks/BAh7CEkiCGdpZAY6BkVUSSIuZ2lkOi8vYmMzL1JlY29yZGluZy8xMDY5NDc5NTIzP2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg1yZWFkYWJsZQY7AFRJIg9leHBpcmVzX2F0BjsAVDA=--7372f7af1010860331b2d7e0c9b55ab29e63f821.json",
+          "subscription_url": "https://3.basecampapi.com/195539477/buckets/2085958499/recordings/1069479523/subscription.json",
+          "comments_count": 0,
+          "comments_url": "https://3.basecampapi.com/195539477/buckets/2085958499/recordings/1069479523/comments.json",
+          "parent": {
+            "id": 1069479520,
+            "title": "Strategy ideas",
+            "type": "Todolist",
+            "url": "https://3.basecampapi.com/195539477/buckets/2085958499/todolists/1069479520.json",
+            "app_url": "https://3.basecamp.com/195539477/buckets/2085958499/todolists/1069479520"
+          },
+          "bucket": {
+            "id": 2085958499,
+            "name": "The Leto Laptop",
+            "type": "Project"
+          },
+          "creator": {
+            "id": 1049715915,
+            "attachable_sgid": "BAh7CEkiCGdpZAY6BkVUSSIrZ2lkOi8vYmMzL1BlcnNvbi8xMDQ5NzE1OTE1P2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg9hdHRhY2hhYmxlBjsAVEkiD2V4cGlyZXNfYXQGOwBUMA==--aeb392ebf54ffd820e45f27add22bae3a8c7da56",
+            "name": "Annie Bryan",
+            "email_address": "annie@honchodesign.com",
+            "personable_type": "User",
+            "title": "Central Markets Manager",
+            "bio": "To open a store is easy, to keep it open is an art",
+            "location": null,
+            "created_at": "2022-11-22T08:23:21.911Z",
+            "updated_at": "2022-11-22T08:23:21.911Z",
+            "admin": false,
+            "owner": false,
+            "client": false,
+            "employee": true,
+            "time_zone": "America/Chicago",
+            "avatar_url": "https://3.basecamp-static.com/195539477/people/BAhpBMtkkT4=--9927c47a4cbee30a7f9aea667882496aba799149/avatar?v=1",
+            "company": {
+              "id": 1033447817,
+              "name": "Honcho Design"
+            },
+            "can_manage_projects": true,
+            "can_manage_people": true
+          },
+          "description": "Updated description text.",
+          "completed": true,
+          "completion": {
+            "created_at": "2022-11-22T17:56:30.731Z",
+            "creator": {
+              "id": 1049715937,
+              "attachable_sgid": "BAh7CEkiCGdpZAY6BkVUSSIrZ2lkOi8vYmMzL1BlcnNvbi8xMDQ5NzE1OTM3P2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg9hdHRhY2hhYmxlBjsAVEkiD2V4cGlyZXNfYXQGOwBUMA==--1255eb7c3d72232ea454ba0b42aaee71238c1d07",
+              "name": "Sharon Bradford",
+              "email_address": "sharon@honchodesign.com",
+              "personable_type": "User",
+              "title": "Principal Branding Administrator",
+              "bio": null,
+              "location": null,
+              "created_at": "2022-11-22T08:23:22.231Z",
+              "updated_at": "2022-11-22T08:23:22.231Z",
+              "admin": false,
+              "owner": false,
+              "client": false,
+              "employee": false,
+              "time_zone": "Etc/UTC",
+              "avatar_url": "https://3.basecamp-static.com/195539477/people/BAhpBOFkkT4=--560f7fa1330d4341e3c089226bcb7fefb82dbfd1/avatar?v=1",
+              "can_manage_projects": true,
+              "can_manage_people": true
+            }
+          },
+          "content": "Updated Title 1700000000",
+          "starts_on": null,
+          "due_on": "2025-04-23T17:56:30.731Z",
+          "assignees": [
+            {
+              "id": 1049715937,
+              "attachable_sgid": "BAh7CEkiCGdpZAY6BkVUSSIrZ2lkOi8vYmMzL1BlcnNvbi8xMDQ5NzE1OTM3P2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg9hdHRhY2hhYmxlBjsAVEkiD2V4cGlyZXNfYXQGOwBUMA==--1255eb7c3d72232ea454ba0b42aaee71238c1d07",
+              "name": "Sharon Bradford",
+              "email_address": "sharon@honchodesign.com",
+              "personable_type": "User",
+              "title": "Principal Branding Administrator",
+              "bio": null,
+              "location": null,
+              "created_at": "2022-11-22T08:23:22.231Z",
+              "updated_at": "2022-11-22T08:23:22.231Z",
+              "admin": false,
+              "owner": false,
+              "client": false,
+              "employee": false,
+              "time_zone": "Etc/UTC",
+              "avatar_url": "https://3.basecamp-static.com/195539477/people/BAhpBOFkkT4=--560f7fa1330d4341e3c089226bcb7fefb82dbfd1/avatar?v=1",
+              "can_manage_projects": true,
+              "can_manage_people": true
+            }
+          ],
+          "completion_subscribers": [
+            {
+              "id": 1049715937,
+              "attachable_sgid": "BAh7CEkiCGdpZAY6BkVUSSIrZ2lkOi8vYmMzL1BlcnNvbi8xMDQ5NzE1OTM3P2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg9hdHRhY2hhYmxlBjsAVEkiD2V4cGlyZXNfYXQGOwBUMA==--1255eb7c3d72232ea454ba0b42aaee71238c1d07",
+              "name": "Sharon Bradford",
+              "email_address": "sharon@honchodesign.com",
+              "personable_type": "User",
+              "title": "Principal Branding Administrator",
+              "bio": null,
+              "location": null,
+              "created_at": "2022-11-22T08:23:22.231Z",
+              "updated_at": "2022-11-22T08:23:22.231Z",
+              "admin": false,
+              "owner": false,
+              "client": false,
+              "employee": false,
+              "time_zone": "Etc/UTC",
+              "avatar_url": "https://3.basecamp-static.com/195539477/people/BAhpBOFkkT4=--560f7fa1330d4341e3c089226bcb7fefb82dbfd1/avatar?v=1",
+              "can_manage_projects": true,
+              "can_manage_people": true
+            }
+          ],
+          "completion_url": "https://3.basecampapi.com/195539477/buckets/2085958499/todos/1069479523/completion.json"
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.2.0

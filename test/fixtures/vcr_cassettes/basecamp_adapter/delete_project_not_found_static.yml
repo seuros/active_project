@@ -1,0 +1,11 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/999999999.json
+  response:
+    status:
+      code: 404
+      message: Not Found
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,35 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/project
+    body: 
+      encoding: UTF-8
+      string: '{"key":"LAC","name":"Attempt to Duplicate LAC","projectTypeKey":"software","leadAccountId":"5e9360a3088a7e0c0f4c55f3"}'
+    headers: 
+      Accept: 
+      - application/json
+      Authorization: 
+      - Basic [YOUR_ENCODED_AUTH]
+      Content-Type: 
+      - application/json
+      User-Agent: 
+      - Faraday v1.0
+  response: 
+    status: 
+      code: 400
+      message: Bad Request
+    headers: 
+      Content-Type: 
+      - application/json;charset=UTF-8
+    body: 
+      encoding: UTF-8
+      string: |
+        {
+          "errorMessages": [],
+          "errors": {
+            "projectKey": "A project with that project key already exists."
+          }
+        }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.0.0

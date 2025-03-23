@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10/comment
+    body:
+      encoding: UTF-8
+      string: '{"body":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"Test comment added via ActiveProject static test at 1700000000"}]}]}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      Authorization:
+      - Bearer <JIRA_API_TOKEN>  # or Basic <BASE64_CREDENTIALS> if using basic auth
+      User-Agent:
+      - Faraday v2.9.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      X-AREQUESTID:
+      - x123y456z789
+    body:
+      encoding: UTF-8
+      string: '{
+        "id": "123456",
+        "self": "https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-10/comment/123456",
+        "author": {
+          "accountId": "5e9360a3088a7e0c0f4c55f3",
+          "displayName": "API User",
+          "active": true
+        },
+        "body": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Test comment added via ActiveProject static test at 1700000000"
+                }
+              ]
+            }
+          ]
+        },
+        "created": "2025-03-20T23:38:50.000+0000",
+        "updated": "2025-03-20T23:38:50.000+0000",
+        "jsdPublic": true,
+        "visibility": {
+          "type": "role",
+          "value": "Administrators"
+        }
+      }'
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1
