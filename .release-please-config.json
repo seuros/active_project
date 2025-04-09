@@ -2,7 +2,8 @@
   "packages": {
     ".": {
       "release-type": "ruby",
-      "package-name": "active_project"
+      "package-name": "active_project",
+      "initial-version": "0.1.0"
     }
   }
 }
