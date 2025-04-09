@@ -39,7 +39,7 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
 
     # Clear memoized adapter instance in ActiveProject module to ensure
     # re-initialization picks up config changes within tests
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
@@ -65,7 +65,7 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
       end
     end
     # Clear memoized adapter instance again after teardown
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
     WebMock.reset! # Reset WebMock stubs
   end
 

@@ -21,7 +21,7 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
     # Initialize adapter using the new config structure via the helper
     @adapter = ActiveProject.adapter(:jira)
     # Clear memoized adapter instance
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
@@ -34,7 +34,7 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
       end
     end
     # Clear memoized adapter instance again after teardown
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def skip_if_missing_credentials

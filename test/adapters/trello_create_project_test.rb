@@ -21,7 +21,7 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
     # Initialize adapter using the new config structure via the helper
     @adapter = ActiveProject.adapter(:trello)
     # Clear memoized adapter instance
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
@@ -41,7 +41,7 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
       end
     end
     # Clear memoized adapter instance again after teardown
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   # Skips the test if dummy credentials are detected

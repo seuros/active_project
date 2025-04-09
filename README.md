@@ -69,27 +69,47 @@ $ gem install activeproject
 
 ### Configuration
 
-Configure the adapters in an initializer (e.g., `config/initializers/active_project.rb`):
+Configure multiple adapters, optionally with named instances (default is `:primary`):
 
 ```ruby
 ActiveProject.configure do |config|
-  # Configure Jira Adapter
+  # Primary Jira instance (default name :primary)
   config.add_adapter(:jira,
     site_url: ENV.fetch('JIRA_SITE_URL'),
-    username: ENV.fetch('JIRA_USERNAME'), # Your Jira email
+    username: ENV.fetch('JIRA_USERNAME'),
     api_token: ENV.fetch('JIRA_API_TOKEN')
   )
 
+  # Secondary Jira instance
+  config.add_adapter(:jira, :secondary,
+    site_url: ENV.fetch('JIRA_SECOND_SITE_URL'),
+    username: ENV.fetch('JIRA_SECOND_USERNAME'),
+    api_token: ENV.fetch('JIRA_SECOND_API_TOKEN')
+  )
 
-  # Configure Basecamp Adapter
+  # Basecamp primary instance
   config.add_adapter(:basecamp,
     account_id: ENV.fetch('BASECAMP_ACCOUNT_ID'),
     access_token: ENV.fetch('BASECAMP_ACCESS_TOKEN')
   )
 
-  # Configure other adapters later (e.g., :trello, :basecamp)
-  # config.add_adapter(:trello, key: '...', token: '...')
+  # Trello primary instance
+  config.add_adapter(:trello,
+    key: ENV.fetch('TRELLO_KEY'),
+    token: ENV.fetch('TRELLO_TOKEN')
+  )
 end
+```
+
+### Accessing adapters
+
+Fetch a specific adapter instance:
+
+```ruby
+jira_primary = ActiveProject.adapter(:jira) # defaults to :primary
+jira_secondary = ActiveProject.adapter(:jira, :secondary)
+basecamp = ActiveProject.adapter(:basecamp) # defaults to :primary
+trello = ActiveProject.adapter(:trello) # defaults to :primary
 ```
 
 ### Basic Usage (Jira Example)

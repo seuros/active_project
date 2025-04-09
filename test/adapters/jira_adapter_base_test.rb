@@ -31,7 +31,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
     @live_test_project_id = nil
     @live_test_issue_key = nil
 
-    ActiveProject.instance_variable_set(:@adapters, {}) # Clear memoization
+    ActiveProject.reset_adapters # Clear memoization
   end
 
   def teardown
@@ -43,7 +43,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
       end
     end
     # --- Project Deletion REMOVED from base teardown ---
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   # Helper to create a live test project - Tests needing this should call it

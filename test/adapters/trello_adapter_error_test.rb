@@ -25,7 +25,7 @@ class TrelloAdapterErrorTest < TrelloAdapterBaseTest
       config.add_adapter :trello, api_key: "invalid-key", api_token: "invalid-token"
     end
     # Clear memoized adapter instance to pick up bad config
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
     bad_adapter = ActiveProject.adapter(:trello) # Get the adapter with bad config
 
     VCR.use_cassette("trello_adapter/authentication_error") do

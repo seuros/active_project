@@ -29,7 +29,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
       end
     end
     # Re-initialize adapter to pick up new config for this test
-    ActiveProject.instance_variable_set(:@adapters, {}) # Clear memoized instance
+    ActiveProject.reset_adapters # Clear memoized instance
     adapter_for_test = ActiveProject.adapter(:trello)
 
     card_data_open = { "id" => "card1", "name" => "Card 1", "idList" => list_open_id, "closed" => false, "idBoard" => board_id, "idMembers" => [ "m1" ] }
@@ -97,7 +97,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
     end
 
     # Re-initialize adapter to pick up new config for this test
-    ActiveProject.instance_variable_set(:@adapters, {}) # Clear memoized instance
+    ActiveProject.reset_adapters # Clear memoized instance
     adapter_for_test = ActiveProject.adapter(:trello)
 
     VCR.use_cassette("trello_adapter/update_issue_mapped_status") do
@@ -143,7 +143,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
       end
     end
     # Re-initialize adapter to pick up new config for this test
-    ActiveProject.instance_variable_set(:@adapters, {}) # Clear memoized instance
+    ActiveProject.reset_adapters # Clear memoized instance
     adapter_for_test = ActiveProject.adapter(:trello)
 
     VCR.use_cassette("trello_adapter/update_issue_missing_board_mapping") do
@@ -175,7 +175,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
       end
     end
     # Re-initialize adapter to pick up new config for this test
-    ActiveProject.instance_variable_set(:@adapters, {}) # Clear memoized instance
+    ActiveProject.reset_adapters # Clear memoized instance
     adapter_for_test = ActiveProject.adapter(:trello)
 
     VCR.use_cassette("trello_adapter/update_issue_missing_status_mapping") do
