@@ -1,0 +1,36 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://api.trello.com/1/cards/YOUR_CARD_ID_FOR_COMMENT/actions/comments?key=DUMMY_TRELLO_KEY&text=Test%20comment%20added%20at%201700000000&token=DUMMY_TRELLO_TOKEN
+      body:
+        encoding: UTF-8
+        string: ""
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+      body:
+        encoding: UTF-8
+        string: |
+          {
+            "id": "6009c244a123456789abcdef",
+            "idMemberCreator": "5f91b99b1a67e8897c4a1f00",
+            "data": {
+              "text": "Test comment added at 1700000000",
+              "card": {
+                "id": "YOUR_CARD_ID_FOR_COMMENT",
+                "name": "Test Card",
+                "idShort": 42,
+                "shortLink": "abc123xyz"
+              }
+            },
+            "type": "commentCard",
+            "date": "2025-03-20T00:00:00.000Z",
+            "limits": {}
+          }
+    recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

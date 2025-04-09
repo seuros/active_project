@@ -23,7 +23,6 @@ class BasecampAdapterErrorTest < BasecampAdapterBaseTest
   # --- Error Handling Tests ---
 
   test "#find_project raises NotFoundError for non-existent project ID (error handling section)" do
-     skip_if_missing_credentials_or_ids # Need credentials to make the call
      VCR.use_cassette("basecamp_adapter/find_project_not_found_error_section") do
        assert_raises(ActiveProject::NotFoundError) do
          @adapter.find_project("000000") # Assuming 0 is not a valid ID

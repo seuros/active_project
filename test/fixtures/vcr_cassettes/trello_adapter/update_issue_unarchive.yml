@@ -1,0 +1,18 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.trello.com/1/cards/YOUR_ARCHIVED_CARD_ID_FOR_UNARCHIVE?closed=false&key=DUMMY_TRELLO_KEY&token=DUMMY_TRELLO_TOKEN
+  response:
+    status:
+      code: 200
+      message: OK
+    body: |
+      {
+        "id": "YOUR_ARCHIVED_CARD_ID_FOR_UNARCHIVE",
+        "closed": false,
+        "name": "Unarchived Card",
+        "idList": "dummyListId123"
+      }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

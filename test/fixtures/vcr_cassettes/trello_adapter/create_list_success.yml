@@ -1,0 +1,19 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/boards/YOUR_BOARD_ID_FOR_CREATE_LIST/lists?key=DUMMY_TRELLO_KEY&name=Test%20List%20via%20ActiveProject%201700000000&pos=bottom&token=DUMMY_TRELLO_TOKEN
+  response:
+    status:
+      code: 200
+      message: OK
+    body: |
+      {
+        "id": "dummyListId123",
+        "name": "Test List via ActiveProject 1700000000",
+        "closed": false,
+        "idBoard": "YOUR_BOARD_ID_FOR_CREATE_LIST",
+        "pos": 16384
+      }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

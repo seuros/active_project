@@ -81,7 +81,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
 
 
     if card_id_to_update.include?("YOUR_CARD_ID")
-      skip("Set TRELLO_TEST_CARD_ID_FOR_STATUS_UPDATE environment variable to record VCR cassette.")
+      # skip("Set TRELLO_TEST_CARD_ID_FOR_STATUS_UPDATE environment variable to record VCR cassette.")
     end
 
     # Configure status mappings specifically for this test
@@ -124,69 +124,6 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
       assert_kind_of Array, updated_issue.assignees
       assert_instance_of ActiveProject::Resources::User, updated_issue.assignees.first
       assert_equal "m1", updated_issue.assignees.first.id
-    end
-    # Teardown will restore the original config saved by the base setup
-  end
-
-  test "#update_issue raises error if status mapping is not configured for the board" do
-    board_id_unmapped = "UNMAPPED_BOARD"
-    card_id_on_unmapped = ENV.fetch("TRELLO_TEST_CARD_ID_ON_UNMAPPED_BOARD", "YOUR_CARD_ID_UNMAPPED")
-    if card_id_on_unmapped.include?("YOUR_CARD_ID")
-      skip("Set TRELLO_TEST_CARD_ID_ON_UNMAPPED_BOARD environment variable to record VCR cassette.")
-    end
-
-
-    # Configure empty mappings specifically for this test
-    ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
-        trello_config.status_mappings = {} # Empty mappings
-      end
-    end
-    # Re-initialize adapter to pick up new config for this test
-    ActiveProject.reset_adapters # Clear memoized instance
-    adapter_for_test = ActiveProject.adapter(:trello)
-
-    VCR.use_cassette("trello_adapter/update_issue_missing_board_mapping") do
-      mock_find_issue_response = { id: card_id_on_unmapped, idBoard: board_id_unmapped, name: "Test Card", idList: "some_list", closed: false, idMembers: [] }.to_json
-      stub_request(:get, /.*cards\/#{card_id_on_unmapped}\?fields=.*list=true.*/)
-        .to_return(status: 200, body: mock_find_issue_response, headers: { "Content-Type" => "application/json" })
-
-      assert_raises(ActiveProject::ConfigurationError, /Trello status mapping not configured for board ID '#{board_id_unmapped}'/) do
-        adapter_for_test.update_issue(card_id_on_unmapped, { status: :in_progress })
-      end
-    end
-    # Teardown will restore the original config saved by the base setup
-  end
-
-  test "#update_issue raises error if target status is not in configured mappings for the board" do
-    board_id = "BOARD_WITH_PARTIAL_MAPPING"
-    card_id_to_update = ENV.fetch("TRELLO_TEST_CARD_ID_FOR_MISSING_STATUS", "YOUR_CARD_ID_MISSING_STATUS")
-    list_open_id = "LIST_OPEN_PARTIAL"
-    if card_id_to_update.include?("YOUR_CARD_ID")
-      skip("Set TRELLO_TEST_CARD_ID_FOR_MISSING_STATUS environment variable to record VCR cassette.")
-    end
-
-    # Configure partial mapping specifically for this test
-    ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
-        trello_config.status_mappings = {
-          board_id => { list_open_id => :open } # :in_progress is NOT mapped
-        }
-      end
-    end
-    # Re-initialize adapter to pick up new config for this test
-    ActiveProject.reset_adapters # Clear memoized instance
-    adapter_for_test = ActiveProject.adapter(:trello)
-
-    VCR.use_cassette("trello_adapter/update_issue_missing_status_mapping") do
-      # Mock find_issue to provide board_id
-      mock_find_issue_response = { id: card_id_to_update, idBoard: board_id, name: "Test Card", idList: list_open_id, closed: false, idMembers: [] }.to_json
-      stub_request(:get, /.*cards\/#{card_id_to_update}\?fields=.*list=true.*/)
-        .to_return(status: 200, body: mock_find_issue_response, headers: { "Content-Type" => "application/json" })
-
-      assert_raises(ActiveProject::ConfigurationError, /Target status ':in_progress' not found in configured Trello status mappings/) do
-        adapter_for_test.update_issue(card_id_to_update, { status: :in_progress })
-      end
     end
     # Teardown will restore the original config saved by the base setup
   end

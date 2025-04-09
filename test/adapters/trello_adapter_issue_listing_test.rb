@@ -12,7 +12,7 @@ class TrelloAdapterIssueListingTest < TrelloAdapterBaseTest
   test "#list_issues returns array of Issue structs (Trello Cards) with default filter (open)" do
     board_id_for_test = ENV.fetch("TRELLO_TEST_BOARD_ID", "YOUR_BOARD_ID_FOR_LIST_ISSUES")
     if board_id_for_test.include?("YOUR_BOARD_ID")
-      skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues.")
+      # skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues.")
     end
 
     VCR.use_cassette("trello_adapter/list_issues_open") do
@@ -40,7 +40,7 @@ class TrelloAdapterIssueListingTest < TrelloAdapterBaseTest
   test "#list_issues returns array of Issue structs (Trello Cards) with filter 'closed'" do
     board_id_for_test = ENV.fetch("TRELLO_TEST_BOARD_ID", "YOUR_BOARD_ID_FOR_LIST_ISSUES_CLOSED")
     if board_id_for_test.include?("YOUR_BOARD_ID")
-      skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues (closed).")
+      # skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues (closed).")
     end
 
     VCR.use_cassette("trello_adapter/list_issues_closed") do
@@ -68,7 +68,7 @@ class TrelloAdapterIssueListingTest < TrelloAdapterBaseTest
   test "#list_issues returns array of Issue structs (Trello Cards) with filter 'all'" do
     board_id_for_test = ENV.fetch("TRELLO_TEST_BOARD_ID", "YOUR_BOARD_ID_FOR_LIST_ISSUES_ALL")
     if board_id_for_test.include?("YOUR_BOARD_ID")
-      skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues (all).")
+      # skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for list_issues (all).")
     end
 
     VCR.use_cassette("trello_adapter/list_issues_all") do

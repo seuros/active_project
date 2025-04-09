@@ -1,0 +1,12 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/boards/invalidBoardId123/lists?key=DUMMY_TRELLO_KEY&name=Test%20List&token=DUMMY_TRELLO_TOKEN
+  response:
+    status:
+      code: 404
+      message: Not Found
+    body: Board not found
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

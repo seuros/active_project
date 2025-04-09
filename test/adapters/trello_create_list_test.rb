@@ -48,7 +48,7 @@ class TrelloCreateListTest < ActiveSupport::TestCase
 
   def skip_if_missing_credentials_or_ids
     if @api_key.include?("DUMMY") || @api_token.include?("DUMMY") || @board_id.include?("DUMMY")
-      skip("Set TRELLO_API_KEY, TRELLO_API_TOKEN, and TRELLO_TEST_BOARD_ID environment variables.")
+      # skip("Set TRELLO_API_KEY, TRELLO_API_TOKEN, and TRELLO_TEST_BOARD_ID environment variables.")
     end
   end
 

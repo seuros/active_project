@@ -1,0 +1,131 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://api.trello.com/1/cards/YOUR_CARD_ID_FOR_COMMENT/actions/comments?key=DUMMY_TRELLO_KEY&text=Test%20comment%20added%20at%201700000000&token=DUMMY_TRELLO_TOKEN
+      body:
+        encoding: UTF-8
+        string: ""
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+      body:
+        encoding: UTF-8
+        string: |
+          {
+            "id": "5f91b99b1a67e8897c4a1f01",
+            "idMemberCreator": "5f91b99b1a67e8897c4a1f00",
+            "data": {
+              "text": "Test comment added at 1700000000",
+              "card": {
+                "id": "YOUR_CARD_ID_FOR_COMMENT",
+                "name": "Test Card",
+                "idShort": 123,
+                "shortLink": "abc123xyz"
+              },
+              "board": {
+                "id": "DUMMY_BOARD_ID",
+                "name": "Test Board",
+                "shortLink": "def456uvw"
+              }
+            },
+            "type": "commentCard",
+            "date": "2025-03-20T00:00:00.000Z",
+            "limits": {},
+            "display": {
+              "translationKey": "action_comment_on_card",
+              "entities": {
+                "comment": {
+                  "type": "text",
+                  "text": "Test comment added at 1700000000"
+                },
+                "card": {
+                  "type": "card",
+                  "id": "YOUR_CARD_ID_FOR_COMMENT",
+                  "shortLink": "abc123xyz",
+                  "text": "Test Card"
+                },
+                "memberCreator": {
+                  "type": "member",
+                  "id": "5f91b99b1a67e8897c4a1f00",
+                  "username": "testuser",
+                  "text": "Test User"
+                }
+              }
+            }
+          }
+    recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+  - request:
+      method: get
+      uri: https://api.trello.com/1/boards/YOUR_BOARD_ID_FOR_LIST_ISSUES_ALL/cards?fields=id,name,desc,closed,idList,idBoard,due,dueComplete,idMembers&filter=all&key=DUMMY_TRELLO_KEY&list=true&token=DUMMY_TRELLO_TOKEN
+      body:
+        encoding: UTF-8
+        string: ""
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+      body:
+        encoding: UTF-8
+        string: |
+          [
+            {
+              "id": "5f91b99b1a67e8897c4a1f01",
+              "name": "Sample Card 1",
+              "desc": "This is a sample card description",
+              "closed": false,
+              "idList": "5f91b99b1a67e8897c4a1f02",
+              "idBoard": "YOUR_BOARD_ID_FOR_LIST_ISSUES_ALL",
+              "due": "2025-12-31T12:00:00.000Z",
+              "dueComplete": false,
+              "idMembers": ["5f91b99b1a67e8897c4a1f03"],
+              "list": {
+                "id": "5f91b99b1a67e8897c4a1f02",
+                "name": "To Do",
+                "closed": false
+              }
+            },
+            {
+              "id": "5f91b99b1a67e8897c4a1f04",
+              "name": "Sample Card 2",
+              "desc": "Another sample card",
+              "closed": false,
+              "idList": "5f91b99b1a67e8897c4a1f05",
+              "idBoard": "YOUR_BOARD_ID_FOR_LIST_ISSUES_ALL",
+              "due": null,
+              "dueComplete": false,
+              "idMembers": [],
+              "list": {
+                "id": "5f91b99b1a67e8897c4a1f05",
+                "name": "In Progress",
+                "closed": false
+              }
+            },
+            {
+              "id": "5f91b99b1a67e8897c4a1f06",
+              "name": "Completed Task",
+              "desc": "This task is done",
+              "closed": false,
+              "idList": "5f91b99b1a67e8897c4a1f07",
+              "idBoard": "YOUR_BOARD_ID_FOR_LIST_ISSUES_ALL",
+              "due": "2025-03-15T12:00:00.000Z",
+              "dueComplete": true,
+              "idMembers": ["5f91b99b1a67e8897c4a1f03", "5f91b99b1a67e8897c4a1f08"],
+              "list": {
+                "id": "5f91b99b1a67e8897c4a1f07",
+                "name": "Done",
+                "closed": false
+              }
+            }
+          ]
+    recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1
+
+recorded_with: VCR 6.3.1

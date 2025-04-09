@@ -41,8 +41,6 @@ class BasecampAdapterListTest < BasecampAdapterBaseTest
   end
 
   test "#create_list raises NotFoundError for non-existent project ID" do
-    skip_if_missing_credentials_or_ids # Need credentials to make the call
-
     invalid_project_id = "000000" # Assuming 0 is not a valid ID
     VCR.use_cassette("basecamp_adapter/create_list_project_not_found") do
       attributes = { name: "Test List for Invalid Project" }

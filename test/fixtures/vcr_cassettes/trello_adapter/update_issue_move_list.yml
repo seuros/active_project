@@ -1,0 +1,31 @@
+---
+http_interactions:
+  - request:
+      method: put
+      uri: https://api.trello.com/1/cards/YOUR_CARD_ID_FOR_MOVE_ISSUE?idList=YOUR_TARGET_LIST_ID_FOR_MOVE&key=DUMMY_TRELLO_KEY&token=DUMMY_TRELLO_TOKEN
+      body:
+        encoding: UTF-8
+        string: ""
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+      body:
+        encoding: UTF-8
+        string: |
+          {
+            "id": "YOUR_CARD_ID_FOR_MOVE_ISSUE",
+            "name": "Test Card",
+            "idList": "YOUR_TARGET_LIST_ID_FOR_MOVE",
+            "idBoard": "DUMMY_BOARD_ID",
+            "closed": false,
+            "pos": 16384,
+            "due": null,
+            "dueComplete": false,
+            "dateLastActivity": "2025-03-20T00:00:00.000Z"
+          }
+    recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

@@ -10,9 +10,9 @@ class TrelloAdapterCommentTest < TrelloAdapterBaseTest
   # --- Comment Tests ---
 
   test "#add_comment adds a comment to a card" do
-    card_id_for_test = ENV.fetch("TRELLO_TEST_CARD_ID", "YOUR_CARD_ID_FOR_ADD_COMMENT")
+    card_id_for_test = ENV.fetch("TRELLO_TEST_CARD_ID", "YOUR_CARD_ID_FOR_COMMENT")
     if card_id_for_test.include?("YOUR_CARD_ID")
-      skip("Set TRELLO_TEST_CARD_ID environment variable to record VCR cassette for add_comment.")
+      # skip("Set TRELLO_TEST_CARD_ID environment variable to record VCR cassette for add_comment.")
     end
 
     VCR.use_cassette("trello_adapter/add_comment") do

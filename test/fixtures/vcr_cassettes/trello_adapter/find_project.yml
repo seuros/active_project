@@ -1,0 +1,17 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/YOUR_BOARD_ID_FOR_FIND_PROJECT?fields=id,name,desc&key=DUMMY_TRELLO_KEY&token=DUMMY_TRELLO_TOKEN
+  response:
+    status:
+      code: 200
+      message: OK
+    body: |
+      {
+        "id": "YOUR_BOARD_ID_FOR_FIND_PROJECT",
+        "name": "Dummy Board",
+        "desc": "This is a dummy board"
+      }
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

@@ -4,8 +4,6 @@ require_relative "basecamp_adapter_base_test"
 
 class BasecampCreateIssueTest < BasecampAdapterBaseTest
   test "#create_issue creates a new todo" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todolist: true)
-
     VCR.use_cassette("basecamp_adapter/create_issue") do
       attributes = {
         todolist_id: @todolist_id,

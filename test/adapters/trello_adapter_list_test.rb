@@ -12,7 +12,7 @@ class TrelloAdapterListTest < TrelloAdapterBaseTest
   test "#create_list creates a new list on a Trello board" do
     board_id_for_test = ENV.fetch("TRELLO_TEST_BOARD_ID", "YOUR_BOARD_ID_FOR_CREATE_LIST")
     if board_id_for_test.include?("YOUR_BOARD_ID")
-      skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for create_list.")
+      # skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for create_list.")
     end
     skip_if_missing_credentials # Use helper from base class
 

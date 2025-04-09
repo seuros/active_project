@@ -1,0 +1,25 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/YOUR_BOARD_ID_FOR_LIST_ISSUES/cards?fields=id,name,desc,closed,idList,idBoard,due,dueComplete,idMembers&key=DUMMY_TRELLO_KEY&list=true&token=DUMMY_TRELLO_TOKEN
+  response:
+    status:
+      code: 200
+      message: OK
+    body: |
+      [
+        {
+          "id": "dummyCardId123",
+          "name": "Sample Open Card",
+          "desc": "This is a dummy open card",
+          "closed": false,
+          "idList": "dummyListId123",
+          "idBoard": "YOUR_BOARD_ID_FOR_LIST_ISSUES",
+          "due": null,
+          "dueComplete": false,
+          "idMembers": []
+        }
+      ]
+  recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

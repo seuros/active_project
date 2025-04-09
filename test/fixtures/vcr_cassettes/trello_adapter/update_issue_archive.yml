@@ -1,0 +1,31 @@
+---
+http_interactions:
+  - request:
+      method: put
+      uri: https://api.trello.com/1/cards/YOUR_CARD_ID_FOR_ARCHIVE_ISSUE?closed=true&key=DUMMY_TRELLO_KEY&token=DUMMY_TRELLO_TOKEN
+      body:
+        encoding: UTF-8
+        string: ""
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json; charset=utf-8
+      body:
+        encoding: UTF-8
+        string: |
+          {
+            "id": "YOUR_CARD_ID_FOR_ARCHIVE_ISSUE",
+            "name": "Archived Card",
+            "closed": true,
+            "idList": "5f91b99b1a67e8897c4a1f02",
+            "idBoard": "DUMMY_BOARD_ID",
+            "due": null,
+            "dueComplete": false,
+            "dateLastActivity": "2025-03-20T00:00:00.000Z",
+            "pos": 32768
+          }
+    recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+recorded_with: VCR 6.3.1

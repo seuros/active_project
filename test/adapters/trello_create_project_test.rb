@@ -47,7 +47,7 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
   # Skips the test if dummy credentials are detected
   def skip_if_missing_credentials
     if @api_key.include?("DUMMY") || @api_token.include?("DUMMY")
-      skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables with write permissions.")
+      # skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables with write permissions.")
     end
   end
 

@@ -43,14 +43,6 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
   end
 
   def teardown
-    # Restore original config options after each test
-    ActiveProject.configure do |config|
-      if @original_basecamp_config_options.any?
-        config.add_adapter :basecamp, @original_basecamp_config_options
-      else
-        config.add_adapter :basecamp, {} # Reset if no original
-      end
-    end
     # Clear memoized adapter instance again after teardown
     ActiveProject.reset_adapters
   end
@@ -58,24 +50,8 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
 
   # Helper to fetch and store common test IDs from ENV
   def setup_context_ids
-    @project_id = ENV.fetch("BASECAMP_TEST_PROJECT_ID", nil)
-    @todolist_id = ENV.fetch("BASECAMP_TEST_TODOLIST_ID", nil)
-    @todo_id = ENV.fetch("BASECAMP_TEST_TODO_ID", nil) # An existing todo ID for find/update/comment
-  end
-
-  # Helper to skip tests if essential credentials or IDs are missing
-  def skip_if_missing_credentials_or_ids(needs_project: false, needs_todolist: false, needs_todo: false)
-    if @account_id.include?("DUMMY") || @access_token.include?("DUMMY")
-      skip("Set BASECAMP_ACCOUNT_ID and BASECAMP_ACCESS_TOKEN environment variables.")
-    end
-    if needs_project && !@project_id
-      skip("Set BASECAMP_TEST_PROJECT_ID environment variable.")
-    end
-    if needs_todolist && !@todolist_id
-      skip("Set BASECAMP_TEST_TODOLIST_ID environment variable.")
-    end
-    if needs_todo && !@todo_id
-      skip("Set BASECAMP_TEST_TODO_ID environment variable.")
-    end
+    @project_id = ENV.fetch("BASECAMP_TEST_PROJECT_ID", "41789030")
+    @todolist_id = ENV.fetch("BASECAMP_TEST_TODOLIST_ID", "8514014894")
+    @todo_id = ENV.fetch("BASECAMP_TEST_TODO_ID", "8514015012") # An existing todo ID for find/update/comment
   end
 end

@@ -27,7 +27,7 @@ class TrelloAdapterProjectTest < TrelloAdapterBaseTest
   test "#find_project returns a Project struct for a valid board ID" do
     board_id_for_test = ENV.fetch("TRELLO_TEST_BOARD_ID", "YOUR_BOARD_ID_FOR_FIND_PROJECT")
     if board_id_for_test.include?("YOUR_BOARD_ID")
-      skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for find_project.")
+      # skip("Set TRELLO_TEST_BOARD_ID environment variable to record VCR cassette for find_project.")
     end
 
     VCR.use_cassette("trello_adapter/find_project") do

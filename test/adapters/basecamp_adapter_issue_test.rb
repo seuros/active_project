@@ -3,8 +3,6 @@
 require_relative "basecamp_adapter_base_test"
 class BasecampAdapterIssueTest < BasecampAdapterBaseTest
   test "#find_issue returns an Issue struct for existing todo" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todo: true)
-
     VCR.use_cassette("basecamp_adapter/find_issue_success") do
       issue = @adapter.find_issue(@todo_id, { project_id: @project_id })
       assert_instance_of ActiveProject::Resources::Issue, issue
@@ -26,8 +24,6 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
   end
 
   test "#list_issues returns array of Issue structs (todos) for project's first todolist by default" do
-    skip_if_missing_credentials_or_ids(needs_project: true)
-
     VCR.use_cassette("basecamp_adapter/list_issues_default_todolist") do
       issues = @adapter.list_issues(@project_id)
       assert_instance_of Array, issues
@@ -53,8 +49,6 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
   end
 
   test "#list_issues returns array of Issue structs for a specific todolist" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todolist: true)
-
     VCR.use_cassette("basecamp_adapter/list_issues_specific_todolist") do
       issues = @adapter.list_issues(@project_id, todolist_id: @todolist_id)
       assert_instance_of Array, issues
@@ -80,8 +74,6 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
   end
 
   test "create_issue creates a new todo" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todolist: true)
-
     VCR.use_cassette("basecamp_adapter/create_issue_success") do
       issue_title = "Test To-do from VCR test at 1700000000"
       attributes = {
@@ -111,8 +103,6 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
 
 
   test "update_issue updates a todo" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todolist: true)
-
     # Create an issue first to update
     issue_to_update = nil
     VCR.use_cassette("basecamp_adapter/update_issue_create_step") do

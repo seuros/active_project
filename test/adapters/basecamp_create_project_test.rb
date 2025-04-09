@@ -5,8 +5,6 @@ require_relative "basecamp_adapter_base_test"
 # Separate tests for Basecamp project creation
 class BasecampCreateProjectTest < BasecampAdapterBaseTest
   test "#create_project creates a new project" do
-    skip_if_missing_credentials_or_ids # Requires credentials
-
     VCR.use_cassette("basecamp_adapter/create_project") do
       timestamp = 1700000000
       attributes = {

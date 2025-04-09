@@ -3,8 +3,6 @@
 require_relative "basecamp_adapter_base_test"
 class BasecampAdapterCommentTest < BasecampAdapterBaseTest
   test "add_comment adds a comment to a todo" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todo: true)
-
     VCR.use_cassette("basecamp_adapter/add_comment_success") do
       comment_body = "Test comment from VCR test at 1700000000"
       # Remember to pass project_id in the options hash

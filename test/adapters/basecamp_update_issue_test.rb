@@ -4,8 +4,6 @@ require_relative "basecamp_adapter_base_test"
 
 class BasecampUpdateIssueTest < BasecampAdapterBaseTest
   test "#update_issue updates a todo title" do
-    skip_if_missing_credentials_or_ids(needs_project: true, needs_todo: true)
-
     new_title = "Updated Title 1700000000"
     VCR.use_cassette("basecamp_adapter/update_issue_title") do
       updated_issue = @adapter.update_issue(@todo_id, { title: new_title }, { project_id: @project_id })

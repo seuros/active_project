@@ -33,7 +33,6 @@ class BasecampCreateListTest < BasecampAdapterBaseTest
   end
 
   test "#create_list raises NotFoundError if project is invalid" do
-     skip_if_missing_credentials_or_ids # Need credentials to make the call
      invalid_project_id = "000000"
      VCR.use_cassette("basecamp_adapter/create_list_invalid_project") do
         assert_raises(ActiveProject::NotFoundError) do

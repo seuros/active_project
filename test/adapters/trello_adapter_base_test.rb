@@ -13,7 +13,7 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
 
     # Basic check to prevent running tests without real credentials when recording
     if VCR.current_cassette&.recording? && (@api_key.include?("DUMMY") || @api_token.include?("DUMMY"))
-      skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables to record VCR cassettes.")
+      # skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables to record VCR cassettes.")
     end
 
     # Configure VCR specifically for Trello (filtering different credentials)
@@ -74,7 +74,7 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
   # Helper to skip tests if credentials are dummy values (useful for tests needing real interaction)
   def skip_if_missing_credentials
     if @api_key.include?("DUMMY") || @api_token.include?("DUMMY")
-      skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables for this test.")
+      # skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables for this test.")
     end
   end
 end
