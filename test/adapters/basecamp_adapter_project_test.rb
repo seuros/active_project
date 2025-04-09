@@ -82,27 +82,6 @@ class BasecampAdapterProjectTest < BasecampAdapterBaseTest
   test "#delete_project successfully archives (trashes) an existing project" do
     project_id_to_delete = TEST_BC_DELETE_PROJECT_ID # Use static ID
 
-    # Ensure the project exists before trying to delete (optional, good practice)
-    VCR.use_cassette("basecamp_adapter/delete_project_find_static_#{project_id_to_delete}") do
-      begin
-        @adapter.find_project(project_id_to_delete)
-      rescue ActiveProject::NotFoundError
-        # If not found, try to un-trash it first, as it might be left over from a previous run
-        begin
-          VCR.use_cassette("basecamp_adapter/delete_project_untrash_static_#{project_id_to_delete}", record: :new_episodes) do
-            puts "Static project #{project_id_to_delete} not found, attempting to un-trash..."
-            # Basecamp API to un-trash is PUT /projects/:id/trash/recover.json
-            @adapter.untrash_project(project_id_to_delete)
-            puts "  Attempted un-trash."
-          end
-          # Try finding again after un-trashing
-          @adapter.find_project(project_id_to_delete)
-        rescue => e
-          skip "Static project ID #{project_id_to_delete} not found and could not be recovered for deletion test: #{e.message}"
-        end
-      end
-    end
-
     # Now archive (delete) it using a static cassette name
     VCR.use_cassette("basecamp_adapter/delete_project_success_static_#{project_id_to_delete}") do
       result = @adapter.delete_project(project_id_to_delete)

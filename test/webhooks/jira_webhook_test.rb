@@ -11,19 +11,19 @@ class JiraWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :jira, site_url: "dummy", username: "dummy", api_token: "dummy"
+      config.add_adapter :jira, :primary,  site_url: "dummy", username: "dummy", api_token: "dummy"
     end
     @adapter = ActiveProject.adapter(:jira)
     # Clear memoized adapter instance
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
      # Reset config
      ActiveProject.configure do |config|
-       config.add_adapter :jira, {}
+       config.add_adapter :jira, :primary,  {}
      end
-     ActiveProject.instance_variable_set(:@adapters, {})
+     ActiveProject.reset_adapters
   end
 
   test "parses jira:issue_created webhook" do

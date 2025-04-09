@@ -18,7 +18,7 @@ module ActiveProject
       # Add other associations like :project for an issue?
       else raise "Unknown association: #{association_name}"
       end
-    end # End initialize
+    end
 
     # --- Proxy Methods ---
 

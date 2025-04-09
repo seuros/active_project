@@ -10,9 +10,9 @@ class OrmInterfaceTest < ActiveSupport::TestCase
 
     # Configure dummy adapters
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: "key", api_token: "token"
-      config.add_adapter :jira, site_url: "url", username: "user", api_token: "token"
-      config.add_adapter :basecamp, account_id: "id", access_token: "token"
+      config.add_adapter :trello, :primary,  api_key: "key", api_token: "token"
+      config.add_adapter :jira, :primary,  site_url: "url", username: "user", api_token: "token"
+      config.add_adapter :basecamp, :primary,  account_id: "id", access_token: "token"
     end
 
     @jira_adapter = ActiveProject.adapter(:jira)

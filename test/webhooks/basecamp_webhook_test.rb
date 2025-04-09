@@ -8,19 +8,19 @@ class BasecampWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :basecamp, account_id: "dummy", access_token: "dummy"
+      config.add_adapter :basecamp, :primary,  account_id: "dummy", access_token: "dummy"
     end
     @adapter = ActiveProject.adapter(:basecamp)
     # Clear memoized adapter instance
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
      # Reset config
      ActiveProject.configure do |config|
-       config.add_adapter :basecamp, {}
+       config.add_adapter :basecamp, :primary,  {}
      end
-     ActiveProject.instance_variable_set(:@adapters, {})
+     ActiveProject.reset_adapters
   end
 
   test "parses todo_created webhook" do

@@ -10,21 +10,21 @@ class TrelloWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: "dummy", api_token: "dummy" do |trello_config|
+      config.add_adapter :trello, :primary,  api_key: "dummy", api_token: "dummy" do |trello_config|
         trello_config.status_mappings = {}
       end
     end
     @adapter = ActiveProject.adapter(:trello)
     # Clear memoized adapter instance
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
   def teardown
      # Reset config
      ActiveProject.configure do |config|
-       config.add_adapter :trello, {}
+       config.add_adapter :trello, :primary,  {}
      end
-     ActiveProject.instance_variable_set(:@adapters, {})
+     ActiveProject.reset_adapters
   end
 
   test "parses createCard webhook" do

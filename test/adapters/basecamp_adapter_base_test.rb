@@ -29,7 +29,6 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
     # Store original config options for restoration
     @original_basecamp_config_options = ActiveProject.configuration.adapter_config(:basecamp)&.options&.dup || {}
 
-
     ActiveProject.configure do |config|
       config.add_adapter :basecamp, account_id: @account_id, access_token: @access_token
     end
@@ -37,8 +36,7 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
     # Initialize adapter using the new config structure via the helper
     @adapter = ActiveProject.adapter(:basecamp)
     # Clear memoized adapter instance in ActiveProject module
-    ActiveProject.instance_variable_set(:@adapters, {})
-
+    ActiveProject.reset_adapters
 
     # Fetch context IDs needed for many tests
     setup_context_ids
@@ -54,7 +52,7 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
       end
     end
     # Clear memoized adapter instance again after teardown
-    ActiveProject.instance_variable_set(:@adapters, {})
+    ActiveProject.reset_adapters
   end
 
 
