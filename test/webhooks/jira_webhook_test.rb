@@ -11,7 +11,7 @@ class JiraWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :jira, :primary,  site_url: "dummy", username: "dummy", api_token: "dummy"
+      config.add_adapter :jira, :primary, site_url: "dummy", username: "dummy", api_token: "dummy"
     end
     @adapter = ActiveProject.adapter(:jira)
     # Clear memoized adapter instance
@@ -19,11 +19,11 @@ class JiraWebhookTest < ActiveSupport::TestCase
   end
 
   def teardown
-     # Reset config
-     ActiveProject.configure do |config|
-       config.add_adapter :jira, :primary,  {}
-     end
-     ActiveProject.reset_adapters
+    # Reset config
+    ActiveProject.configure do |config|
+      config.add_adapter :jira, :primary, {}
+    end
+    ActiveProject.reset_adapters
   end
 
   test "parses jira:issue_created webhook" do
@@ -48,14 +48,14 @@ class JiraWebhookTest < ActiveSupport::TestCase
     assert_equal :issue, event.object_kind
     assert_equal "10001", event.event_object_id
     assert_equal "PROJ-123", event.object_key
-    assert_equal 10000, event.project_id
+    assert_equal 10_000, event.project_id
     assert_equal "user1", event.actor.id # Access ID via User resource
     assert_equal :jira, event.adapter_source
     assert_equal JSON.parse(payload), event.raw_data
   end
 
   test "parses jira:issue_updated webhook with changelog" do
-     payload = {
+    payload = {
       "timestamp" => Time.now.to_i * 1000,
       "webhookEvent" => "jira:issue_updated",
       "user" => { "accountId" => "user2", "displayName" => "Updater User", "emailAddress" => "updater@example.com" },
@@ -79,7 +79,7 @@ class JiraWebhookTest < ActiveSupport::TestCase
     assert_equal :issue, event.object_kind
     assert_equal "10002", event.event_object_id
     assert_equal "PROJ-124", event.object_key
-    assert_equal 10000, event.project_id
+    assert_equal 10_000, event.project_id
     assert_equal "user2", event.actor.id # Access ID via User resource
     assert_equal({ status: [ "To Do", "In Progress" ], assignee: [ nil, "user1" ] }, event.changes)
   end
@@ -107,7 +107,7 @@ class JiraWebhookTest < ActiveSupport::TestCase
     assert_equal :comment, event.object_kind
     assert_equal "10200", event.event_object_id
     assert_nil event.object_key
-    assert_equal 10000, event.project_id
+    assert_equal 10_000, event.project_id
     assert_equal "user3", event.actor.id # Access ID via User resource
   end
 

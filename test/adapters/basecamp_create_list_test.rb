@@ -33,11 +33,11 @@ class BasecampCreateListTest < BasecampAdapterBaseTest
   end
 
   test "#create_list raises NotFoundError if project is invalid" do
-     invalid_project_id = "000000"
-     VCR.use_cassette("basecamp_adapter/create_list_invalid_project") do
-        assert_raises(ActiveProject::NotFoundError) do
-          @adapter.create_list(invalid_project_id, { name: "Test List" })
-        end
-     end
+    invalid_project_id = "000000"
+    VCR.use_cassette("basecamp_adapter/create_list_invalid_project") do
+      assert_raises(ActiveProject::NotFoundError) do
+        @adapter.create_list(invalid_project_id, { name: "Test List" })
+      end
+    end
   end
 end

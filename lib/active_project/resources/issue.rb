@@ -7,8 +7,6 @@ module ActiveProject
       def_members :id, :key, :title, :description, :status, :assignees,
                   :reporter, :project_id, :created_at, :updated_at, :due_on,
                   :priority, :adapter_source
-      # raw_data and adapter are inherited from BaseResource
-
 
       # Saves the issue (creates if new, updates if existing).
       # Placeholder - Full implementation requires attribute tracking and adapter delegation.
@@ -27,7 +25,6 @@ module ActiveProject
         # save
         raise NotImplementedError, "#update not yet implemented for #{self.class.name}"
       end
-
 
       # Returns an association proxy for accessing comments on this issue.
       # @return [AssociationProxy<Resources::Comment>]

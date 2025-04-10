@@ -10,9 +10,9 @@ class OrmInterfaceTest < ActiveSupport::TestCase
 
     # Configure dummy adapters
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary,  api_key: "key", api_token: "token"
-      config.add_adapter :jira, :primary,  site_url: "url", username: "user", api_token: "token"
-      config.add_adapter :basecamp, :primary,  account_id: "id", access_token: "token"
+      config.add_adapter :trello, :primary, api_key: "key", api_token: "token"
+      config.add_adapter :jira, :primary, site_url: "url", username: "user", api_token: "token"
+      config.add_adapter :basecamp, :primary, account_id: "id", access_token: "token"
     end
 
     @jira_adapter = ActiveProject.adapter(:jira)
@@ -21,13 +21,20 @@ class OrmInterfaceTest < ActiveSupport::TestCase
 
     # Mock adapter methods to return dummy Resource objects
     # Note: We mock the *adapter's* methods, which the factory/proxy will call.
-    @dummy_jira_project = ActiveProject::Resources::Project.new(@jira_adapter, id: "10000", key: "JRA", name: "Jira Project", adapter_source: :jira)
-    @dummy_jira_issue = ActiveProject::Resources::Issue.new(@jira_adapter, id: "10001", key: "JRA-1", title: "Jira Issue", project_id: "10000", status: :open, adapter_source: :jira)
-    @dummy_trello_board = ActiveProject::Resources::Project.new(@trello_adapter, id: "board1", name: "Trello Board", adapter_source: :trello)
-    @dummy_trello_card = ActiveProject::Resources::Issue.new(@trello_adapter, id: "card1", title: "Trello Card", project_id: "board1", status: :open, adapter_source: :trello)
-    @dummy_bc_project = ActiveProject::Resources::Project.new(@basecamp_adapter, id: 1, name: "BC Project", adapter_source: :basecamp)
-    @dummy_bc_todo = ActiveProject::Resources::Issue.new(@basecamp_adapter, id: 2, title: "BC Todo", project_id: 1, status: :open, adapter_source: :basecamp)
-    @dummy_bc_comment = ActiveProject::Resources::Comment.new(@basecamp_adapter, id: 3, body: "BC Comment", issue_id: 2, adapter_source: :basecamp)
+    @dummy_jira_project = ActiveProject::Resources::Project.new(@jira_adapter, id: "10000", key: "JRA",
+                                                                               name: "Jira Project", adapter_source: :jira)
+    @dummy_jira_issue = ActiveProject::Resources::Issue.new(@jira_adapter, id: "10001", key: "JRA-1",
+                                                                           title: "Jira Issue", project_id: "10000", status: :open, adapter_source: :jira)
+    @dummy_trello_board = ActiveProject::Resources::Project.new(@trello_adapter, id: "board1", name: "Trello Board",
+                                                                                 adapter_source: :trello)
+    @dummy_trello_card = ActiveProject::Resources::Issue.new(@trello_adapter, id: "card1", title: "Trello Card",
+                                                                              project_id: "board1", status: :open, adapter_source: :trello)
+    @dummy_bc_project = ActiveProject::Resources::Project.new(@basecamp_adapter, id: 1, name: "BC Project",
+                                                                                 adapter_source: :basecamp)
+    @dummy_bc_todo = ActiveProject::Resources::Issue.new(@basecamp_adapter, id: 2, title: "BC Todo", project_id: 1,
+                                                                            status: :open, adapter_source: :basecamp)
+    @dummy_bc_comment = ActiveProject::Resources::Comment.new(@basecamp_adapter, id: 3, body: "BC Comment",
+                                                                                 issue_id: 2, adapter_source: :basecamp)
 
     # Stub adapter methods that will be called by factory/proxy
     @jira_adapter.stubs(:list_projects).with({}).returns([ @dummy_jira_project ]) # list_projects takes options hash
@@ -106,8 +113,8 @@ class OrmInterfaceTest < ActiveSupport::TestCase
   end
 
   test "issue.comments association returns proxy" do
-     assert_respond_to @dummy_bc_todo, :comments
-     assert_instance_of ActiveProject::AssociationProxy, @dummy_bc_todo.comments
+    assert_respond_to @dummy_bc_todo, :comments
+    assert_instance_of ActiveProject::AssociationProxy, @dummy_bc_todo.comments
   end
 
   # test "issue.comments.all calls adapter list_comments" do
@@ -118,7 +125,8 @@ class OrmInterfaceTest < ActiveSupport::TestCase
 
   test "factory #where performs client-side filtering" do
     # Add another dummy issue for filtering
-    @dummy_jira_issue_closed = ActiveProject::Resources::Issue.new(@jira_adapter, id: "10002", key: "JRA-2", title: "Closed Jira Issue", project_id: "10000", status: :closed, adapter_source: :jira)
+    @dummy_jira_issue_closed = ActiveProject::Resources::Issue.new(@jira_adapter, id: "10002", key: "JRA-2",
+                                                                                  title: "Closed Jira Issue", project_id: "10000", status: :closed, adapter_source: :jira)
     @jira_adapter.stubs(:list_issues).with("10000", {}).returns([ @dummy_jira_issue, @dummy_jira_issue_closed ])
 
     # Use the factory for where, passing list args after conditions
@@ -148,7 +156,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     assert_match(/#save not yet implemented/, exception.message)
   end
 
-   test "resource #update raises NotImplementedError" do
+  test "resource #update raises NotImplementedError" do
     # Check for the specific error message from the placeholder
     exception = assert_raises(ActiveProject::NotImplementedError) do
       @dummy_jira_issue.update(title: "Update Test")
@@ -157,15 +165,15 @@ class OrmInterfaceTest < ActiveSupport::TestCase
   end
 
   test "factory #create calls adapter create method" do
-     # Use the factory create method
-     # Factory#create now calls adapter#create_issue directly
-     created_issue = @jira_adapter.issues.create(
-       project: { key: "JRA" },
-       summary: "Create Test", # Use summary as per adapter create_issue
-       issue_type: { name: "Task" }
-     )
-     # Assert that the stubbed adapter method returned the expected object.
-     assert_instance_of ActiveProject::Resources::Issue, created_issue
-     assert_equal @dummy_jira_issue, created_issue
+    # Use the factory create method
+    # Factory#create now calls adapter#create_issue directly
+    created_issue = @jira_adapter.issues.create(
+      project: { key: "JRA" },
+      summary: "Create Test", # Use summary as per adapter create_issue
+      issue_type: { name: "Task" }
+    )
+    # Assert that the stubbed adapter method returned the expected object.
+    assert_instance_of ActiveProject::Resources::Issue, created_issue
+    assert_equal @dummy_jira_issue, created_issue
   end
 end

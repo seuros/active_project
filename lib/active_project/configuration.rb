@@ -29,9 +29,7 @@ module ActiveProject
     # @param options [Hash] Configuration options for the adapter (e.g., site, api_key, token).
     # @yield [BaseAdapterConfiguration] Yields an adapter-specific configuration object if a block is given.
     def add_adapter(adapter_type, instance_name = :primary, options = {}, &block)
-      unless adapter_type.is_a?(Symbol)
-        raise ArgumentError, "Adapter type must be a Symbol (e.g., :basecamp)"
-      end
+      raise ArgumentError, "Adapter type must be a Symbol (e.g., :basecamp)" unless adapter_type.is_a?(Symbol)
 
       # Handle the case where instance_name is actually the options hash
       if instance_name.is_a?(Hash) && options.empty?

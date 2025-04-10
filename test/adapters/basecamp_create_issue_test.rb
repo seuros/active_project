@@ -21,7 +21,6 @@ class BasecampCreateIssueTest < BasecampAdapterBaseTest
       assert issue.respond_to?(:due_on)
       assert issue.respond_to?(:due_on)
 
-
       # Add assertion for assignee IDs if passed and expected in response mapping
     end
   end

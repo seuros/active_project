@@ -10,7 +10,7 @@ class TrelloWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary,  api_key: "dummy", api_token: "dummy" do |trello_config|
+      config.add_adapter :trello, :primary, api_key: "dummy", api_token: "dummy" do |trello_config|
         trello_config.status_mappings = {}
       end
     end
@@ -20,11 +20,11 @@ class TrelloWebhookTest < ActiveSupport::TestCase
   end
 
   def teardown
-     # Reset config
-     ActiveProject.configure do |config|
-       config.add_adapter :trello, :primary,  {}
-     end
-     ActiveProject.reset_adapters
+    # Reset config
+    ActiveProject.configure do |config|
+      config.add_adapter :trello, :primary, {}
+    end
+    ActiveProject.reset_adapters
   end
 
   test "parses createCard webhook" do
@@ -54,7 +54,7 @@ class TrelloWebhookTest < ActiveSupport::TestCase
   end
 
   test "parses updateCard webhook (list change)" do
-     payload = {
+    payload = {
       "action" => {
         "id" => "action2", "type" => "updateCard", "date" => Time.now.iso8601,
         "memberCreator" => { "id" => "member1", "fullName" => "Test User" },
@@ -75,10 +75,10 @@ class TrelloWebhookTest < ActiveSupport::TestCase
     assert_equal :issue, event.object_kind
     assert_equal "card123", event.event_object_id
     assert_equal "board1", event.project_id
-    assert_equal({ idList: [ "list1", "list2" ] }, event.changes) # Check changes hash if implemented
+    assert_equal({ idList: %w[list1 list2] }, event.changes) # Check changes hash if implemented
   end
 
-   test "parses commentCard webhook" do
+  test "parses commentCard webhook" do
     payload = {
       "action" => {
         "id" => "action3", "type" => "commentCard", "date" => Time.now.iso8601,

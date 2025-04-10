@@ -47,7 +47,6 @@ class BasecampAdapterBaseTest < ActiveSupport::TestCase
     ActiveProject.reset_adapters
   end
 
-
   # Helper to fetch and store common test IDs from ENV
   def setup_context_ids
     @project_id = ENV.fetch("BASECAMP_TEST_PROJECT_ID", "41789030")

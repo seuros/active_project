@@ -40,7 +40,6 @@ class TrelloAdapterProjectTest < TrelloAdapterBaseTest
     end
   end
 
-
   test "#create_project creates a new board in Trello" do
     # No specific ENV vars needed here unless testing with specific org, etc.
     skip_if_missing_credentials # Use helper from base class
@@ -92,7 +91,7 @@ class TrelloAdapterProjectTest < TrelloAdapterBaseTest
 
       # Trello API should return a 400 or similar error
       assert_raises(ActiveProject::ValidationError, /invalid value for idOrganization|organization not found/) do
-         @adapter.create_project(attributes)
+        @adapter.create_project(attributes)
       end
     end
   end
@@ -104,11 +103,11 @@ class TrelloAdapterProjectTest < TrelloAdapterBaseTest
     board_name = "AP Trello Delete Test 1700000000"
     created_board = nil
     VCR.use_cassette("trello_adapter/delete_project_create_step") do
-    skip "Skipping due to Trello 'Workspaces are full' error (account limit)"
-       skip_if_missing_credentials # Need credentials to create
-       attributes = { name: board_name, default_lists: false } # Don't need default lists
-       created_board = @adapter.create_project(attributes)
-       refute_nil created_board, "Failed to create board for deletion test"
+      skip "Skipping due to Trello 'Workspaces are full' error (account limit)"
+      skip_if_missing_credentials # Need credentials to create
+      attributes = { name: board_name, default_lists: false } # Don't need default lists
+      created_board = @adapter.create_project(attributes)
+      refute_nil created_board, "Failed to create board for deletion test"
     end
 
     # Now delete it
@@ -120,10 +119,10 @@ class TrelloAdapterProjectTest < TrelloAdapterBaseTest
 
     # Verify deletion by trying to find it again
     VCR.use_cassette("trello_adapter/delete_project_verify_not_found") do
-       skip_if_missing_credentials # Need credentials to find (even if it fails)
-       assert_raises(ActiveProject::NotFoundError) do
-         @adapter.find_project(created_board.id)
-       end
+      skip_if_missing_credentials # Need credentials to find (even if it fails)
+      assert_raises(ActiveProject::NotFoundError) do
+        @adapter.find_project(created_board.id)
+      end
     end
   end
 

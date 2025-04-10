@@ -26,7 +26,7 @@ class TrelloAdapterIssueCrudTest < TrelloAdapterBaseTest
       assert issue.respond_to?(:due_on)
       assert_kind_of Date, issue.due_on if issue.due_on # Check type if present
 
-      assert_includes [ :open, :closed ], issue.status
+      assert_includes %i[open closed], issue.status
       assert_kind_of Array, issue.assignees
       unless issue.assignees.empty?
         assert_instance_of ActiveProject::Resources::User, issue.assignees.first
@@ -63,9 +63,7 @@ class TrelloAdapterIssueCrudTest < TrelloAdapterBaseTest
       assert_equal :open, issue.status
       assert_kind_of Array, issue.assignees
       # Check assignee type if present in VCR data (likely empty for new card unless specified)
-      unless issue.assignees.empty?
-        assert_instance_of ActiveProject::Resources::User, issue.assignees.first
-      end
+      assert_instance_of ActiveProject::Resources::User, issue.assignees.first unless issue.assignees.empty?
       assert_nil issue.reporter # Trello doesn't have a reporter
       assert_nil issue.priority # Trello doesn't have priority
     end
@@ -80,7 +78,7 @@ class TrelloAdapterIssueCrudTest < TrelloAdapterBaseTest
     VCR.use_cassette("trello_adapter/update_issue_title_desc") do
       new_title = "Updated Title 1700000000"
       new_description = "Updated description at 1700000000."
-      new_due_date = Date.today + 5
+      new_due_date = Date.parse("Tue, 14 Apr 2025")
       attributes = { title: new_title, description: new_description, due_on: new_due_date }
       updated_issue = @adapter.update_issue(card_id_for_test, attributes)
       assert_instance_of ActiveProject::Resources::Issue, updated_issue
@@ -152,7 +150,7 @@ class TrelloAdapterIssueCrudTest < TrelloAdapterBaseTest
       assert_nil updated_issue.priority # Trello doesn't have priority
     end
   end
-   test "#update_issue unarchives a card" do
+  test "#update_issue unarchives a card" do
     card_id_for_test = ENV.fetch("TRELLO_TEST_CARD_ID_ARCHIVED", "YOUR_ARCHIVED_CARD_ID_FOR_UNARCHIVE")
     if card_id_for_test.include?("YOUR_ARCHIVED_CARD_ID")
       # skip("Set TRELLO_TEST_CARD_ID_ARCHIVED environment variable to record VCR cassette for update_issue (unarchive).")

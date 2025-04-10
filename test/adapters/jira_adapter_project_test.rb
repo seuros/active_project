@@ -28,7 +28,7 @@ class JiraAdapterProjectTest < JiraAdapterBaseTest
       assert_instance_of ActiveProject::Resources::Project, project
       assert_equal project_key_for_test, project.key
       assert_equal :jira, project.adapter_source
-      assert_equal 10004, project.id # Check against known ID for LAC
+      assert_equal 10_004, project.id # Check against known ID for LAC
       assert project.name
     end
   end
@@ -66,7 +66,7 @@ class JiraAdapterProjectTest < JiraAdapterBaseTest
       # Cleanup the dynamically created project
       if test_project&.key && @adapter
         VCR.use_cassette("jira_adapter/delete_project_cleanup_dynamic_APDEL6699") do # Hardcoded key
-          deleted = @adapter.delete_project(test_project.key)
+          @adapter.delete_project(test_project.key)
         end
       end
     end

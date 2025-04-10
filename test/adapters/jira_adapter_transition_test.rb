@@ -57,7 +57,8 @@ class JiraAdapterTransitionTest < JiraAdapterBaseTest
     invalid_target_status_id = "99999"
 
     VCR.use_cassette("jira_adapter/transition_issue_invalid_target_id_static") do # New cassette name
-      assert_raises(ActiveProject::NotFoundError, /Target transition '#{invalid_target_status_id}' not found or available/) do
+      assert_raises(ActiveProject::NotFoundError,
+                    /Target transition '#{invalid_target_status_id}' not found or available/) do
         @adapter.transition_issue(issue_key_for_test, invalid_target_status_id)
       end
     end
@@ -68,7 +69,8 @@ class JiraAdapterTransitionTest < JiraAdapterBaseTest
     invalid_target_status = "NonExistentStatus123"
 
     VCR.use_cassette("jira_adapter/transition_issue_invalid_target_static") do # New cassette name
-      assert_raises(ActiveProject::NotFoundError, /Target transition '#{invalid_target_status}' not found or available/) do
+      assert_raises(ActiveProject::NotFoundError,
+                    /Target transition '#{invalid_target_status}' not found or available/) do
         @adapter.transition_issue(issue_key_for_test, invalid_target_status)
       end
     end

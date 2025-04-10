@@ -13,7 +13,6 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
     # Store original config options for restoration
     @original_jira_config_options = ActiveProject.configuration.adapter_config(:jira)&.options&.dup || {}
 
-
     ActiveProject.configure do |config|
       config.add_adapter :jira, site_url: @site_url, username: @username, api_token: @api_token
     end
@@ -47,7 +46,7 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
     skip_if_missing_credentials
 
     VCR.use_cassette("jira_adapter/create_project") do
-      timestamp = 1700000000
+      timestamp = 1_700_000_000
       attributes = {
         key: "CP#{timestamp.to_s[-4..]}", # Generate a somewhat unique key
         name: "Test Project #{timestamp}",
@@ -63,7 +62,7 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
       assert project.id
       assert_equal attributes[:key], project.key
       assert_equal attributes[:name], project.name
-      # Note: Deleting the created project might be necessary for test cleanup in a real scenario
+      # NOTE: Deleting the created project might be necessary for test cleanup in a real scenario
     end
   end
 
@@ -77,7 +76,7 @@ class JiraCreateProjectTest < ActiveSupport::TestCase
     assert_raises(ArgumentError, /Missing required attributes.*:project_type_key/) do
       @adapter.create_project(key: "NK", name: "No Type", lead_account_id: "id")
     end
-     assert_raises(ArgumentError, /Missing required attributes.*:lead_account_id/) do
+    assert_raises(ArgumentError, /Missing required attributes.*:lead_account_id/) do
       @adapter.create_project(key: "NK", name: "No Lead", project_type_key: "software")
     end
   end

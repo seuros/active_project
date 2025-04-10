@@ -24,7 +24,7 @@ class ActiveProjectModuleTest < ActiveSupport::TestCase
   test ".adapter returns correct adapter instance" do
     # Configure dummy adapters
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary,  api_key: "key", api_token: "DUMMY_ACCESS_TOKEN"
+      config.add_adapter :trello, :primary, api_key: "key", api_token: "DUMMY_ACCESS_TOKEN"
       config.add_adapter :jira, site_url: "url", username: "user", api_token: "DUMMY_ACCESS_TOKEN"
       config.add_adapter :basecamp, account_id: "id", access_token: "DUMMY_ACCESS_TOKEN"
     end
@@ -45,7 +45,7 @@ class ActiveProjectModuleTest < ActiveSupport::TestCase
 
   test ".adapter memoizes adapter instances" do
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary,  api_key: "key", api_token: "token"
+      config.add_adapter :trello, :primary, api_key: "key", api_token: "token"
     end
 
     adapter1 = ActiveProject.adapter(:trello)

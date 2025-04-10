@@ -18,7 +18,6 @@ module ActiveProject
         raise NotImplementedError, "#{self.class.name} must implement #find_project"
       end
 
-
       # Creates a new project.
       # @param attributes [Hash] Project attributes (platform-specific).
       # @return [ActiveProject::Project] The created project object.
@@ -35,7 +34,6 @@ module ActiveProject
         raise NotImplementedError, "#{self.class.name} does not support #create_list or must implement #create_list"
       end
 
-
       # Deletes a project. Use with caution.
       # @param project_id [String, Integer] The ID or key of the project to delete.
       # @return [Boolean] true if deletion was successful (or accepted), false otherwise.
@@ -43,7 +41,6 @@ module ActiveProject
       def delete_project(project_id)
         raise NotImplementedError, "#{self.class.name} does not support #delete_project or must implement it"
       end
-
 
       # Lists issues within a specific project.
       # @param project_id [String, Integer] The ID or key of the project.
@@ -88,11 +85,11 @@ module ActiveProject
       end
 
       # Verifies the signature of an incoming webhook request, if supported by the platform.
-      # @param request_body [String] The raw request body.
-      # @param signature_header [String] The value of the platform-specific signature header (e.g., 'X-Trello-Webhook').
+      # @param _request_body [String] The raw request body.
+      # @param _signature_header [String] The value of the platform-specific signature header (e.g., 'X-Trello-Webhook').
       # @return [Boolean] true if the signature is valid or verification is not supported/needed, false otherwise.
       # @raise [NotImplementedError] if verification is applicable but not implemented by a subclass.
-      def verify_webhook_signature(request_body, signature_header)
+      def verify_webhook_signature(_request_body, _signature_header)
         # Default implementation assumes no verification needed or supported.
         # Adapters supporting verification should override this.
         true
@@ -106,7 +103,6 @@ module ActiveProject
       def parse_webhook(request_body, headers = {})
         raise NotImplementedError, "#{self.class.name} must implement #parse_webhook"
       end
-
 
       # Retrieves details for the currently authenticated user.
       # @return [ActiveProject::Resources::User] The user object.
