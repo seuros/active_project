@@ -22,7 +22,8 @@ class TrelloAdapterCommentTest < TrelloAdapterBaseTest
       assert_equal comment_text, comment.body
       assert comment.id
       assert_equal :trello, comment.adapter_source
-      assert_instance_of ActiveProject::Resources::User, comment.author if comment.author # Author might be nil depending on VCR
+      # Author might be nil depending on VCR
+      assert_instance_of ActiveProject::Resources::User, comment.author if comment.author
     end
   end
 end

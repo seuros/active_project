@@ -11,7 +11,6 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
     # Store original config options for restoration
     @original_trello_config_options = ActiveProject.configuration.adapter_config(:trello)&.options&.dup || {}
 
-
     ActiveProject.configure do |config|
       config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
         trello_config.status_mappings = {} # Default empty mappings
@@ -28,16 +27,16 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
     # Restore original config options after each test
     ActiveProject.configure do |config|
       if @original_trello_config_options.any?
-         original_mappings = @original_trello_config_options.delete(:status_mappings)
-         if original_mappings
-           config.add_adapter :trello, @original_trello_config_options do |trello_config|
-             trello_config.status_mappings = original_mappings
-           end
-         else
-           config.add_adapter :trello, @original_trello_config_options
-         end
+        original_mappings = @original_trello_config_options.delete(:status_mappings)
+        if original_mappings
+          config.add_adapter :trello, @original_trello_config_options do |trello_config|
+            trello_config.status_mappings = original_mappings
+          end
+        else
+          config.add_adapter :trello, @original_trello_config_options
+        end
       else
-         config.add_adapter :trello, {}
+        config.add_adapter :trello, {}
       end
     end
     # Clear memoized adapter instance again after teardown
@@ -46,9 +45,8 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
 
   # Skips the test if dummy credentials are detected
   def skip_if_missing_credentials
-    if @api_key.include?("DUMMY") || @api_token.include?("DUMMY")
-      # skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables with write permissions.")
-    end
+    nil unless @api_key.include?("DUMMY") || @api_token.include?("DUMMY")
+    # skip("Set TRELLO_API_KEY and TRELLO_API_TOKEN environment variables with write permissions.")
   end
 
   test "#create_project creates a new board" do
@@ -56,7 +54,7 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
 
     skip "Skipping due to Trello 'Workspaces are full' error (account limit)"
     VCR.use_cassette("trello_adapter/create_project") do
-      timestamp = 1700000000
+      timestamp = 1_700_000_000
       attributes = {
         name: "Test Board #{timestamp}",
         description: "Test board created by ActiveProject gem.",
@@ -70,7 +68,7 @@ class TrelloCreateProjectTest < ActiveSupport::TestCase
       assert project.id
       assert_equal attributes[:name], project.name
       assert_nil project.key
-      # Note: Deleting the created board might be necessary for test cleanup
+      # NOTE: Deleting the created board might be necessary for test cleanup
       # Trello API allows deleting boards: DELETE /boards/{id}
     end
   end

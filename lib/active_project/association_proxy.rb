@@ -32,6 +32,7 @@ module ActiveProject
       # Ensure owner.id is accessed correctly
       owner_id = @owner.respond_to?(:id) ? @owner.id : nil
       raise "Owner object #{@owner.inspect} does not have an ID for association call." unless owner_id
+
       @adapter.send(list_method, owner_id, options)
     end
 
@@ -79,6 +80,8 @@ module ActiveProject
       @target_resource_class.new(@adapter, merged_attrs)
     end
 
+    alias new build
+
     # Creates and saves a new associated resource.
     # Example: project.issues.create(title: 'New', list_id: '...')
     # @param attributes [Hash] Attributes for the new resource.
@@ -86,12 +89,13 @@ module ActiveProject
     # @raise [NotImplementedError] Currently raises because #save is not fully implemented on resource.
     def create(attributes = {})
       create_method = determine_create_method
-      context = determine_context # Get owner context
+      determine_context # Get owner context
       # Pass owner ID/context first, then attributes
       owner_id = @owner.respond_to?(:id) ? @owner.id : nil
       raise "Owner object #{@owner.inspect} does not have an ID for association call." unless owner_id
+
       @adapter.send(create_method, owner_id, attributes)
-      # Note: This currently returns the result from the adapter directly.
+      # NOTE: This currently returns the result from the adapter directly.
       # A full implementation would likely build and then save, or re-fetch.
     end
 
@@ -113,6 +117,7 @@ module ActiveProject
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}"
       end
+
       method_name
     end
 
@@ -125,6 +130,7 @@ module ActiveProject
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}"
       end
+
       method_name
     end
 
@@ -136,6 +142,7 @@ module ActiveProject
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}"
       end
+
       method_name
     end
   end

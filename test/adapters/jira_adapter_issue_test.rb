@@ -19,9 +19,8 @@ class JiraAdapterIssueTest < JiraAdapterBaseTest
         assert issues.first.id
         assert issues.first.key.start_with?(project_key_for_test), "Issue key should belong to project"
         assert issues.first.title
-        assert_equal 10004, issues.first.project_id # Check against known project ID for LAC
-        assert_includes [ :open, :in_progress, :closed, :unknown ], issues.first.status
-      else
+        assert_equal 10_004, issues.first.project_id # Check against known project ID for LAC
+        assert_includes %i[open in_progress closed unknown], issues.first.status
       end
     end
   end
@@ -36,7 +35,7 @@ class JiraAdapterIssueTest < JiraAdapterBaseTest
       assert_equal :jira, issue.adapter_source
       assert issue.id # Check ID exists
       assert issue.title # Check title exists
-      assert_equal 10004, issue.project_id # Check against known project ID for LAC
+      assert_equal 10_004, issue.project_id # Check against known project ID for LAC
     end
   end
 
@@ -74,21 +73,20 @@ class JiraAdapterIssueTest < JiraAdapterBaseTest
     # Attempt to delete the created issue (best effort cleanup)
     if issue_key_to_delete && @adapter
       VCR.use_cassette("jira_adapter/delete_created_issue_static_project_#{issue_key_to_delete}") do
-        # Note: Jira API typically doesn't have a direct issue delete,
+        # NOTE: Jira API typically doesn't have a direct issue delete,
         # this might require specific permissions or workflows not covered here.
         # Placeholder for potential future cleanup logic if needed.
       end
     end
   end
 
-
   test "#update_issue updates an issue with static values" do
-  issue_key_for_test = TEST_JIRA_ISSUE_KEY # Use your constant here
+    issue_key_for_test = TEST_JIRA_ISSUE_KEY # Use your constant here
 
-  VCR.use_cassette("jira_adapter/update_issue_static") do
-    # Static values that match exactly what's in the VCR cassette
-    static_attributes = {
-      summary: "Updated Summary Static 1700000000",
+    VCR.use_cassette("jira_adapter/update_issue_static") do
+      # Static values that match exactly what's in the VCR cassette
+      static_attributes = {
+        summary: "Updated Summary Static 1700000000",
         description: "Updated description static test at 1700000000.",
         priority: { name: "High" }
       }
@@ -101,9 +99,7 @@ class JiraAdapterIssueTest < JiraAdapterBaseTest
       assert updated_issue.description.include?("Updated description static test at 1700000000.")
 
       # Optional assertions (remove if not applicable)
-      if updated_issue.respond_to?(:priority)
-        assert_equal "High", updated_issue.priority
-      end
+      assert_equal "High", updated_issue.priority if updated_issue.respond_to?(:priority)
     end
   end
 

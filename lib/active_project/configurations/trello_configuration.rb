@@ -20,9 +20,7 @@ module ActiveProject
 
       def freeze
         # Ensure nested hashes are also frozen
-        @status_mappings.each do |board_id, mappings|
-          mappings.freeze
-        end
+        @status_mappings.each_value(&:freeze)
         @status_mappings.freeze
         super
       end

@@ -4,7 +4,7 @@ require_relative "jira_adapter_base_test"
 
 # Tests for Jira Adapter Error Handling scenarios.
 class JiraAdapterErrorTest < JiraAdapterBaseTest
-  # Note: Some error tests (like find_project not found, create_project validation)
+  # NOTE: Some error tests (like find_project not found, create_project validation)
   # are kept within their respective functional test files (project_test, issue_test)
   # for better context. This file focuses on broader error conditions.
 

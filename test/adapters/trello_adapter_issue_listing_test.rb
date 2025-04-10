@@ -81,7 +81,7 @@ class TrelloAdapterIssueListingTest < TrelloAdapterBaseTest
         assert issues.first.respond_to?(:due_on)
         assert_kind_of Date, issues.first.due_on if issues.first.due_on # Check type if present
 
-        assert_includes [ :open, :closed ], issues.first.status # Before config mapping
+        assert_includes %i[open closed], issues.first.status # Before config mapping
         assert_kind_of Array, issues.first.assignees
         unless issues.first.assignees.empty?
           assert_instance_of ActiveProject::Resources::User, issues.first.assignees.first

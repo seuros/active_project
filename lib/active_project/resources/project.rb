@@ -7,7 +7,6 @@ module ActiveProject
       def_members :id, :key, :name, :adapter_source
       # raw_data and adapter are inherited from BaseResource
 
-
       # Returns an association proxy for accessing issues within this project.
       # @return [AssociationProxy<Resources::Issue>]
       def issues

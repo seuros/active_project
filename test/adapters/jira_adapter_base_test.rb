@@ -56,7 +56,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
     max_suffix_len = 10 - "APTEST".length - key_suffix.length
 
     max_suffix_len = [ max_suffix_len, 1 ].max # Need at least 1 random char
-    suffix = timestamp_part[-(max_suffix_len)..].rjust(max_suffix_len, "0")
+    suffix = timestamp_part[-max_suffix_len..].rjust(max_suffix_len, "0")
     # Construct the key ensuring suffix is uppercase
     project_key = "APTEST#{key_suffix.upcase}#{suffix}"
     # Truncate if somehow still over 10 chars (shouldn't happen with calculation above)
@@ -68,37 +68,35 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
     cassette_name = "jira_adapter/helper_create_project_#{project_key}"
     puts "\nAttempting to create test project '#{project_key}'..."
     VCR.use_cassette(cassette_name, record: :new_episodes) do
+      attributes = {
+        key: project_key,
+        name: project_name,
+        project_type_key: project_type_key,
+        lead_account_id: lead_account_id,
+        description: "Temp project for test #{project_key}",
+        assignee_type: "PROJECT_LEAD"
+      }
+      project = @adapter.create_project(attributes)
+      puts "    Created live test project via helper: Key=#{project.key}, ID=#{project.id}"
+    rescue ActiveProject::ValidationError => e
+      # Handle case where VCR replays an "already exists" error
+      if e.message.include?("already exists") || e.message.include?("uses this project key")
+        puts "    Project #{project_key} likely already exists (VCR replay). Attempting find..."
         begin
-          attributes = {
-            key: project_key,
-            name: project_name,
-            project_type_key: project_type_key,
-            lead_account_id: lead_account_id,
-            description: "Temp project for test #{project_key}",
-            assignee_type: "PROJECT_LEAD"
-          }
-          project = @adapter.create_project(attributes)
-          puts "    Created live test project via helper: Key=#{project.key}, ID=#{project.id}"
-        rescue ActiveProject::ValidationError => e
-          # Handle case where VCR replays an "already exists" error
-          if e.message.include?("already exists") || e.message.include?("uses this project key")
-             puts "    Project #{project_key} likely already exists (VCR replay). Attempting find..."
-             begin
-               project = @adapter.find_project(project_key) # Find it to return the object
-               puts "    Found existing project #{project_key}."
-             rescue => find_e
-               puts "[ERROR] Failed to find existing project #{project_key} after creation conflict: #{find_e.message}"
-               project = nil
-             end
-          else
-            puts "[ERROR] Failed to create live test project via helper: #{e.class} - #{e.message}"
-            project = nil
-          end
-        rescue => e
-          puts "[ERROR] Failed to create live test project via helper: #{e.class} - #{e.message}"
+          project = @adapter.find_project(project_key) # Find it to return the object
+          puts "    Found existing project #{project_key}."
+        rescue StandardError => find_e
+          puts "[ERROR] Failed to find existing project #{project_key} after creation conflict: #{find_e.message}"
           project = nil
         end
+      else
+        puts "[ERROR] Failed to create live test project via helper: #{e.class} - #{e.message}"
+        project = nil
       end
+    rescue StandardError => e
+      puts "[ERROR] Failed to create live test project via helper: #{e.class} - #{e.message}"
+      project = nil
+    end
     project # Return the created project object (or nil if failed)
   end
 
@@ -128,7 +126,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
         sleep 2
         issue = @adapter.create_issue(project.id, attributes) # Pass project ID (ignored anyway)
         puts "    Created live test issue via helper: #{issue.key}"
-      rescue => e
+      rescue StandardError => e
         puts "[ERROR] Failed to create live test issue via helper: #{e.class} - #{e.message}"
       end
     end
@@ -138,19 +136,18 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
   # Helper to delete a project - Tests needing cleanup should call this
   def delete_live_test_project(project_key)
     return unless project_key
+
     puts "\nAttempting to delete test project '#{project_key}'..."
     cassette_name = "jira_adapter/helper_delete_project_#{project_key}"
     VCR.use_cassette(cassette_name, record: :new_episodes) do
-      begin
-        deleted = @adapter.delete_project(project_key)
-        puts "    Deletion request for project #{project_key} successful." if deleted
-      rescue ActiveProject::AuthenticationError => e
-        puts "[WARN] Permission error deleting test project #{project_key}: #{e.message}."
-      rescue ActiveProject::NotFoundError
-        puts "    Test project #{project_key} already deleted or not found."
-      rescue => e
-        puts "[WARN] Unexpected error deleting test project #{project_key}: #{e.class} - #{e.message}."
-      end
+      deleted = @adapter.delete_project(project_key)
+      puts "    Deletion request for project #{project_key} successful." if deleted
+    rescue ActiveProject::AuthenticationError => e
+      puts "[WARN] Permission error deleting test project #{project_key}: #{e.message}."
+    rescue ActiveProject::NotFoundError
+      puts "    Test project #{project_key} already deleted or not found."
+    rescue StandardError => e
+      puts "[WARN] Unexpected error deleting test project #{project_key}: #{e.class} - #{e.message}."
     end
   end
 end

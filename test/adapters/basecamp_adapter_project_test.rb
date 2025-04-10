@@ -4,7 +4,7 @@ require_relative "basecamp_adapter_base_test"
 
 # Tests for Basecamp Adapter Project operations.
 class BasecampAdapterProjectTest < BasecampAdapterBaseTest
-  TEST_BC_DELETE_PROJECT_ID = 41808873 # Static project for deletion test
+  TEST_BC_DELETE_PROJECT_ID = 41_808_873 # Static project for deletion test
 
   test "#list_projects returns an array of Project structs" do
     VCR.use_cassette("basecamp_adapter/list_projects") do
@@ -62,7 +62,7 @@ class BasecampAdapterProjectTest < BasecampAdapterBaseTest
           VCR.use_cassette("basecamp_adapter/delete_project_cleanup_dynamic_#{created_project.id}") do
             @adapter.delete_project(created_project.id)
           end
-        rescue => e
+        rescue StandardError => e
           puts "[WARN] Failed to cleanup created project #{created_project.id}: #{e.message}"
         end
       end
@@ -75,7 +75,7 @@ class BasecampAdapterProjectTest < BasecampAdapterBaseTest
     end
   end
 
-  # Note: Basecamp doesn't really have validation errors like duplicate names
+  # NOTE: Basecamp doesn't really have validation errors like duplicate names
   # for project creation via API in the same way Jira does for keys.
   # Skipping duplicate name test.
 

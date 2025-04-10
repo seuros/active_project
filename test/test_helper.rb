@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
@@ -25,6 +27,7 @@ VCR.configure do |config|
   config.filter_sensitive_data("<JIRA_BASIC_AUTH>") do |interaction|
     # Only filter if the request URI matches the Jira site URL
     next unless interaction.request.uri.include?(ENV["JIRA_SITE_URL"] || "DUMMY_JIRA_SITE")
+
     auth_header = interaction.request.headers["Authorization"]&.first
     if auth_header&.start_with?("Basic ")
       # Decode, check if it matches filtered credentials, then return placeholder
@@ -41,6 +44,6 @@ VCR.configure do |config|
 
   config.default_cassette_options = {
     record: :none,
-    match_requests_on: [ :method, :path, :body ]
+    match_requests_on: %i[method path body]
   }
 end

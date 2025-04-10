@@ -34,7 +34,7 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
         assert issues.first.respond_to?(:due_on)
         assert_kind_of Date, issues.first.due_on if issues.first.due_on # Check type if present
 
-        assert_includes [ :open, :closed ], issues.first.status
+        assert_includes %i[open closed], issues.first.status
         assert_kind_of Array, issues.first.assignees
         unless issues.first.assignees.empty?
           assert_instance_of ActiveProject::Resources::User, issues.first.assignees.first
@@ -59,7 +59,7 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
 
         assert_equal :basecamp, issues.first.adapter_source
         assert_equal @project_id.to_s, issues.first.project_id
-        assert_includes [ :open, :closed ], issues.first.status
+        assert_includes %i[open closed], issues.first.status
         assert_kind_of Array, issues.first.assignees
         unless issues.first.assignees.empty?
           assert_instance_of ActiveProject::Resources::User, issues.first.assignees.first
@@ -100,7 +100,6 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
       assert_kind_of Time, issue.created_at
     end
   end
-
 
   test "update_issue updates a todo" do
     # Create an issue first to update

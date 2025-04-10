@@ -23,13 +23,11 @@ module ActiveProject
       # Call adapter method with appropriate arguments
       if primary_arg
         @adapter.send(list_method, primary_arg, options)
-      else
+      elsif @adapter.method(list_method).arity.zero?
         # Handle case where list method might not take options (like list_projects)
-        if @adapter.method(list_method).arity == 0
-           @adapter.send(list_method)
-        else
-           @adapter.send(list_method, options)
-        end
+        @adapter.send(list_method)
+      else
+        @adapter.send(list_method, options)
       end
     end
 
@@ -89,7 +87,7 @@ module ActiveProject
     def create(attributes = {})
       # Determine the correct adapter create method based on resource type
       create_method = determine_create_method
-      # Note: Assumes create methods on adapters take attributes hash directly
+      # NOTE: Assumes create methods on adapters take attributes hash directly
       # Context like project_id needs to be part of the attributes hash if required by adapter
       @adapter.send(create_method, attributes)
       # A full implementation would likely involve build then save:
@@ -106,7 +104,11 @@ module ActiveProject
       when "ActiveProject::Resources::Issue" then :list_issues
       else raise "Cannot determine list method for #{@resource_class.name}"
       end
-      raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}" unless @adapter.respond_to?(method_name)
+      unless @adapter.respond_to?(method_name)
+        raise NotImplementedError,
+              "#{@adapter.class.name} does not implement ##{method_name}"
+      end
+
       method_name
     end
 
@@ -116,14 +118,22 @@ module ActiveProject
       when "ActiveProject::Resources::Issue" then :find_issue
       else raise "Cannot determine find method for #{@resource_class.name}"
       end
-      raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}" unless @adapter.respond_to?(method_name)
+      unless @adapter.respond_to?(method_name)
+        raise NotImplementedError,
+              "#{@adapter.class.name} does not implement ##{method_name}"
+      end
+
       method_name
     end
 
     def determine_create_method
       singular_name = @resource_class.name.split("::").last.downcase.to_sym
       method_name = :"create_#{singular_name}"
-      raise NotImplementedError, "#{@adapter.class.name} does not implement ##{method_name}" unless @adapter.respond_to?(method_name)
+      unless @adapter.respond_to?(method_name)
+        raise NotImplementedError,
+              "#{@adapter.class.name} does not implement ##{method_name}"
+      end
+
       method_name
     end
   end

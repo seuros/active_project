@@ -88,7 +88,7 @@ module ActiveProject
 
     # Lists all available configurations in the format adapter_name:instance_name
     # @return [Hash] A hash mapping configuration keys to their configuration types
-    private def list_available_configurations
+    def list_available_configurations
       result = {}
       configuration.adapter_configs.each do |key, config|
         config_type = config.class.name.split("::").last
@@ -99,7 +99,7 @@ module ActiveProject
 
     # Returns a thread-safe map that stores adapter instances
     # @return [Concurrent::Map] Thread-safe hash implementation
-    private def adapter_registry
+    def adapter_registry
       @adapter_registry ||= Concurrent::Map.new
     end
   end

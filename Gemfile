@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 # Specify your gem's dependencies in activeproject.gemspec.
@@ -9,7 +11,7 @@ gem "puma"
 
 gem "sqlite3"
 
-gem "dotenv-rails", groups: [ :development, :test ]
+gem "dotenv-rails", groups: %i[development test]
 
 # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
 gem "rubocop-rails-omakase", require: false

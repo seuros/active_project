@@ -32,11 +32,16 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
     ActiveProject.reset_adapters # Clear memoized instance
     adapter_for_test = ActiveProject.adapter(:trello)
 
-    card_data_open = { "id" => "card1", "name" => "Card 1", "idList" => list_open_id, "closed" => false, "idBoard" => board_id, "idMembers" => [ "m1" ] }
-    card_data_progress = { "id" => "card2", "name" => "Card 2", "idList" => list_progress_id, "closed" => false, "idBoard" => board_id, "idMembers" => [] }
-    card_data_closed_list = { "id" => "card3", "name" => "Card 3", "idList" => list_closed_id, "closed" => false, "idBoard" => board_id, "idMembers" => [ "m1", "m2" ] }
-    card_data_archived = { "id" => "card4", "name" => "Card 4", "idList" => list_open_id, "closed" => true, "idBoard" => board_id, "idMembers" => nil }
-    card_data_unmapped = { "id" => "card5", "name" => "Card 5", "idList" => "UNMAPPED_LIST", "closed" => false, "idBoard" => board_id, "idMembers" => [ "m3" ] }
+    card_data_open = { "id" => "card1", "name" => "Card 1", "idList" => list_open_id, "closed" => false,
+                       "idBoard" => board_id, "idMembers" => [ "m1" ] }
+    card_data_progress = { "id" => "card2", "name" => "Card 2", "idList" => list_progress_id, "closed" => false,
+                           "idBoard" => board_id, "idMembers" => [] }
+    card_data_closed_list = { "id" => "card3", "name" => "Card 3", "idList" => list_closed_id, "closed" => false,
+                              "idBoard" => board_id, "idMembers" => %w[m1 m2] }
+    card_data_archived = { "id" => "card4", "name" => "Card 4", "idList" => list_open_id, "closed" => true,
+                           "idBoard" => board_id, "idMembers" => nil }
+    card_data_unmapped = { "id" => "card5", "name" => "Card 5", "idList" => "UNMAPPED_LIST", "closed" => false,
+                           "idBoard" => board_id, "idMembers" => [ "m3" ] }
 
     issue_open = adapter_for_test.send(:map_card_data, card_data_open, board_id)
     issue_progress = adapter_for_test.send(:map_card_data, card_data_progress, board_id)
@@ -61,7 +66,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
     assert_equal 2, issue_closed_list.assignees.size
     assert_instance_of ActiveProject::Resources::User, issue_closed_list.assignees[0]
     assert_instance_of ActiveProject::Resources::User, issue_closed_list.assignees[1]
-    assert_equal [ "m1", "m2" ], issue_closed_list.assignees.map(&:id).sort
+    assert_equal %w[m1 m2], issue_closed_list.assignees.map(&:id).sort
 
     assert_kind_of Array, issue_archived.assignees
     assert_empty issue_archived.assignees
@@ -78,7 +83,6 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
     card_id_to_update = ENV.fetch("TRELLO_TEST_CARD_ID_FOR_STATUS_UPDATE", "YOUR_CARD_ID_STATUS")
     list_open_id = "LIST_OPEN_UPDATE"
     list_progress_id = "LIST_PROGRESS_UPDATE"
-
 
     if card_id_to_update.include?("YOUR_CARD_ID")
       # skip("Set TRELLO_TEST_CARD_ID_FOR_STATUS_UPDATE environment variable to record VCR cassette.")
@@ -102,18 +106,18 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
 
     VCR.use_cassette("trello_adapter/update_issue_mapped_status") do
       # Mock the find_issue call within update_issue to provide the board_id
-      mock_find_issue_response = { id: card_id_to_update, idBoard: board_id, name: "Test Card", idList: list_open_id, closed: false, idMembers: [] }.to_json
-      stub_request(:get, /.*cards\/#{card_id_to_update}\?fields=.*list=true.*/)
+      mock_find_issue_response = { id: card_id_to_update, idBoard: board_id, name: "Test Card", idList: list_open_id,
+                                   closed: false, idMembers: [] }.to_json
+      stub_request(:get, %r{.*cards/#{card_id_to_update}\?fields=.*list=true.*})
         .to_return(status: 200, body: mock_find_issue_response, headers: { "Content-Type" => "application/json" })
 
       # Mock the PUT response to include the new list ID and some assignee data
       mock_put_response_body = {
         id: card_id_to_update, name: "Card Title", idList: list_progress_id, closed: false, idBoard: board_id, idMembers: [ "m1" ]
       }.to_json
-      stub_request(:put, /.*cards\/#{card_id_to_update}.*/)
+      stub_request(:put, %r{.*cards/#{card_id_to_update}.*})
         .with(query: hash_including({ "idList" => list_progress_id }))
         .to_return(status: 200, body: mock_put_response_body, headers: { "Content-Type" => "application/json" })
-
 
       updated_issue = adapter_for_test.update_issue(card_id_to_update, { status: :in_progress })
 
