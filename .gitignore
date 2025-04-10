@@ -10,3 +10,4 @@
 /test/dummy/tmp/
 .env
 .idea
+Gemfile.lock
