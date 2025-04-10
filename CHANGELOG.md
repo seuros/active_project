@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.1](https://github.com/seuros/active_project/compare/active_project/v0.1.0...active_project/v0.1.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* alias new to build for collection ([2e0fe5a](https://github.com/seuros/active_project/commit/2e0fe5a24157f94a8692b46aa8e23d241a504d97))
+* improve code structure. ([ac31d10](https://github.com/seuros/active_project/commit/ac31d10582896d7c46bb9e9d8acbdeb25b62d624))
+* split adapters into smaller modules ([bc45b04](https://github.com/seuros/active_project/commit/bc45b04d548b8fd5df8dd4988edf42024403fa63))
+
 ## 0.1.0 (2025-04-09)
 
 
