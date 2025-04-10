@@ -1,0 +1,48 @@
+# VCR cassette file: jira_adapter/create_parent_issue_for_delete.yml
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue
+      body:
+        encoding: UTF-8
+        string: '{"fields":{"project":{"key":"LAC"},"summary":"Parent Issue 1700000000","issuetype":{"name":"Bug"},"description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"This is a parent issue that will have subtasks."}]}]}}}'
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+        Content-Type:
+          - application/json
+    response:
+      status:
+        code: 201
+        message: Created
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10128","key":"LAC-124","self":"https://clickup-core-team.atlassian.net/rest/api/3/issue/10128"}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:38:45 GMT
+  - request:
+      method: get
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-124?fields=summary,description,status,assignee,reporter,created,updated,project,issuetype,duedate,priority
+      body:
+        encoding: US-ASCII
+        string: ''
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10128","key":"LAC-124","fields":{"summary":"Parent Issue 1700000000","description":{"type":"doc","content":[{"type":"paragraph","content":[{"text":"This is a parent issue that will have subtasks.","type":"text"}]}]},"status":{"name":"To Do","id":"10000"},"project":{"id":"10004","key":"LAC"},"issuetype":{"name":"Bug","id":"10006"}}}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:38:46 GMT
+recorded_with: VCR 6.1.0

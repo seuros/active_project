@@ -1,0 +1,48 @@
+# VCR cassette file: jira_adapter/create_issue_for_delete.yml
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue
+      body:
+        encoding: UTF-8
+        string: '{"fields":{"project":{"key":"LAC"},"summary":"Issue to Delete 1700000000","issuetype":{"name":"Bug"},"description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"This issue will be deleted in the test."}]}]}}}'
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+        Content-Type:
+          - application/json
+    response:
+      status:
+        code: 201
+        message: Created
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10127","key":"LAC-123","self":"https://clickup-core-team.atlassian.net/rest/api/3/issue/10127"}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:37:05 GMT
+  - request:
+      method: get
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-123?fields=summary,description,status,assignee,reporter,created,updated,project,issuetype,duedate,priority
+      body:
+        encoding: US-ASCII
+        string: ''
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10127","key":"LAC-123","fields":{"summary":"Issue to Delete 1700000000","description":{"type":"doc","content":[{"type":"paragraph","content":[{"text":"This issue will be deleted in the test.","type":"text"}]}]},"status":{"name":"To Do","id":"10000"},"project":{"id":"10004","key":"LAC"},"issuetype":{"name":"Bug","id":"10006"}}}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:37:06 GMT
+recorded_with: VCR 6.1.0

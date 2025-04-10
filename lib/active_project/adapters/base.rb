@@ -75,6 +75,12 @@ module ActiveProject
         raise NotImplementedError, "#{self.class.name} must implement #update_issue"
       end
 
+      # Base implementation of delete_issue that raises NotImplementedError
+      # This will be included in the base adapter class and overridden by specific adapters
+      def delete_issue(id, context = {})
+        raise NotImplementedError, "The #{self.class.name} adapter does not implement delete_issue"
+      end
+
       # Adds a comment to an issue.
       # @param issue_id [String, Integer] The ID or key of the issue.
       # @param comment_body [String] The text of the comment.

@@ -4,13 +4,17 @@ module ActiveProject
   module Adapters
     module Trello
       module Issues
+        DEFAULT_FIELDS = %w[id name desc closed idList idBoard due dueComplete idMembers].freeze
+
         # Lists Trello cards on a specific board.
         # @param board_id [String] The ID of the Trello board.
-        # @param options [Hash] Optional filtering options.
+        # @param options [Hash] Optional filtering options. Accepts :filter and :fields.
         # @return [Array<ActiveProject::Resources::Issue>]
         def list_issues(board_id, options = {})
           path = "boards/#{board_id}/cards"
-          query = { fields: "id,name,desc,closed,idList,idBoard,due,dueComplete,idMembers", list: true }
+
+          fields = options[:fields] ? Array(options[:fields]).join(",") : DEFAULT_FIELDS.join(",")
+          query = { fields: fields, list: true }
           query[:filter] = options[:filter] if options[:filter]
 
           cards_data = make_request(:get, path, nil, query)
@@ -21,11 +25,14 @@ module ActiveProject
 
         # Finds a specific Card by its ID.
         # @param card_id [String] The ID of the Trello Card.
-        # @param context [Hash] Optional context (ignored).
+        # @param context [Hash] Optional context. Accepts :fields for specific field selection.
         # @return [ActiveProject::Resources::Issue]
-        def find_issue(card_id, _context = {})
+        def find_issue(card_id, context = {})
           path = "cards/#{card_id}"
-          query = { fields: "id,name,desc,closed,idList,idBoard,due,dueComplete,idMembers", list: true }
+
+          fields = context[:fields] ? Array(context[:fields]).join(",") : DEFAULT_FIELDS.join(",")
+          query = { fields: fields, list: true }
+
           card_data = make_request(:get, path, nil, query)
           map_card_data(card_data, card_data["idBoard"])
         end
@@ -58,7 +65,7 @@ module ActiveProject
         # Updates an existing Card in Trello.
         # @param card_id [String] The ID of the Trello Card.
         # @param attributes [Hash] Attributes to update (e.g., :title, :description, :list_id, :closed, :due_on, :assignee_ids, :status).
-        # @param context [Hash] Optional context (ignored).
+        # @param context [Hash] Optional context. Accepts :fields for return data field selection.
         # @return [ActiveProject::Resources::Issue]
         def update_issue(card_id, attributes, context = {})
           update_attributes = attributes.dup
@@ -67,10 +74,10 @@ module ActiveProject
             target_status = update_attributes.delete(:status)
 
             board_id = update_attributes[:board_id] || begin
-              find_issue(card_id).project_id
-            rescue NotFoundError
-              raise NotFoundError, "Trello card with ID '#{card_id}' not found."
-            end
+                                                         find_issue(card_id).project_id
+                                                       rescue NotFoundError
+                                                         raise NotFoundError, "Trello card with ID '#{card_id}' not found."
+                                                       end
 
             unless board_id
               raise ApiError, "Could not determine board ID for card '#{card_id}' to perform status mapping."
@@ -110,6 +117,15 @@ module ActiveProject
 
           card_data = make_request(:put, path, nil, query_params.compact)
           map_card_data(card_data, card_data["idBoard"])
+        end
+
+        # Deletes a Trello card.
+        # @param card_id [String] The ID of the Trello Card to delete.
+        # @return [Boolean] True if successfully deleted.
+        def delete_issue(card_id, **)
+          path = "cards/#{card_id}"
+          make_request(:delete, path)
+          true
         end
       end
     end

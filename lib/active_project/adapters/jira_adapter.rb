@@ -57,8 +57,10 @@ module ActiveProject
       # Initializes the Faraday connection object.
 
       # Makes an HTTP request. Returns parsed JSON or raises appropriate error.
-      def make_request(method, path, body = nil)
-        response = @connection.run_request(method, path, body, nil)
+      def make_request(method, path, body = nil, query = nil)
+        response = @connection.run_request(method, path, body, nil) do |req|
+          req.params = query if query # Add query params to the request
+        end
 
         # Check for AUTHENTICATED_FAILED header even on 200 OK
         if response.status == 200 && response.headers["x-seraph-loginreason"]&.include?("AUTHENTICATED_FAILED")
@@ -78,7 +80,7 @@ module ActiveProject
         status = e.response&.status
         body = e.response&.body
         raise ApiError.new("Jira API connection error (Status: #{status || 'N/A'}): #{e.message}", original_error: e,
-                                                                                                   status_code: status, response_body: body)
+                           status_code: status, response_body: body)
       end
 
       # Handles Faraday errors based on the response object (for non-2xx responses).

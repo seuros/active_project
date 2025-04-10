@@ -6,11 +6,12 @@ module ActiveProject
       module Issues
         # Lists To-dos within a specific project.
         # @param project_id [String, Integer] The ID of the Basecamp project.
-        # @param options [Hash] Optional options. Accepts :todolist_id.
+        # @param options [Hash] Optional options. Accepts :todolist_id and :page_size.
         # @return [Array<ActiveProject::Resources::Issue>] An array of issue resources.
         def list_issues(project_id, options = {})
           all_todos = []
           todolist_id = options[:todolist_id]
+          page_size = options[:page_size] || 50
 
           unless todolist_id
             todolist_id = find_first_todolist_id(project_id)
@@ -18,14 +19,16 @@ module ActiveProject
           end
 
           path = "buckets/#{project_id}/todolists/#{todolist_id}/todos.json"
+          query = {}
+          query[:per_page] = page_size if page_size
 
           loop do
-            response = @connection.get(path)
+            response = @connection.get(path, query)
             todos_data = begin
-              JSON.parse(response.body)
-            rescue StandardError
-              []
-            end
+                           JSON.parse(response.body)
+                         rescue StandardError
+                           []
+                         end
             break if todos_data.empty?
 
             todos_data.each do |todo_data|
@@ -37,6 +40,7 @@ module ActiveProject
             break unless next_url
 
             path = next_url.sub(@base_url, "").sub(%r{^/}, "")
+            query = {} # Clear query as pagination is in the URL now
           end
 
           all_todos
@@ -132,6 +136,21 @@ module ActiveProject
           end
 
           find_issue(todo_id, context)
+        end
+
+        # Deletes a To-do in Basecamp.
+        # @param todo_id [String, Integer] The ID of the Basecamp To-do to delete.
+        # @param context [Hash] Required context: { project_id: '...' }.
+        # @return [Boolean] True if successfully deleted.
+        def delete_issue(todo_id, context = {})
+          project_id = context[:project_id]
+          unless project_id
+            raise ArgumentError, "Missing required context: :project_id must be provided for BasecampAdapter#delete_issue"
+          end
+
+          path = "buckets/#{project_id}/todos/#{todo_id}.json"
+          make_request(:delete, path)
+          true
         end
       end
     end

@@ -96,7 +96,11 @@ module ActiveProject
       def handle_faraday_error(error)
         status = error.response_status
         body = error.response_body
-        message = body || "Unknown Trello Error"
+        body = JSON.parse(body) if body.is_a?(String) && !body.empty? rescue body
+        if body.is_a?(Hash)
+          message = body["message"]
+        end
+        message ||= body || "Unknown Trello Error"
 
         case status
         when 401, 403
