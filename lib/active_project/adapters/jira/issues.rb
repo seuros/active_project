@@ -53,11 +53,11 @@ module ActiveProject
         def create_issue(_project_id_or_key, attributes)
           path = "/rest/api/3/issue"
 
-          unless attributes[:project] && (attributes[:project][:id] || attributes[:project][:key]) &&
+          unless attributes[:project].is_a?(Hash) && (attributes[:project][:id] || attributes[:project][:key]) &&
                  attributes[:summary] && !attributes[:summary].empty? &&
                  attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
             raise ArgumentError,
-                  "Missing required attributes for issue creation: :project (with id/key), :summary, :issue_type (with id/name)"
+                  "Missing required attributes for issue creation: :project (must be a Hash with id/key), :summary, :issue_type (with id/name)"
           end
 
           fields_payload = {
