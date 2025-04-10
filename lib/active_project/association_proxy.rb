@@ -79,6 +79,8 @@ module ActiveProject
       @target_resource_class.new(@adapter, merged_attrs)
     end
 
+    alias_method :new, :build
+
     # Creates and saves a new associated resource.
     # Example: project.issues.create(title: 'New', list_id: '...')
     # @param attributes [Hash] Attributes for the new resource.
