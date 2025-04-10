@@ -1,7 +1,7 @@
 ---
 http_interactions:
 - request:
-    method: post
+    method: POST
     uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
     body:
       encoding: UTF-8

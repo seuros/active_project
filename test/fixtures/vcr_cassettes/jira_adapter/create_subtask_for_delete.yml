@@ -1,0 +1,48 @@
+# VCR cassette file: jira_adapter/create_subtask_for_delete.yml
+---
+http_interactions:
+  - request:
+      method: POST
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue
+      body:
+        encoding: UTF-8
+        string: '{"fields":{"project":{"key":"LAC"},"summary":"Subtask Issue 1700000000","issuetype":{"name":"Sub-task"},"description":{"type":"doc","version":1,"content":[{"type":"paragraph","content":[{"type":"text","text":"This is a subtask that will be deleted with parent."}]}]},"parent":{"key":"LAC-124"}}}'
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+        Content-Type:
+          - application/json
+    response:
+      status:
+        code: 201
+        message: Created
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10129","key":"LAC-125","self":"https://clickup-core-team.atlassian.net/rest/api/3/issue/10129"}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:40:22 GMT
+  - request:
+      method: get
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/LAC-125?fields=summary,description,status,assignee,reporter,created,updated,project,issuetype,duedate,priority
+      body:
+        encoding: US-ASCII
+        string: ''
+      headers:
+        Authorization:
+          - Basic dGVzdEBleGFtcGxlLmNvbTp0ZXN0X3Rva2Vu
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        Content-Type:
+          - application/json
+      body:
+        encoding: UTF-8
+        string: '{"id":"10129","key":"LAC-125","fields":{"summary":"Subtask Issue 1700000000","description":{"type":"doc","content":[{"type":"paragraph","content":[{"text":"This is a subtask that will be deleted with parent.","type":"text"}]}]},"status":{"name":"To Do","id":"10000"},"project":{"id":"10004","key":"LAC"},"issuetype":{"name":"Sub-task","id":"10007","subtask":true},"parent":{"id":"10128","key":"LAC-124"}}}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:40:23 GMT
+recorded_with: VCR 6.1.0

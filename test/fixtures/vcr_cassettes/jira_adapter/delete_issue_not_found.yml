@@ -1,0 +1,40 @@
+# VCR cassette file: jira_adapter/delete_issue_not_found.yml
+---
+http_interactions:
+  - request:
+      method: delete
+      uri: https://clickup-core-team.atlassian.net/rest/api/3/issue/NONEXISTENT-12345
+    response:
+      status:
+        code: 404
+        message: Not Found
+      headers:
+        Server:
+          - AtlassianProxy/1.19.0.1
+        Date:
+          - Thu, 10 Apr 2025 14:35:30 GMT
+        Content-Type:
+          - application/json;charset=UTF-8
+        X-Arequestid:
+          - 62e90f4a-88b9-45e2-9c46-dc49fc921e87
+        Timing-Allow-Origin:
+          - "*"
+        Content-Length:
+          - '127'
+        X-Content-Type-Options:
+          - nosniff
+        X-Xss-Protection:
+          - 1; mode=block
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains
+        Set-Cookie:
+          - atlassian.xsrf.token=34c57aeb-c3a0-42f1-a908-df2a0e3b0edc_64bfa8c4f5ccfb39f7f0f819a85e2ec53ffa8d40_lin;
+            Path=/; Secure
+      body:
+        encoding: UTF-8
+        string: '{"errorMessages":["Issue does not exist or you do not have permission to see it."],"errors":{}}'
+      http_version:
+    recorded_at: Thu, 10 Apr 2025 14:35:30 GMT
+recorded_with: VCR 6.1.0

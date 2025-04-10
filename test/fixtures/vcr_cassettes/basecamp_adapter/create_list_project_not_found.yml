@@ -1,7 +1,7 @@
 ---
 http_interactions:
 - request:
-    method: get
+    method: GET
     uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects/000000.json
   response:
     status:

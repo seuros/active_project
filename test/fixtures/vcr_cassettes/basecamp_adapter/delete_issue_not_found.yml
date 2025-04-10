@@ -1,0 +1,47 @@
+---
+http_interactions:
+  - request:
+      method: delete
+      uri: https://3.basecampapi.com/DUMMY_ACCOUNT_ID/buckets/41789030/todos/9999999.json
+    response:
+      status:
+        code: 404
+        message: Not Found
+      headers:
+        Date:
+          - Thu, 10 Apr 2025 14:45:23 GMT
+        Content-Type:
+          - application/json; charset=utf-8
+        Transfer-Encoding:
+          - chunked
+        Connection:
+          - keep-alive
+        X-Frame-Options:
+          - ALLOWALL
+        X-Runtime:
+          - '0.028'
+        X-Rack-Cache:
+          - miss
+        X-Request-Id:
+          - 7c12f9a8-b43e-492a-8910-e7cf3b2a1b7d
+        X-Content-Type-Options:
+          - nosniff
+        Cache-Control:
+          - no-cache
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains
+        X-XSS-Protection:
+          - '1; mode=block'
+        Vary:
+          - Accept-Encoding, Origin
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+      body:
+        encoding: UTF-8
+        string: '{"error":"Todo with ID 9999999 not found"}'
+    recorded_at: Thu, 10 Apr 2025 14:45:23 GMT
+recorded_with: VCR 6.1.0

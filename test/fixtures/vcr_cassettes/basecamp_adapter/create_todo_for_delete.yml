@@ -1,0 +1,69 @@
+---
+http_interactions:
+  - request:
+      method: post
+      uri: https://3.basecampapi.com/DUMMY_ACCOUNT_ID/buckets/41789030/todolists/8514014894/todos.json
+      body:
+        encoding: UTF-8
+        string: '{"content":"Todo to Delete 1700000000","description":"This todo will be deleted in the test."}'
+      headers:
+        User-Agent:
+          - ActiveProject/1.0.0 (https://github.com/your-org/active-project)
+        Content-Type:
+          - application/json
+        Authorization:
+          - Bearer xxxx_redacted_token_xxxx
+        Accept-Encoding:
+          - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+        Accept:
+          - "*/*"
+    response:
+      status:
+        code: 201
+        message: Created
+      headers:
+        Date:
+          - Thu, 10 Apr 2025 14:32:17 GMT
+        Content-Type:
+          - application/json; charset=utf-8
+        Transfer-Encoding:
+          - chunked
+        Connection:
+          - keep-alive
+        X-Frame-Options:
+          - ALLOWALL
+        X-Runtime:
+          - '0.134'
+        X-Rack-Cache:
+          - invalidate, pass
+        X-Request-Id:
+          - 3e495f32-c9e1-48a1-bf2a-b59a97e5328d
+        X-Content-Type-Options:
+          - nosniff
+        ETag:
+          - W/"b58d8ece3ccba12345678901234567890"
+        Cache-Control:
+          - max-age=0, private, must-revalidate
+        Strict-Transport-Security:
+          - max-age=31536000; includeSubDomains
+        X-XSS-Protection:
+          - '1; mode=block'
+        Vary:
+          - Accept-Encoding, Origin
+        Referrer-Policy:
+          - strict-origin-when-cross-origin
+        X-Download-Options:
+          - noopen
+        X-Permitted-Cross-Domain-Policies:
+          - none
+      body:
+        encoding: UTF-8
+        string: '{"id":987651234,"status":"active","visible_to_clients":false,"created_at":"2025-04-10T14:32:16.942Z","updated_at":"2025-04-10T14:32:16.942Z","title":"Todo
+        to Delete 1700000000","inherits_status":true,"type":"Todo","url":"https://3.basecampapi.com/1234567/buckets/9876543/todos/987651234.json","app_url":"https://3.basecamp.com/1234567/buckets/9876543/todos/987651234","bookmark_url":"https://3.basecamp.com/1234567/my/bookmarks/BAhJIik987651234--58e7943c5520d3e0a1f22b5d7e05bc3ccb9ea443","subscription_url":"https://3.basecamp.com/1234567/buckets/9876543/recordings/987651234/subscription","comments_count":0,"comments_url":"https://3.basecampapi.com/1234567/buckets/9876543/recordings/987651234/comments.json","parent":{"id":8765432,"title":"Test
+        Todo List","type":"Todolist","url":"https://3.basecampapi.com/1234567/buckets/9876543/todolists/8765432.json","app_url":"https://3.basecamp.com/1234567/buckets/9876543/todolists/8765432"},"bucket":{"id":9876543,"name":"Project
+        Test","type":"Project"},"creator":{"id":123456,"attachable_sgid":"BAh7CEkiCGdpZAY6BkVUSSIrZ2lkOi8vdGVzdC9QZXJzb24vMTIzNDU2BjsAVEkiDHB1cnBvc2UGOwBUSSIPYXR0YWNoYWJsZQY7AFRJIg9leHBpcmVzX2F0BjsAVDA=--5ab41334d2a4c4a1e3fe90e5e4a94e1f3bfbd39e","name":"John
+        Doe","email_address":"john.doe@example.com","personable_type":"User","title":"Developer","bio":null,"location":null,"created_at":"2025-01-01T10:00:00.000Z","updated_at":"2025-04-09T15:30:42.233Z","admin":true,"owner":true,"client":false,"employee":true,"time_zone":"America/Chicago","avatar_url":"https://3.basecamp-static.com/123456/people/BAhpBHkDxwI=--b81fef7801b9a8c73b11ef24fa64d91f518f63b0/avatar-64-x4","company":{"id":987654,"name":"Example
+        Company"}},"description":"This todo will be deleted in the test.","completed":false,"content":"Todo
+        to Delete 1700000000","starts_on":null,"due_on":null,"assignees":[],"completion_subscribers":[],"completion_url":"https://3.basecampapi.com/1234567/buckets/9876543/todos/987651234/completion.json"}'
+    recorded_at: Thu, 10 Apr 2025 14:32:17 GMT
+recorded_with: VCR 6.1.0

@@ -4,14 +4,17 @@ module ActiveProject
   module Adapters
     module Jira
       module Issues
+        DEFAULT_FIELDS = %w[summary description status assignee reporter created updated project issuetype duedate priority].freeze
+
         # Lists issues within a specific project, optionally filtered by JQL.
         # @param project_id_or_key [String, Integer] The ID or key of the project.
-        # @param options [Hash] Optional filtering/pagination options.
+        # @param options [Hash] Optional filtering/pagination options. Accepts :jql, :fields, :start_at, :max_results.
         # @return [Array<ActiveProject::Resources::Issue>]
         def list_issues(project_id_or_key, options = {})
           start_at = options.fetch(:start_at, 0)
           max_results = options.fetch(:max_results, 50)
           jql = options.fetch(:jql, "project = '#{project_id_or_key}' ORDER BY created DESC")
+          fields = options[:fields] || DEFAULT_FIELDS
 
           all_issues = []
           path = "/rest/api/3/search"
@@ -20,8 +23,7 @@ module ActiveProject
             jql: jql,
             startAt: start_at,
             maxResults: max_results,
-            fields: %w[summary description status assignee reporter created updated project
-                       issuetype duedate priority]
+            fields: fields
           }.to_json
 
           response_data = make_request(:post, path, payload)
@@ -36,11 +38,12 @@ module ActiveProject
 
         # Finds a specific issue by its ID or key using the V3 endpoint.
         # @param id_or_key [String, Integer] The ID or key of the issue.
-        # @param context [Hash] Optional context (ignored).
+        # @param context [Hash] Optional context. Accepts :fields for field selection.
         # @return [ActiveProject::Resources::Issue]
-        def find_issue(id_or_key, _context = {})
-          fields = "summary,description,status,assignee,reporter,created,updated,project,issuetype,duedate,priority"
-          path = "/rest/api/3/issue/#{id_or_key}?fields=#{fields}"
+        def find_issue(id_or_key, context = {})
+          fields = context[:fields] || DEFAULT_FIELDS
+          fields_param = fields.is_a?(Array) ? fields.join(",") : fields
+          path = "/rest/api/3/issue/#{id_or_key}?fields=#{fields_param}"
 
           issue_data = make_request(:get, path)
           map_issue_data(issue_data)
@@ -54,8 +57,8 @@ module ActiveProject
           path = "/rest/api/3/issue"
 
           unless attributes[:project].is_a?(Hash) && (attributes[:project][:id] || attributes[:project][:key]) &&
-                 attributes[:summary] && !attributes[:summary].empty? &&
-                 attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
+            attributes[:summary] && !attributes[:summary].empty? &&
+            attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
             raise ArgumentError,
                   "Missing required attributes for issue creation: :project (must be a Hash with id/key), :summary, :issue_type (with id/name)"
           end
@@ -83,6 +86,8 @@ module ActiveProject
 
           fields_payload[:priority] = attributes[:priority] if attributes.key?(:priority)
 
+          fields_payload[:parent] = attributes[:parent] if attributes.key?(:parent)
+
           payload = { fields: fields_payload }.to_json
           response_data = make_request(:post, path, payload)
 
@@ -92,9 +97,9 @@ module ActiveProject
         # Updates an existing issue in Jira using the V3 endpoint.
         # @param id_or_key [String, Integer] The ID or key of the issue to update.
         # @param attributes [Hash] Issue attributes to update (e.g., :summary, :description, :assignee_id, :due_on, :priority).
-        # @param context [Hash] Optional context (ignored).
+        # @param context [Hash] Optional context. Accepts :fields for field selection on return.
         # @return [ActiveProject::Resources::Issue]
-        def update_issue(id_or_key, attributes, _context = {})
+        def update_issue(id_or_key, attributes, context = {})
           path = "/rest/api/3/issue/#{id_or_key}"
 
           update_fields = {}
@@ -119,12 +124,25 @@ module ActiveProject
 
           update_fields[:priority] = attributes[:priority] if attributes.key?(:priority)
 
-          return find_issue(id_or_key) if update_fields.empty?
+          return find_issue(id_or_key, context) if update_fields.empty?
 
           payload = { fields: update_fields }.to_json
           make_request(:put, path, payload)
 
-          find_issue(id_or_key)
+          find_issue(id_or_key, context)
+        end
+
+        # Deletes an issue from Jira.
+        # @param id_or_key [String, Integer] The ID or key of the issue to delete.
+        # @param context [Hash] Optional context. Accepts :delete_subtasks to indicate whether subtasks should be deleted.
+        # @return [Boolean] True if successfully deleted.
+        def delete_issue(id_or_key, context = {})
+          delete_subtasks = context[:delete_subtasks] || false
+          path = "/rest/api/3/issue/#{id_or_key}"
+          query = { deleteSubtasks: delete_subtasks }
+
+          make_request(:delete, path, nil, query)
+          true
         end
       end
     end
