@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activeproject (0.1.0)
+    activeproject (0.1.1)
       activesupport (>= 8.0, < 9.0)
       faraday (>= 2.0)
       faraday-retry
