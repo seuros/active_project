@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.0](https://github.com/seuros/active_project/compare/active_project/v0.1.1...active_project/v0.2.0) (2025-04-10)
+
+
+### Features
+
+* allow deletion of issues ([8758a36](https://github.com/seuros/active_project/commit/8758a363ae3048abdc9e2192f2980bfb5815c82d))
+* allow deletion of issues ([5adee6b](https://github.com/seuros/active_project/commit/5adee6b698c5487569fbe4ef13512a2ea065fa9a))
+* **jira:** allow creations of sub-tasks ([5adee6b](https://github.com/seuros/active_project/commit/5adee6b698c5487569fbe4ef13512a2ea065fa9a))
+
 ## [0.1.1](https://github.com/seuros/active_project/compare/active_project/v0.1.0...active_project/v0.1.1) (2025-04-10)
 
 
