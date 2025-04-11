@@ -10,8 +10,8 @@ Integrating with various project management platforms like Jira, Basecamp, and T
 
 The ActiveProject gem aims to solve this by providing a unified, opinionated interface built on the **Adapter pattern**. It abstracts away the complexities of individual APIs, offering:
 
-*   **Normalized Data Models:** Common Ruby objects for core concepts like `Project`, `Task` (Issue/Card/To-do), `Comment`, and `User`.
-*   **Standardized Operations:** Consistent methods for creating, reading, updating, and transitioning tasks (e.g., `task.close!`, `task.reopen!`).
+*   **Normalized Data Models:** Common Ruby objects for core concepts like `Project`, `Issue` (Issue/Task/Card/To-do), `Comment`, and `User`.
+*   **Standardized Operations:** Consistent methods for creating, reading, updating, and transitioning issues (e.g., `issue.close!`, `issue.reopen!`).
 *   **Unified Error Handling:** A common set of exceptions (`AuthenticationError`, `NotFoundError`, `RateLimitError`, etc.) regardless of the underlying platform.
 
 ## Supported Platforms
