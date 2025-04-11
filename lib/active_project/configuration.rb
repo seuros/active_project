@@ -9,7 +9,8 @@ module ActiveProject
     # Maps adapter names (symbols) to their specific configuration classes.
     # Add other adapters here when they need specific config classes.
     ADAPTER_CONFIG_CLASSES = {
-      trello: Configurations::TrelloConfiguration
+      trello: Configurations::TrelloConfiguration,
+      github: Configurations::GithubConfiguration
       # :jira => Configurations::JiraConfiguration,
       # :basecamp => Configurations::BasecampConfiguration,
     }.freeze

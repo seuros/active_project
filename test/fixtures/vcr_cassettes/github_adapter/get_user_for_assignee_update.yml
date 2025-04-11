@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/user
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.2.0
+      Authorization:
+      - bearer <GITHUB_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 11 Apr 2025 20:52:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"76222ecbca83cefd093a4acb5a91cbc5882e4bece19e448a2ed68ac117aaaf7c"
+      Last-Modified:
+      - Fri, 21 Mar 2025 00:08:30 GMT
+      Github-Authentication-Token-Expiration:
+      - '2025-05-11 16:28:18 -0400'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Accepted-Github-Permissions:
+      - allows_permissionless_access=true
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4953'
+      X-Ratelimit-Reset:
+      - '1744406306'
+      X-Ratelimit-Used:
+      - '47'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Transfer-Encoding:
+      - chunked
+      X-Github-Request-Id:
+      - C60C:1CA20B:74B062:E6570C:67F980F6
+      Server:
+      - github.com
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false,"name":"Avi
+        Flombaum","company":null,"blog":"http://www.aviflombaum.com","location":"NYC","email":null,"hireable":true,"bio":"Previously
+        built @flatironschool and @learn-co. Wrote @learn-co-curriculum. Taught thousands
+        how to code.","twitter_username":"aviflombaum","notification_email":null,"public_repos":716,"public_gists":76,"followers":902,"following":36,"created_at":"2008-04-03T15:19:42Z","updated_at":"2025-03-21T00:08:30Z"}'
+  recorded_at: Fri, 11 Apr 2025 20:52:06 GMT
+recorded_with: VCR 6.3.1
