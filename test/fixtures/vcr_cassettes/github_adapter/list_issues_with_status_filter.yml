@@ -1,0 +1,260 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues?state=open
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.2.0
+      Authorization:
+      - bearer <GITHUB_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 11 Apr 2025 20:52:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"030afa9aa573352823335507a339920fc60131b976087bc82488a53454a68eb1"'
+      Github-Authentication-Token-Expiration:
+      - '2025-05-11 16:28:18 -0400'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Accepted-Github-Permissions:
+      - issues=read
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4962'
+      X-Ratelimit-Reset:
+      - '1744406306'
+      X-Ratelimit-Used:
+      - '38'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - C603:1DF3F5:7104A8:DF396F:67F980F2
+      Server:
+      - github.com
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Fri, 11 Apr 2025 20:52:02 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues?state=closed
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.2.0
+      Authorization:
+      - bearer <GITHUB_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 11 Apr 2025 20:52:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"a9cbf952b267b4c23a5603944229ca2804346cc09ed846b2dbd40e5e2ec304b2"
+      Github-Authentication-Token-Expiration:
+      - '2025-05-11 16:28:18 -0400'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Accepted-Github-Permissions:
+      - issues=read
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4961'
+      X-Ratelimit-Reset:
+      - '1744406306'
+      X-Ratelimit-Used:
+      - '39'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Transfer-Encoding:
+      - chunked
+      X-Github-Request-Id:
+      - C604:25A6BD:76EB45:EB143F:67F980F2
+      Server:
+      - github.com
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/events","html_url":"https://github.com/aviflombaum/test-repo/issues/5","id":2989705331,"node_id":"I_kwDOOYHLlM6yM0hz","number":5,"title":"Test
+        Issue via ActiveProject for_factory_test 1744404721","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:52:01Z","updated_at":"2025-04-11T20:52:02Z","closed_at":"2025-04-11T20:52:02Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404721","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/events","html_url":"https://github.com/aviflombaum/test-repo/issues/4","id":2989705264,"node_id":"I_kwDOOYHLlM6yM0gw","number":4,"title":"Test
+        Issue via ActiveProject for_delete_test 1744404719","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:59Z","updated_at":"2025-04-11T20:51:59Z","closed_at":"2025-04-11T20:51:59Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404719","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/events","html_url":"https://github.com/aviflombaum/test-repo/issues/3","id":2989705220,"node_id":"I_kwDOOYHLlM6yM0gE","number":3,"title":"Test
+        Issue via ActiveProject for_status_update_test 1744404716","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:57Z","updated_at":"2025-04-11T20:51:58Z","closed_at":"2025-04-11T20:51:58Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404716","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/events","html_url":"https://github.com/aviflombaum/test-repo/issues/2","id":2989705195,"node_id":"I_kwDOOYHLlM6yM0fr","number":2,"title":"Updated
+        Title 1744404715","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:55Z","updated_at":"2025-04-11T20:51:56Z","closed_at":"2025-04-11T20:51:56Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404715","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/events","html_url":"https://github.com/aviflombaum/test-repo/issues/1","id":2989705170,"node_id":"I_kwDOOYHLlM6yM0fS","number":1,"title":"Test
+        Issue with Assignee 1744404714","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"assignees":[{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false}],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:54Z","updated_at":"2025-04-11T20:51:55Z","closed_at":"2025-04-11T20:51:55Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Testing
+        issue creation with assignees","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/timeline","performed_via_github_app":null,"state_reason":"completed"}]'
+  recorded_at: Fri, 11 Apr 2025 20:52:03 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues?state=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.2.0
+      Authorization:
+      - bearer <GITHUB_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 11 Apr 2025 20:52:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"a9cbf952b267b4c23a5603944229ca2804346cc09ed846b2dbd40e5e2ec304b2"
+      Github-Authentication-Token-Expiration:
+      - '2025-05-11 16:28:18 -0400'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Accepted-Github-Permissions:
+      - issues=read
+      X-Github-Api-Version-Selected:
+      - '2022-11-28'
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4960'
+      X-Ratelimit-Reset:
+      - '1744406306'
+      X-Ratelimit-Used:
+      - '40'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Transfer-Encoding:
+      - chunked
+      X-Github-Request-Id:
+      - C605:302004:7CFD81:F6DA97:67F980F3
+      Server:
+      - github.com
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/events","html_url":"https://github.com/aviflombaum/test-repo/issues/5","id":2989705331,"node_id":"I_kwDOOYHLlM6yM0hz","number":5,"title":"Test
+        Issue via ActiveProject for_factory_test 1744404721","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:52:01Z","updated_at":"2025-04-11T20:52:02Z","closed_at":"2025-04-11T20:52:02Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404721","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/5/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/events","html_url":"https://github.com/aviflombaum/test-repo/issues/4","id":2989705264,"node_id":"I_kwDOOYHLlM6yM0gw","number":4,"title":"Test
+        Issue via ActiveProject for_delete_test 1744404719","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:59Z","updated_at":"2025-04-11T20:51:59Z","closed_at":"2025-04-11T20:51:59Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404719","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/4/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/events","html_url":"https://github.com/aviflombaum/test-repo/issues/3","id":2989705220,"node_id":"I_kwDOOYHLlM6yM0gE","number":3,"title":"Test
+        Issue via ActiveProject for_status_update_test 1744404716","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:57Z","updated_at":"2025-04-11T20:51:58Z","closed_at":"2025-04-11T20:51:58Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404716","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/3/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/events","html_url":"https://github.com/aviflombaum/test-repo/issues/2","id":2989705195,"node_id":"I_kwDOOYHLlM6yM0fr","number":2,"title":"Updated
+        Title 1744404715","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":null,"assignees":[],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:55Z","updated_at":"2025-04-11T20:51:56Z","closed_at":"2025-04-11T20:51:56Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Test
+        issue created by ActiveProject tests at 1744404715","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/2/timeline","performed_via_github_app":null,"state_reason":"completed"},{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1","repository_url":"https://api.github.com/repos/aviflombaum/test-repo","labels_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/labels{/name}","comments_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/comments","events_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/events","html_url":"https://github.com/aviflombaum/test-repo/issues/1","id":2989705170,"node_id":"I_kwDOOYHLlM6yM0fS","number":1,"title":"Test
+        Issue with Assignee 1744404714","user":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"labels":[],"state":"closed","locked":false,"assignee":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"assignees":[{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false}],"milestone":null,"comments":0,"created_at":"2025-04-11T20:51:54Z","updated_at":"2025-04-11T20:51:55Z","closed_at":"2025-04-11T20:51:55Z","author_association":"OWNER","sub_issues_summary":{"total":0,"completed":0,"percent_completed":0},"active_lock_reason":null,"body":"Testing
+        issue creation with assignees","closed_by":{"login":"aviflombaum","id":4515,"node_id":"MDQ6VXNlcjQ1MTU=","avatar_url":"https://avatars.githubusercontent.com/u/4515?v=4","gravatar_id":"","url":"https://api.github.com/users/aviflombaum","html_url":"https://github.com/aviflombaum","followers_url":"https://api.github.com/users/aviflombaum/followers","following_url":"https://api.github.com/users/aviflombaum/following{/other_user}","gists_url":"https://api.github.com/users/aviflombaum/gists{/gist_id}","starred_url":"https://api.github.com/users/aviflombaum/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/aviflombaum/subscriptions","organizations_url":"https://api.github.com/users/aviflombaum/orgs","repos_url":"https://api.github.com/users/aviflombaum/repos","events_url":"https://api.github.com/users/aviflombaum/events{/privacy}","received_events_url":"https://api.github.com/users/aviflombaum/received_events","type":"User","user_view_type":"public","site_admin":false},"reactions":{"url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/reactions","total_count":0,"+1":0,"-1":0,"laugh":0,"hooray":0,"confused":0,"heart":0,"rocket":0,"eyes":0},"timeline_url":"https://api.github.com/repos/aviflombaum/test-repo/issues/1/timeline","performed_via_github_app":null,"state_reason":"completed"}]'
+  recorded_at: Fri, 11 Apr 2025 20:52:03 GMT
+recorded_with: VCR 6.3.1
