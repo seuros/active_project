@@ -13,11 +13,13 @@ class OrmInterfaceTest < ActiveSupport::TestCase
       config.add_adapter :trello, :primary, api_key: "key", api_token: "token"
       config.add_adapter :jira, :primary, site_url: "url", username: "user", api_token: "token"
       config.add_adapter :basecamp, :primary, account_id: "id", access_token: "token"
+      config.add_adapter :github, :primary, owner: "owner", repo: "repo", access_token: "token"
     end
 
     @jira_adapter = ActiveProject.adapter(:jira)
     @trello_adapter = ActiveProject.adapter(:trello)
     @basecamp_adapter = ActiveProject.adapter(:basecamp)
+    @github_adapter = ActiveProject.adapter(:github)
 
     # Mock adapter methods to return dummy Resource objects
     # Note: We mock the *adapter's* methods, which the factory/proxy will call.
@@ -35,6 +37,11 @@ class OrmInterfaceTest < ActiveSupport::TestCase
                                                                             status: :open, adapter_source: :basecamp)
     @dummy_bc_comment = ActiveProject::Resources::Comment.new(@basecamp_adapter, id: 3, body: "BC Comment",
                                                                                  issue_id: 2, adapter_source: :basecamp)
+    @dummy_github_repo = ActiveProject::Resources::Project.new(@github_adapter, id: "repo1", name: "GitHub Repo",
+                                                                              key: "owner/repo", adapter_source: :github)
+    @dummy_github_issue = ActiveProject::Resources::Issue.new(@github_adapter, id: "issue1", key: "1",
+                                                                             title: "GitHub Issue", project_id: "owner/repo", 
+                                                                             status: :open, adapter_source: :github)
 
     # Stub adapter methods that will be called by factory/proxy
     @jira_adapter.stubs(:list_projects).with({}).returns([ @dummy_jira_project ]) # list_projects takes options hash
@@ -56,6 +63,13 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @basecamp_adapter.stubs(:find_issue).with(2, { project_id: 1 }).returns(@dummy_bc_todo)
     # Basecamp add_comment is called by association proxy, stub it if testing comments.all
     # @basecamp_adapter.stubs(:list_comments).with(2, { project_id: 1 }).returns([@dummy_bc_comment]) # Assuming list_comments exists
+    
+    # GitHub adapter stubs
+    @github_adapter.stubs(:list_projects).with({}).returns([ @dummy_github_repo ])
+    @github_adapter.stubs(:find_project).with("owner/repo").returns(@dummy_github_repo)
+    @github_adapter.stubs(:list_issues).with("owner/repo", {}).returns([ @dummy_github_issue ])
+    @github_adapter.stubs(:find_issue).with("1").returns(@dummy_github_issue)
+    @github_adapter.stubs(:create_issue).with(has_entries(title: "Create Test")).returns(@dummy_github_issue)
   end
 
   # --- Step 6a: Factory Interface Tests ---
@@ -67,6 +81,8 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     assert_respond_to @trello_adapter, :issues
     assert_respond_to @basecamp_adapter, :projects
     assert_respond_to @basecamp_adapter, :issues
+    assert_respond_to @github_adapter, :projects
+    assert_respond_to @github_adapter, :issues
   end
 
   test "factory #all calls adapter list method" do
