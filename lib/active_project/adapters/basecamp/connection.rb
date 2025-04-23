@@ -4,7 +4,7 @@ module ActiveProject
   module Adapters
     module Basecamp
       module Connection
-        include ActiveProject::Adapters::HttpClient
+        include Connections::Rest
         BASE_URL_TEMPLATE = "https://3.basecampapi.com/%<account_id>s/"
         # Initializes the Basecamp Adapter.
         # @param config [Configurations::BaseAdapterConfiguration] The configuration object for Basecamp.
@@ -20,7 +20,7 @@ module ActiveProject
           account_id   = @config.options.fetch(:account_id)
           access_token = @config.options.fetch(:access_token)
 
-          build_connection(
+          init_rest(
             base_url: format(BASE_URL_TEMPLATE, account_id: account_id),
             auth_middleware: ->(conn) { conn.request :authorization, :bearer, access_token }
           )
