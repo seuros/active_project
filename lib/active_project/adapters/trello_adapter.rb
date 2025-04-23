@@ -70,28 +70,6 @@ module ActiveProject
 
       # Initializes the Faraday connection object.
 
-      # Helper method for making requests.
-      def make_request(method, path, body = nil, query_params = {})
-        # Use config object for credentials
-        auth_params = { key: @config.api_key, token: @config.api_token }
-        all_params = auth_params.merge(query_params)
-        json_body = body ? JSON.generate(body) : nil
-        headers = {}
-        headers["Content-Type"] = "application/json" if json_body
-
-        response = @connection.run_request(method, path, json_body, headers) do |req|
-          req.params.update(all_params)
-        end
-
-        return nil if response.status == 204 || response.body.empty?
-
-        JSON.parse(response.body)
-      rescue Faraday::Error => e
-        handle_faraday_error(e)
-      rescue JSON::ParserError => e
-        raise ApiError.new("Trello API returned non-JSON response: #{response&.body}", original_error: e)
-      end
-
       # Handles Faraday errors.
       def handle_faraday_error(error)
         status = error.response_status

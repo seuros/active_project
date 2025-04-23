@@ -4,6 +4,7 @@ module ActiveProject
   module Adapters
     module Basecamp
       module Connection
+        include ActiveProject::Adapters::HttpClient
         BASE_URL_TEMPLATE = "https://3.basecampapi.com/%<account_id>s/"
         # Initializes the Basecamp Adapter.
         # @param config [Configurations::BaseAdapterConfiguration] The configuration object for Basecamp.
@@ -14,11 +15,15 @@ module ActiveProject
           unless config.is_a?(ActiveProject::Configurations::BaseAdapterConfiguration)
             raise ArgumentError, "BasecampAdapter requires a BaseAdapterConfiguration object"
           end
-
           @config = config
 
-          account_id = @config.options[:account_id].to_s # Ensure it's a string
-          access_token = @config.options[:access_token]
+          account_id   = @config.options.fetch(:account_id)
+          access_token = @config.options.fetch(:access_token)
+
+          build_connection(
+            base_url: format(BASE_URL_TEMPLATE, account_id: account_id),
+            auth_middleware: ->(conn) { conn.request :authorization, :bearer, access_token }
+          )
 
           unless account_id && !account_id.empty? && access_token && !access_token.empty?
             raise ArgumentError, "BasecampAdapter configuration requires :account_id and :access_token"

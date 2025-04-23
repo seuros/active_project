@@ -60,17 +60,8 @@ module ActiveProject
       # Initializes the Faraday connection object.
 
       # Helper method for making requests.
-      def make_request(method, path, body = nil, query_params = {})
-        full_path = path.start_with?("/") ? path[1..] : path
-
-        response = @connection.run_request(method, full_path, body, nil) do |req|
-          req.params.update(query_params) unless query_params.empty?
-        end
-        return nil if response.status == 204 # Handle No Content for POST/DELETE completion
-
-        JSON.parse(response.body) if response.body && !response.body.empty?
-      rescue Faraday::Error => e
-        handle_faraday_error(e)
+      def make_request(method, path, body = nil, query = {})
+        request(method, path, body: body, query: query)
       end
 
       # Handles Faraday errors.

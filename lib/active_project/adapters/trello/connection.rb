@@ -4,33 +4,37 @@ module ActiveProject
   module Adapters
     module Trello
       module Connection
-        BASE_URL = "https://api.trello.com/1/"
-        # @raise [ArgumentError] if required configuration options (:api_key, :api_token) are missing.
+        include ActiveProject::Adapters::HttpClient
+
+        BASE_URL = "https://api.trello.com/1/".freeze
+
         def initialize(config:)
-          unless config.is_a?(ActiveProject::Configurations::TrelloConfiguration)
-            raise ArgumentError, "TrelloAdapter requires a TrelloConfiguration object"
-          end
-
           @config = config
-
-          unless @config.api_key && !@config.api_key.empty? && @config.api_token && !@config.api_token.empty?
-            raise ArgumentError, "TrelloAdapter configuration requires :api_key and :api_token"
-          end
-
-          @connection = initialize_connection
+          build_connection(
+            base_url: BASE_URL,
+            auth_middleware: ->(_c) { },           # Trello uses query-string auth
+            extra_headers: { "Accept" => "application/json" }
+          )
         end
 
-        private
-
-        # Initializes the Faraday connection object.
-        def initialize_connection
-          Faraday.new(url: BASE_URL) do |conn|
-            conn.request :retry
-            conn.headers["Accept"] = "application/json"
-            conn.response :raise_error
-            conn.headers["User-Agent"] = ActiveProject.user_agent
+        # ------------------------------------------------------------------
+        # Adapter-specific wrapper around HttpClient#request
+        # ------------------------------------------------------------------
+        def make_request(method, path, body = nil, query_params = {})
+          auth = { key: @config.api_key, token: @config.api_token }
+          request(method, path,
+                  body:  body,
+                  query: auth.merge(query_params))
+        rescue ActiveProject::ValidationError => e
+          # Trello signals “resource not found / malformed id” with 400 + "invalid id"
+          if e.status_code == 400 && e.message&.match?(/invalid id/i)
+            raise ActiveProject::NotFoundError, e.message
+          else
+            raise
           end
         end
+
+        private :make_request
       end
     end
   end
