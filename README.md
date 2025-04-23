@@ -13,6 +13,7 @@ The ActiveProject gem aims to solve this by providing a unified, opinionated int
 *   **Normalized Data Models:** Common Ruby objects for core concepts like `Project`, `Issue` (Issue/Task/Card/To-do), `Comment`, and `User`.
 *   **Standardized Operations:** Consistent methods for creating, reading, updating, and transitioning issues (e.g., `issue.close!`, `issue.reopen!`).
 *   **Unified Error Handling:** A common set of exceptions (`AuthenticationError`, `NotFoundError`, `RateLimitError`, etc.) regardless of the underlying platform.
+*   **Co-operative Concurrency:** Optional fiber-based I/O (powered by the [`async`](https://github.com/socketry/async) ecosystem) for bulk operations without threads.
 
 ## Supported Platforms
 
@@ -234,6 +235,56 @@ rescue => e
   puts "An unexpected error occurred: #{e.message}"
 end
 ```
+
+## Asynchronous I/O
+
+ActiveProject ships with `async-http` under the hood.  
+Enable the non-blocking adapter by setting an ENV var **before** your process boots:
+
+```bash
+AP_DEFAULT_ADAPTER=async_http
+```
+
+### Parallel fan-out example
+
+```ruby
+ActiveProject::Async.run do |task|
+  jira    = ActiveProject.adapter(:jira)
+  boards  = %w[ACME DEV OPS]
+
+  tasks = boards.map do |key|
+    task.async { jira.list_issues(key, max_results: 100) }
+  end
+
+  issues = tasks.flat_map(&:wait)
+  puts "Fetched #{issues.size} issues in parallel."
+end
+```
+
+No threads, no Mutexes—just Ruby fibers.
+
+---
+
+## Rails auto-scheduler
+
+If your app runs on Rails, ActiveProject’s Railtie installs `Async::Scheduler` automatically **before Zeitwerk boots**.
+
+* Opt out per app:
+
+  ```ruby
+  # config/application.rb
+  config.active_project.use_async_scheduler = false
+  ```
+
+* …or per environment:
+
+  ```bash
+  AP_NO_ASYNC_SCHEDULER=1
+  ```
+
+If another gem (e.g. Falcon) already set a scheduler, ActiveProject detects it and does nothing.
+
+---
 
 ## Development
 
