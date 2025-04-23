@@ -36,4 +36,5 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          AP_DEFAULT_ADAPTER:   async_http
         run: bin/test

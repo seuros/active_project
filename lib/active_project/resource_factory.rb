@@ -31,6 +31,17 @@ module ActiveProject
       end
     end
 
+    # Fetches all resources in parallel, because patience is for people with no deadlines.
+    # Wraps `#all` calls in async tasks for each provided ID.
+    # @param args [Array] List of IDs to fetch resources for.
+    # @return [Async::Task<BaseResource>] Flattened array of results from async fetches.
+    def all_async(*args)
+      ActiveProject::Async.run do |task|
+        tasks = args.map { |id| task.async { all(id) } }
+        tasks.flat_map(&:wait)
+      end
+    end
+
     # Finds a specific resource by its ID.
     # Delegates to the appropriate adapter find method.
     # @param id [String, Integer] The ID or key of the resource.
@@ -98,12 +109,14 @@ module ActiveProject
 
     private
 
+    # Determines the list method name for the adapter based on the resource class.
+    # Throws a tantrum if it can't figure it out or if the adapter doesn't support it.
     def determine_list_method
       method_name = case @resource_class.name
-      when "ActiveProject::Resources::Project" then :list_projects
-      when "ActiveProject::Resources::Issue" then :list_issues
-      else raise "Cannot determine list method for #{@resource_class.name}"
-      end
+                    when "ActiveProject::Resources::Project" then :list_projects
+                    when "ActiveProject::Resources::Issue" then :list_issues
+                    else raise "Cannot determine list method for #{@resource_class.name}"
+                    end
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError,
               "#{@adapter.class.name} does not implement ##{method_name}"
@@ -112,12 +125,14 @@ module ActiveProject
       method_name
     end
 
+    # Figures out which magical method to call to find a resource, based on class name.
+    # Explodes if it can't figure it out or if the adapter is slacking off and didn't implement it.
     def determine_find_method
       method_name = case @resource_class.name
-      when "ActiveProject::Resources::Project" then :find_project
-      when "ActiveProject::Resources::Issue" then :find_issue
-      else raise "Cannot determine find method for #{@resource_class.name}"
-      end
+                    when "ActiveProject::Resources::Project" then :find_project
+                    when "ActiveProject::Resources::Issue" then :find_issue
+                    else raise "Cannot determine find method for #{@resource_class.name}"
+                    end
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError,
               "#{@adapter.class.name} does not implement ##{method_name}"
@@ -126,6 +141,9 @@ module ActiveProject
       method_name
     end
 
+    # Builds the appropriate create method name for the adapter by assuming
+    # naming conventions are law and chaos isn't real.
+    # Raises if the adapter has no idea how to make the thing.
     def determine_create_method
       singular_name = @resource_class.name.split("::").last.downcase.to_sym
       method_name = :"create_#{singular_name}"

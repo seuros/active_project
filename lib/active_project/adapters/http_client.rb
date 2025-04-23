@@ -7,6 +7,7 @@ require "json"
 module ActiveProject
   module Adapters
     module HttpClient
+      include Pagination
       DEFAULT_HEADERS = {
         "Content-Type" => "application/json",
         "Accept"       => "application/json",
@@ -19,6 +20,8 @@ module ActiveProject
           auth_middleware.call(conn)                 # <-- adapter-specific
           conn.request  :retry, **RETRY_OPTS
           conn.response :raise_error
+          default_adapter = ENV.fetch("AP_DEFAULT_ADAPTER", "net_http").to_sym
+          conn.adapter default_adapter
           conn.headers.merge!(DEFAULT_HEADERS.transform_values { |v| v.respond_to?(:call) ? v.call : v })
           conn.headers.merge!(extra_headers)
           yield conn if block_given?                 # optional extra tweaks

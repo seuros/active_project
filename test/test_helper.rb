@@ -23,7 +23,6 @@ VCR.configure do |config|
   config.filter_sensitive_data("<JIRA_USERNAME>") { ENV["JIRA_USERNAME"] || "DUMMY_JIRA_USERNAME" }
   config.filter_sensitive_data("<BASECAMP_ACCOUNT_ID>") { ENV["BASECAMP_ACCOUNT_ID"] || "DUMMY_ACCOUNT_ID" }
 
-
   # Filter the Basic Auth header
   # This creates a placeholder based on the username and token being filtered
   config.filter_sensitive_data("<JIRA_BASIC_AUTH>") do |interaction|
