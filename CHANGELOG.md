@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0](https://github.com/seuros/active_project/compare/active_project/v0.2.0...active_project/v0.3.0) (2025-04-23)
+
+
+### Features
+
+* **core:** introduce Async I/O pathway ([f9bdb08](https://github.com/seuros/active_project/commit/f9bdb08a61bac2c92a6eff6a65ddc2dfac6d9ace))
+* **core:** introduce Async I/O pathway ([3e34ea0](https://github.com/seuros/active_project/commit/3e34ea0d41c00b59ddfb69a6347e3ea70ae37b44))
+* **rails:** auto-install Async::Scheduler via Railtie ([3ec331f](https://github.com/seuros/active_project/commit/3ec331ff02a71305b84523409529d96ea9325551))
+
 ## [0.2.0](https://github.com/seuros/active_project/compare/active_project/v0.1.1...active_project/v0.2.0) (2025-04-10)
 
 
