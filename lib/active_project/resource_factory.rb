@@ -113,10 +113,10 @@ module ActiveProject
     # Throws a tantrum if it can't figure it out or if the adapter doesn't support it.
     def determine_list_method
       method_name = case @resource_class.name
-                    when "ActiveProject::Resources::Project" then :list_projects
-                    when "ActiveProject::Resources::Issue" then :list_issues
-                    else raise "Cannot determine list method for #{@resource_class.name}"
-                    end
+      when "ActiveProject::Resources::Project" then :list_projects
+      when "ActiveProject::Resources::Issue" then :list_issues
+      else raise "Cannot determine list method for #{@resource_class.name}"
+      end
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError,
               "#{@adapter.class.name} does not implement ##{method_name}"
@@ -129,10 +129,10 @@ module ActiveProject
     # Explodes if it can't figure it out or if the adapter is slacking off and didn't implement it.
     def determine_find_method
       method_name = case @resource_class.name
-                    when "ActiveProject::Resources::Project" then :find_project
-                    when "ActiveProject::Resources::Issue" then :find_issue
-                    else raise "Cannot determine find method for #{@resource_class.name}"
-                    end
+      when "ActiveProject::Resources::Project" then :find_project
+      when "ActiveProject::Resources::Issue" then :find_issue
+      else raise "Cannot determine find method for #{@resource_class.name}"
+      end
       unless @adapter.respond_to?(method_name)
         raise NotImplementedError,
               "#{@adapter.class.name} does not implement ##{method_name}"

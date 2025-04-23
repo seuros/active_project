@@ -2,6 +2,7 @@ require "zeitwerk"
 require "concurrent"
 require_relative "active_project/errors"
 require_relative "active_project/version"
+require_relative "active_project/railtie" if defined?(Rails::Railtie)
 
 module ActiveProject
   class << self
@@ -110,4 +111,5 @@ loader.inflector.inflect("activeproject" => "ActiveProject")
 loader.do_not_eager_load("#{__dir__}/active_project/adapters")
 loader.ignore("#{__dir__}/active_project/errors.rb")
 loader.ignore("#{__dir__}/active_project/version.rb")
+loader.ignore("#{__dir__}/active_project/railtie.rb")
 loader.setup
