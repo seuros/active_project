@@ -7,7 +7,7 @@ module ActiveProject
     module Jira
       # Low-level HTTP concerns for JiraAdapter
       module Connection
-        include ActiveProject::Adapters::HttpClient
+        include Connections::Rest
 
         SERAPH_HEADER = "x-seraph-loginreason".freeze
 
@@ -28,7 +28,7 @@ module ActiveProject
           username  = @config.options.fetch(:username)
           api_token = @config.options.fetch(:api_token)
 
-          build_connection(
+          init_rest(
             base_url: site_url,
             auth_middleware: ->(conn) do
               # Faraday’s built-in basic-auth helper                               :contentReference[oaicite:0]{index=0}
@@ -49,16 +49,12 @@ module ActiveProject
         #
         # @raise [ActiveProject::AuthenticationError] if Jira signals
         #   AUTHENTICATED_FAILED via X-Seraph-LoginReason header.
-        private def make_request(method, path, body = nil, query = nil)
-          data = request(method, path, body: body, query: query)
-
-          if @connection.headers[SERAPH_HEADER]&.include?("AUTHENTICATED_FAILED")
-            # Jira returns 200 + this header when credentials are wrong         :contentReference[oaicite:1]{index=1}
-            raise ActiveProject::AuthenticationError,
-                  "Jira authentication failed (#{SERAPH_HEADER}: AUTHENTICATED_FAILED)"
+        private def make_request(method, path, body = nil, query = nil, headers = {})
+          res = request_rest(method, path, body, query, headers)
+          if res.headers["x-seraph-loginreason"]&.include?("AUTHENTICATED_FAILED")
+            raise ActiveProject::AuthenticationError, "Jira authentication failed"
           end
-
-          data
+          res
         end
       end
     end

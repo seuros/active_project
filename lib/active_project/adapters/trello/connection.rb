@@ -4,13 +4,13 @@ module ActiveProject
   module Adapters
     module Trello
       module Connection
-        include ActiveProject::Adapters::HttpClient
+        include Connections::Rest
 
         BASE_URL = "https://api.trello.com/1/".freeze
 
         def initialize(config:)
           @config = config
-          build_connection(
+          init_rest(
             base_url: BASE_URL,
             auth_middleware: ->(_c) { },           # Trello uses query-string auth
             extra_headers: { "Accept" => "application/json" }
