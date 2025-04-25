@@ -51,7 +51,7 @@ module ActiveProject
         #   AUTHENTICATED_FAILED via X-Seraph-LoginReason header.
         private def make_request(method, path, body = nil, query = nil, headers = {})
           res = request_rest(method, path, body, query, headers)
-          if @connection.headers["x-seraph-loginreason"]&.include?("AUTHENTICATED_FAILED")
+          if res.headers["x-seraph-loginreason"]&.include?("AUTHENTICATED_FAILED")
             raise ActiveProject::AuthenticationError, "Jira authentication failed"
           end
           res
