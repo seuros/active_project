@@ -46,23 +46,22 @@ module ActiveProject
       end
 
       # Defines expected members for the resource class.
-      def self.def_members(*args)
+      def self.def_members(*names)
         @members ||= []
-        @members.concat(args.map(&:to_sym))
-        # No explicit attr_reader needed when using method_missing
+        names.each do |name|
+          sym = name.to_sym
+          @members << sym
+          define_method(sym) { @attributes[sym] } # reader
+          define_method("#{sym}=") do |val| # writer
+            @attributes[sym] = val
+          end
+        end
       end
 
-      # Placeholder methods for ORM-like behavior
-      def save
-        raise NotImplementedError, "#save not yet implemented for #{self.class.name}"
-      end
-
-      def update(attributes)
-        raise NotImplementedError, "#update not yet implemented for #{self.class.name}"
-      end
-
-      def delete
-        raise NotImplementedError, "#delete not yet implemented for #{self.class.name}"
+      def to_h
+        self.class.members.each_with_object({}) do |name, hash|
+          hash[name] = public_send(name)
+        end
       end
     end
   end

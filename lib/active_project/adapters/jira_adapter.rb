@@ -10,6 +10,8 @@ module ActiveProject
     # Adapter for interacting with the Jira REST API.
     # Implements the interface defined in ActiveProject::Adapters::Base.
     class JiraAdapter < Base
+      include Jira::AttributeNormalizer
+
       attr_reader :config # Store the config object
 
       include Jira::Connection
@@ -31,6 +33,26 @@ module ActiveProject
       # @return [ResourceFactory<Resources::Issue>]
       def issues
         ResourceFactory.new(adapter: self, resource_class: Resources::Issue)
+      end
+
+      # create_issue is already called with 2 args in tests and
+      # with (project_id, attrs) from Resources::Issue; both are fine.
+      def create_issue(*args)
+        project_or_key, attrs = args
+        super(project_or_key, normalize_issue_attrs(attrs))
+      end
+
+      # Accept:
+      #   * (id_or_key, attrs) ← direct test-suite call
+      #   * (project_id, id_or_key, attrs) ← Resources::Issue#update
+      def update_issue(*args)
+        if args.size == 3
+          _proj, id_or_key, attrs = args
+          super(id_or_key, normalize_issue_attrs(attrs), {})
+        else
+          id_or_key, attrs, ctx = args
+          super(id_or_key, normalize_issue_attrs(attrs), ctx || {})
+        end
       end
 
       # Retrieves details for the currently authenticated user.
@@ -82,9 +104,10 @@ module ActiveProject
           raise RateLimitError, "Jira rate limit exceeded (Status: 429)"
         when 400, 422
           raise ValidationError.new(
-            "Jira validation failed (Status: #{status})#{unless message.empty?
-                                                           ": #{message}"
-                                                         end}. Errors: #{errors_hash.inspect}", errors: errors_hash, status_code: status, response_body: body
+            "Jira validation failed (Status: #{status})#{
+              unless message.empty?
+                ": #{message}"
+              end}. Errors: #{errors_hash.inspect}", errors: errors_hash, status_code: status, response_body: body
           )
         else
           # Raise generic ApiError for other non-success statuses

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "minitest/mock"
 
 class OrmInterfaceTest < ActiveSupport::TestCase
   def setup
@@ -149,19 +150,40 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     assert_same @jira_adapter, new_issue.adapter # Check adapter is passed
   end
 
-  test "resource #save raises NotImplementedError" do
-    issue = @jira_adapter.issues.build(title: "Save Test")
-    # Check for the specific error message from the placeholder
-    exception = assert_raises(ActiveProject::NotImplementedError) { issue.save }
-    assert_match(/#save not yet implemented/, exception.message)
+  test "resource #save persists a new Issue via adapter" do
+    # Pretend the adapter will return a fully-populated Issue after creation:
+    dummy = ActiveProject::Resources::Issue.new(
+      @jira_adapter,
+      id: "42",
+      project_id: 123,
+      title: "Save Test"
+    )
+
+    # Use expects instead of stub to properly match the parameters
+    @jira_adapter.expects(:create_issue)
+                 .with(123, has_entry(summary: "Save Test"))
+                 .returns(dummy)
+
+    issue = ActiveProject::Resources::Issue.new(
+      @jira_adapter,
+      project_id: 123,
+      title: "Save Test"
+    )
+
+    assert issue.save # returns true
+    assert_equal "42", issue.id
   end
 
-  test "resource #update raises NotImplementedError" do
-    # Check for the specific error message from the placeholder
-    exception = assert_raises(ActiveProject::NotImplementedError) do
-      @dummy_jira_issue.update(title: "Update Test")
+  test "resource #update calls adapter#update_issue and refreshes attributes" do
+    updated = @dummy_jira_issue.dup
+    updated.title = "Update Test"
+
+    @jira_adapter.stub :update_issue, true do
+      @jira_adapter.stub :find_issue, updated do
+        assert @dummy_jira_issue.update(title: "Update Test")
+        assert_equal "Update Test", @dummy_jira_issue.title
+      end
     end
-    assert_match(/#update not yet implemented/, exception.message)
   end
 
   test "factory #create calls adapter create method" do

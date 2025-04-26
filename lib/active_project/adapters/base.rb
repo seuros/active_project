@@ -5,6 +5,14 @@ module ActiveProject
     # Base abstract class defining the interface for all adapters.
     # Concrete adapters should inherit from this class and implement its abstract methods.
     class Base
+      include ErrorMapper
+
+      # ─────────────────── Central HTTP-status → exception map ────────────
+      rescue_status 401..403, with: ActiveProject::AuthenticationError
+      rescue_status 404, with: ActiveProject::NotFoundError
+      rescue_status 429, with: ActiveProject::RateLimitError
+      rescue_status 400, 422, with: ActiveProject::ValidationError
+
       # Lists projects accessible by the configured credentials.
       # @return [Array<ActiveProject::Project>]
       def list_projects
@@ -123,6 +131,16 @@ module ActiveProject
       # @return [Boolean] true if connection is successful, false otherwise.
       def connected?
         raise NotImplementedError, "#{self.class.name} must implement #connected?"
+      end
+
+      # Adapters that do **not** support a custom “status” field can simply rely
+      # on this default implementation.  Adapters that _do_ care (e.g. the
+      # GitHub project adapter which knows its single-select options) already
+      # override it.
+      #
+      # @return [Boolean] _true_ if the symbol is safe to pass through.
+      def status_known?(_project_id, _status_sym)
+        true
       end
     end
   end

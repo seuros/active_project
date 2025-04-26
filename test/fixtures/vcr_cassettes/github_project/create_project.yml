@@ -1,0 +1,382 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($login:String!){\n  organization(login:$login){ id
+        }\n  user(login:$login){ id }\n}\n","variables":{"login":"seuros"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4944'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '56'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - C8C0:135BE5:40C732:42E9A6:681D2DE6
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"organization":null,"user":{"id":"U_kgDOACSKTw"}},"errors":[{"type":"NOT_FOUND","path":["organization"],"locations":[{"line":2,"column":3}],"message":"Could
+        not resolve to an Organization with the login of ''seuros''."}]}'
+  recorded_at: Thu, 08 May 2025 22:19:18 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"mutation($name:String!, $owner:ID!){\n  createProjectV2(input:{title:$name,ownerId:$owner})
+        { projectV2 { id number title } }\n}\n","variables":{"name":"AP-Test-<BIG_INT>","owner":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4944'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '56'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 5E51:140F21:1FE506D:20C59B1:681D2DE6
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":[{"extensions":{"value":null,"problems":[{"path":[],"explanation":"Expected
+        value to not be null"}]},"locations":[{"line":1,"column":25}],"message":"Variable
+        $owner of type ID! was provided invalid value"}]}'
+  recorded_at: Thu, 08 May 2025 22:19:18 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"mutation($name:String!, $owner:ID!){\n  createProjectV2(input:{title:$name,ownerId:$owner})
+        { projectV2 { id number title } }\n}\n","variables":{"name":"AP-Test-<BIG_INT>","owner":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4999'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '1'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - F2E4:1BBBDA:263BB78:27473F0:681D46A6
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":[{"extensions":{"value":null,"problems":[{"path":[],"explanation":"Expected
+        value to not be null"}]},"locations":[{"line":1,"column":25}],"message":"Variable
+        $owner of type ID! was provided invalid value"}]}'
+  recorded_at: Fri, 09 May 2025 00:04:54 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"mutation($name:String!, $owner:ID!){\n  createProjectV2(input:{title:$name,ownerId:$owner})
+        { projectV2 { id number title } }\n}\n","variables":{"name":"AP-Test-<BIG_INT>","owner":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4998'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '2'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - C31A:8199D:259B82D:26A79C3:681D46DD
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":[{"extensions":{"value":null,"problems":[{"path":[],"explanation":"Expected
+        value to not be null"}]},"locations":[{"line":1,"column":25}],"message":"Variable
+        $owner of type ID! was provided invalid value"}]}'
+  recorded_at: Fri, 09 May 2025 00:05:49 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"mutation($name:String!, $owner:ID!){\n  createProjectV2(input:{title:$name,ownerId:$owner})
+        { projectV2 { id number title } }\n}\n","variables":{"name":"AP-Test-<BIG_INT>","owner":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4997'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '3'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 1EB8:150C75:25A4949:26B57BF:681D49B0
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":[{"extensions":{"value":null,"problems":[{"path":[],"explanation":"Expected
+        value to not be null"}]},"locations":[{"line":1,"column":25}],"message":"Variable
+        $owner of type ID! was provided invalid value"}]}'
+  recorded_at: Fri, 09 May 2025 00:17:52 GMT
+recorded_with: VCR 6.3.1

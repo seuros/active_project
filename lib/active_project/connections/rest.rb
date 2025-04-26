@@ -25,7 +25,7 @@ module ActiveProject
       def request_rest(method, path, body = nil, query = nil, headers = {})
         request(method, path, body: body, query: query, headers: headers)
       rescue Faraday::Error => e
-        raise map_faraday_error(e)  # Wrap Faraday errors in our custom trauma response.
+        raise map_faraday_error(e) # Wrap Faraday errors in our custom trauma response.
       end
     end
   end

@@ -74,10 +74,11 @@ module ActiveProject
             target_status = update_attributes.delete(:status)
 
             board_id = update_attributes[:board_id] || begin
-                                                         find_issue(card_id).project_id
-                                                       rescue NotFoundError
-                                                         raise NotFoundError, "Trello card with ID '#{card_id}' not found."
-                                                       end
+              find_issue(card_id).project_id
+            rescue NotFoundError
+              raise NotFoundError,
+                    "Trello card with ID '#{card_id}' not found."
+            end
 
             unless board_id
               raise ApiError, "Could not determine board ID for card '#{card_id}' to perform status mapping."

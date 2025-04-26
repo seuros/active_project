@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 require "zeitwerk"
 require "concurrent"
 require_relative "active_project/errors"
 require_relative "active_project/version"
 require_relative "active_project/railtie" if defined?(Rails::Railtie)
+require "active_support/concern"
+require "active_support/core_ext/class/attribute"
 
 module ActiveProject
   class << self
@@ -65,11 +69,11 @@ module ActiveProject
           raise ArgumentError, error_message
         end
 
-        adapter_class_name = "ActiveProject::Adapters::#{adapter_type.to_s.capitalize}Adapter"
+        adapter_class_name = "ActiveProject::Adapters::#{adapter_type.to_s.classify}Adapter"
 
         begin
           require "active_project/adapters/#{adapter_type}_adapter"
-        rescue LoadError => e
+        rescue LoadError
           error_message = "Could not load adapter '#{adapter_type}'.\n"
           error_message += "Make sure you have defined the class #{adapter_class_name} in active_project/adapters/#{adapter_type}_adapter.rb"
           raise LoadError, error_message
@@ -77,7 +81,7 @@ module ActiveProject
 
         begin
           adapter_class = Object.const_get(adapter_class_name)
-        rescue NameError => e
+        rescue NameError
           error_message = "Could not find adapter class #{adapter_class_name}.\n"
           error_message += "Make sure you have defined the class correctly in active_project/adapters/#{adapter_type}_adapter.rb"
           raise NameError, error_message

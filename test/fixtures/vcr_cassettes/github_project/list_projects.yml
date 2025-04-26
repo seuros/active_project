@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($login:String!, $first:Int!, $after:String){\n  user(login:$login){\n    projectsV2(first:$first,
+        after:$after){\n      nodes{ id number title }\n      pageInfo{ hasNextPage
+        endCursor }\n    }\n  }\n}\n","variables":{"login":"seuros","first":50,"after":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4943'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '57'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - ACBB:CE5B9:1F1FB3F:20004D2:681D2DE6
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"user":{"projectsV2":{"nodes":[{"id":"PVT_kwHOACSKT84A4kTy","number":10,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kTl","number":9,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kTf","number":8,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kTc","number":7,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kSc","number":6,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kEt","number":5,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A4kEW","number":4,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A3pqB","number":3,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84A3piV","number":2,"title":"AP-Test-<BIG_INT>"},{"id":"PVT_kwHOACSKT84AyJ2j","number":1,"title":"@seuros''s
+        untitled project"}],"pageInfo":{"hasNextPage":false,"endCursor":"MTA"}}}}}'
+  recorded_at: Thu, 08 May 2025 22:19:19 GMT
+recorded_with: VCR 6.3.1

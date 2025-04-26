@@ -1,0 +1,454 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($login: String!, $num: Int!) {\n  user(login: $login)
+        {\n    projectV2(number: $num) { id number title }\n  }\n}\n","variables":{"login":"seuros","num":1}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4949'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '51'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - E0A0:19746D:219D7C3:227E0E1:681D2DE3
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"user":{"projectV2":{"id":"PVT_kwHOACSKT84AyJ2j","number":1,"title":"@seuros''s
+        untitled project"}}}}'
+  recorded_at: Thu, 08 May 2025 22:19:16 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($id:ID!, $first:Int!, $after:String){\n  node(id:$id){\n    ...
+        on ProjectV2{\n      items(first:$first, after:$after){\n        nodes{\n          id
+        type content{__typename ... on Issue{ id number title body state\n            assignees(first:10){nodes{login
+        id}}\n            reporter:author{login} } }\n          createdAt updatedAt\n        }\n        pageInfo{hasNextPage
+        endCursor}\n      }\n    }\n  }\n}\n","variables":{"id":"PVT_kwHOACSKT84AyJ2j","first":50,"after":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4948'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '52'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - E75E:12E9:1268A1D:12FED6A:681D2DE4
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"node":{"items":{"nodes":[{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-04-26T09:15:52Z","updatedAt":"2025-04-26T10:42:13Z"},{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-04-26T18:34:12Z","updatedAt":"2025-04-26T18:34:14Z"},{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-04-26T18:45:17Z","updatedAt":"2025-04-26T18:45:17Z"},{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-04-26T18:48:10Z","updatedAt":"2025-04-26T18:48:11Z"},{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-05-08T20:36:34Z","updatedAt":"2025-05-08T20:36:35Z"},{"id":"<<<<PVTI_ID>>>>","type":"DRAFT_ISSUE","content":{"__typename":"DraftIssue"},"createdAt":"2025-05-08T20:38:22Z","updatedAt":"2025-05-08T20:38:23Z"}],"pageInfo":{"hasNextPage":false,"endCursor":"Y3Vyc29yOnYyOpK5MDAwMDAwMDAuMTY2NjY2NjY2NjY2NjY2Ns4Gikaq"}}}}}'
+  recorded_at: Thu, 08 May 2025 22:19:16 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($id:ID!){\n  node(id:$id){\n    ... on ProjectV2Item{
+        content{ __typename ... on Issue{id} ... on PullRequest{id} } }\n  }\n}\n","variables":{"id":"<<<<PVTI_ID>>>>"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4947'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '53'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 8253:D66AE:212E6FC:220EEF9:681D2DE4
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"node":{"content":{"__typename":"DraftIssue"}}}}'
+  recorded_at: Thu, 08 May 2025 22:19:16 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($id:ID!){\n  node(id:$id){\n    ... on ProjectV2Item{
+        content{ __typename ... on Issue{id} ... on PullRequest{id} } }\n  }\n}\n","variables":{"id":"\u003c<<<PVTI_ID>>>\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4999'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '1'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - BACE:128A55:23991BD:24A4A53:681D46A6
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"node":null},"errors":[{"type":"NOT_FOUND","path":["node"],"locations":[{"line":2,"column":3}],"message":"Could
+        not resolve to a node with the global id of ''<<<<PVTI_ID>>>>''"}]}'
+  recorded_at: Fri, 09 May 2025 00:04:54 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($id:ID!){\n  node(id:$id){\n    ... on ProjectV2Item{
+        content{ __typename ... on Issue{id} ... on PullRequest{id} } }\n  }\n}\n","variables":{"id":"\u003c\u003c<<PVTI_ID>>\u003e\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4998'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '2'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 65D9:1BBBDA:2646495:27522CF:681D46DC
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"node":null},"errors":[{"type":"NOT_FOUND","path":["node"],"locations":[{"line":2,"column":3}],"message":"Could
+        not resolve to a node with the global id of ''<<<<PVTI_ID>>>>''"}]}'
+  recorded_at: Fri, 09 May 2025 00:05:48 GMT
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($id:ID!){\n  node(id:$id){\n    ... on ProjectV2Item{
+        content{ __typename ... on Issue{id} ... on PullRequest{id} } }\n  }\n}\n","variables":{"id":"\u003c\u003c\u003c<PVTI_ID>\u003e\u003e\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, read:user, repo, user:email
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4997'
+      X-Ratelimit-Reset:
+      - '1746752694'
+      X-Ratelimit-Used:
+      - '3'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 2C1A:1BBBDA:26CE14C:27DEDEE:681D49AF
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"node":null},"errors":[{"type":"NOT_FOUND","path":["node"],"locations":[{"line":2,"column":3}],"message":"Could
+        not resolve to a node with the global id of ''<<<<PVTI_ID>>>>''"}]}'
+  recorded_at: Fri, 09 May 2025 00:17:51 GMT
+recorded_with: VCR 6.3.1

@@ -9,7 +9,7 @@ module ActiveProject
       module Connection
         include Connections::Rest
 
-        SERAPH_HEADER = "x-seraph-loginreason".freeze
+        SERAPH_HEADER = "x-seraph-loginreason"
 
         # @param config [ActiveProject::Configurations::BaseAdapterConfiguration]
         #   Must expose :site_url, :username, :api_token.
@@ -18,24 +18,27 @@ module ActiveProject
           unless config.is_a?(ActiveProject::Configurations::BaseAdapterConfiguration)
             raise ArgumentError, "JiraAdapter requires a BaseAdapterConfiguration object"
           end
+
           @config = config
 
           # --- Build an absolute base URL ------------------------------------
-          raw_url  = @config.options.fetch(:site_url)
+          raw_url = @config.options.fetch(:site_url)
           site_url = raw_url =~ %r{\Ahttps?://}i ? raw_url.dup : +"https://#{raw_url}"
           site_url.chomp!("/")
 
-          username  = @config.options.fetch(:username)
+          username = @config.options.fetch(:username)
           api_token = @config.options.fetch(:api_token)
 
           init_rest(
             base_url: site_url,
-            auth_middleware: ->(conn) do
+            auth_middleware: lambda do |conn|
               # Faraday’s built-in basic-auth helper                               :contentReference[oaicite:0]{index=0}
               conn.request :authorization, :basic, username, api_token
             end
           )
         end
+
+        private
 
         # --------------------------------------------------------------------
         # Tiny wrapper around HttpClient#request that handles Jira quirks
@@ -49,11 +52,12 @@ module ActiveProject
         #
         # @raise [ActiveProject::AuthenticationError] if Jira signals
         #   AUTHENTICATED_FAILED via X-Seraph-LoginReason header.
-        private def make_request(method, path, body = nil, query = nil, headers = {})
+        def make_request(method, path, body = nil, query = nil, headers = {})
           res = request_rest(method, path, body, query, headers)
-          if res.headers["x-seraph-loginreason"]&.include?("AUTHENTICATED_FAILED")
+          if last_response&.headers&.[](SERAPH_HEADER)&.include?("AUTHENTICATED_FAILED")
             raise ActiveProject::AuthenticationError, "Jira authentication failed"
           end
+
           res
         end
       end

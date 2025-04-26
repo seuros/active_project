@@ -3,7 +3,7 @@
 module ActiveProject
   module Resources
     # Represents a Project (e.g., Jira Project, Trello Board, Basecamp Project)
-    class Project < BaseResource
+    class Project < PersistableResource
       def_members :id, :key, :name, :adapter_source
       # raw_data and adapter are inherited from BaseResource
 

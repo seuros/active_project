@@ -4,7 +4,8 @@ module ActiveProject
   module Adapters
     module Jira
       module Issues
-        DEFAULT_FIELDS = %w[summary description status assignee reporter created updated project issuetype duedate priority].freeze
+        DEFAULT_FIELDS = %w[summary description status assignee reporter created updated project issuetype duedate
+                            priority].freeze
 
         # Lists issues within a specific project, optionally filtered by JQL.
         # @param project_id_or_key [String, Integer] The ID or key of the project.
@@ -57,8 +58,8 @@ module ActiveProject
           path = "/rest/api/3/issue"
 
           unless attributes[:project].is_a?(Hash) && (attributes[:project][:id] || attributes[:project][:key]) &&
-            attributes[:summary] && !attributes[:summary].empty? &&
-            attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
+                 attributes[:summary] && !attributes[:summary].empty? &&
+                 attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
             raise ArgumentError,
                   "Missing required attributes for issue creation: :project (must be a Hash with id/key), :summary, :issue_type (with id/name)"
           end
@@ -100,6 +101,8 @@ module ActiveProject
         # @param context [Hash] Optional context. Accepts :fields for field selection on return.
         # @return [ActiveProject::Resources::Issue]
         def update_issue(id_or_key, attributes, context = {})
+          raise ArgumentError, "attributes must be a Hash" unless attributes.is_a?(Hash)
+
           path = "/rest/api/3/issue/#{id_or_key}"
 
           update_fields = {}

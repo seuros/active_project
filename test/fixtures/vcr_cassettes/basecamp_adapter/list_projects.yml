@@ -3,17 +3,79 @@ http_interactions:
 - request:
     method: get
     uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
   response:
     status:
       code: 200
       message: OK
+    headers: {}
+    body:
+      encoding: US-ASCII
+      string: ''
   recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
 - request:
     method: get
     uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/projects.json?page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
   response:
     status:
       code: 200
       message: OK
+    headers: {}
+    body:
+      encoding: US-ASCII
+      string: ''
   recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
-recorded_with: VCR 6.3.1 (Claudio Was Definitely Here)
+- request:
+    method: get
+    uri: https://3.basecampapi.com/id/projects.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-08T22:15:10Z"}'
+      X-Request-Id:
+      - 3880eecc-0afa-44d5-aa38-c61f1a4eef28
+      X-Runtime:
+      - '0.004309'
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - BYPASS
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 93cc5030da708675-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Thu, 08 May 2025 22:15:00 GMT
+recorded_with: VCR 6.3.1
