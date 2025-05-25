@@ -64,20 +64,20 @@ VCR.configure do |config|
       i.response.headers.delete(h)
     end
   end
-  
+
   # GitHub-specific filters
   config.filter_sensitive_data("<GITHUB_ACCESS_TOKEN>") { ENV["GITHUB_ACCESS_TOKEN"] || "DUMMY_GITHUB_TOKEN" }
-  
+
   # Filter GitHub Bearer auth header
   config.filter_sensitive_data("<GITHUB_BEARER_AUTH>") do |interaction|
     next unless interaction.request.uri.include?("api.github.com")
-    
+
     auth_header = interaction.request.headers["Authorization"]&.first
     if auth_header&.start_with?("Bearer ")
       "Bearer <GITHUB_ACCESS_TOKEN>"
     end
   end
-  
+
   # Filter webhook secret
   config.filter_sensitive_data("<GITHUB_WEBHOOK_SECRET>") { ENV["GITHUB_WEBHOOK_SECRET"] || "DUMMY_WEBHOOK_SECRET" }
 
@@ -126,7 +126,7 @@ VCR.configure do |config|
 
   # Get record mode from env var or default to :new_episodes
   record_mode = ENV["VCR_RECORD_MODE"]&.to_sym || :new_episodes
-  
+
   # Update the record mode if specified
   config.default_cassette_options[:record] = record_mode
 end

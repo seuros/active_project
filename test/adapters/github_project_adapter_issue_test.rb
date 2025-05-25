@@ -36,4 +36,48 @@ class GithubProjectAdapterIssueTest < GithubProjectAdapterBaseTest
       assert_match(/Updated/, updated.title)
     end
   end
+
+  test "#update_issue with base interface signature requires project_id in context" do
+    item_id = "test_item_id"
+
+    error = assert_raises(ArgumentError) do
+      @adapter.update_issue(item_id, { title: "New Title" }, {})
+    end
+    assert_match(/requires :project_id in context/, error.message)
+  end
+
+  test "#update_issue with base interface signature works with project_id in context" do
+    # This test would need a real VCR cassette to work properly
+    skip("Would need VCR cassette for actual update test")
+
+    item_id = "test_item_id"
+    VCR.use_cassette("github_project/update_issue_with_context") do
+      updated = @adapter.update_issue(item_id, { title: "New Title" }, { project_id: project_id })
+      assert_not_nil updated
+    end
+  end
+
+  test "#delete_issue with base interface signature requires project_id in context" do
+    item_id = "test_item_id"
+
+    error = assert_raises(ArgumentError) do
+      @adapter.delete_issue(item_id, {})
+    end
+    assert_match(/requires :project_id in context/, error.message)
+  end
+
+  test "#delete_issue with base interface signature works with project_id in context" do
+    # This test would need a real VCR cassette to work properly
+    skip("Would need VCR cassette for actual delete test")
+
+    item_id = "test_item_id"
+    VCR.use_cassette("github_project/delete_issue_with_context") do
+      result = @adapter.delete_issue(item_id, { project_id: project_id })
+      assert_equal true, result
+    end
+  end
+
+  test "#adapter_type returns correct symbol" do
+    assert_equal :github_project, @adapter.send(:adapter_type)
+  end
 end

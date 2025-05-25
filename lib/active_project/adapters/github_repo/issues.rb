@@ -2,7 +2,7 @@
 
 module ActiveProject
   module Adapters
-    module Github
+    module GithubRepo
       module Issues
         # Lists GitHub issues within a specific repository (project).
         # @param project_id [String] The repository name or full_name
@@ -17,21 +17,21 @@ module ActiveProject
         def list_issues(project_id, options = {})
           # Determine the repository path to use
           repo_path = determine_repo_path(project_id)
-          
+
           # Build query parameters
           query = {}
-          query[:state] = options[:status] || 'open'
+          query[:state] = options[:status] || "open"
           query[:page] = options[:page] if options[:page]
           query[:per_page] = options[:per_page] if options[:per_page]
           query[:sort] = options[:sort] if options[:sort]
           query[:direction] = options[:direction] if options[:direction]
-          
+
           issues_data = make_request(:get, "#{repo_path}/issues", nil, query)
           return [] unless issues_data.is_a?(Array)
-          
+
           issues_data.map { |issue_data| map_issue_data(issue_data) }
         end
-        
+
         # Finds a specific issue by its number.
         # @param id [String, Integer] The issue number within the repository.
         # @param context [Hash] Optional context.
@@ -43,14 +43,14 @@ module ActiveProject
           # Determine the repository path to use
           repo_path = if context[:repo_owner] && context[:repo_name]
                        "repos/#{context[:repo_owner]}/#{context[:repo_name]}"
-                     else
+          else
                        @repo_path
-                     end
-          
+          end
+
           issue_data = make_request(:get, "#{repo_path}/issues/#{id}")
           map_issue_data(issue_data)
         end
-        
+
         # Creates a new issue in a GitHub repository.
         # @param project_id [String] The repository name or full_name
         # @param attributes [Hash] Issue attributes.
@@ -60,16 +60,16 @@ module ActiveProject
         def create_issue(project_id, attributes)
           # Determine the repository path to use
           repo_path = determine_repo_path(project_id)
-          
+
           unless attributes[:title] && !attributes[:title].empty?
             raise ArgumentError, "Missing required attribute for GitHub issue creation: :title"
           end
-          
+
           data = {
             title: attributes[:title],
             body: attributes[:description]
           }
-          
+
           # Convert assignees if present
           if attributes[:assignees] && attributes[:assignees].is_a?(Array)
             if attributes[:assignees].all? { |a| a.is_a?(Hash) && a[:name] }
@@ -78,14 +78,14 @@ module ActiveProject
               data[:assignees] = attributes[:assignees]
             end
           end
-          
+
           # Add labels if present
           data[:labels] = attributes[:labels] if attributes[:labels]
-          
+
           issue_data = make_request(:post, "#{repo_path}/issues", data)
           map_issue_data(issue_data)
         end
-        
+
         # Updates an existing issue in GitHub.
         # @param id [String, Integer] The issue number.
         # @param attributes [Hash] Issue attributes to update.
@@ -99,24 +99,24 @@ module ActiveProject
           # Determine the repository path to use
           repo_path = if context[:repo_owner] && context[:repo_name]
                        "repos/#{context[:repo_owner]}/#{context[:repo_name]}"
-                     else
+          else
                        @repo_path
-                     end
-          
+          end
+
           data = {}
           data[:title] = attributes[:title] if attributes.key?(:title)
           data[:body] = attributes[:description] if attributes.key?(:description)
-          
+
           # Handle status mapping
           if attributes.key?(:status)
             state = case attributes[:status]
-                   when :open, :in_progress then "open"
-                   when :closed then "closed"
-                   else attributes[:status].to_s
-                   end
+            when :open, :in_progress then "open"
+            when :closed then "closed"
+            else attributes[:status].to_s
+            end
             data[:state] = state
           end
-          
+
           # Convert assignees if present
           if attributes.key?(:assignees)
             if attributes[:assignees].nil? || attributes[:assignees].empty?
@@ -127,11 +127,11 @@ module ActiveProject
               data[:assignees] = attributes[:assignees]
             end
           end
-          
+
           issue_data = make_request(:patch, "#{repo_path}/issues/#{id}", data)
           map_issue_data(issue_data)
         end
-        
+
         # Attempts to delete an issue in GitHub, but since GitHub doesn't support
         # true deletion, it closes the issue instead.
         # @param id [String, Integer] The issue number.
@@ -143,35 +143,35 @@ module ActiveProject
           update_issue(id, { status: :closed }, context)
           false # Return false indicating true deletion is not supported
         end
-        
+
         private
-        
+
         # Determines the repository path to use based on project_id.
         # @param project_id [String] Repository name or full_name
         # @return [String] The repository API path
         def determine_repo_path(project_id)
           # If project_id matches configured repo or is the same as the full_name, use @repo_path
-          if project_id.to_s == @config.options[:repo] || 
+          if project_id.to_s == @config.options[:repo] ||
              project_id.to_s == "#{@config.options[:owner]}/#{@config.options[:repo]}"
             return @repo_path
           end
-          
+
           # If project_id contains a slash, assume it's a full_name
           if project_id.to_s.include?("/")
             return "repos/#{project_id}"
           end
-          
+
           # Otherwise, assume it's just a repo name and use the configured owner
           "repos/#{@config.options[:owner]}/#{project_id}"
         end
-        
+
         # Maps raw GitHub issue data to an ActiveProject::Resources::Issue
         # @param issue_data [Hash] Raw issue data from GitHub API
         # @return [ActiveProject::Resources::Issue]
         def map_issue_data(issue_data)
           # Map state to status
           status = @config.status_mappings[issue_data["state"]] || :unknown
-          
+
           # Map assignees
           assignees = []
           if issue_data["assignees"] && !issue_data["assignees"].empty?
@@ -185,7 +185,7 @@ module ActiveProject
               )
             end
           end
-          
+
           # Map reporter (user who created the issue)
           reporter = nil
           if issue_data["user"]
@@ -197,7 +197,7 @@ module ActiveProject
               raw_data: issue_data["user"]
             )
           end
-          
+
           # Extract project ID (repo name) from the URL
           project_id = nil
           if issue_data["repository_url"]
@@ -214,10 +214,10 @@ module ActiveProject
               end
             end
           end
-          
+
           # If still not found, use configured repo
           project_id ||= "#{@config.options[:owner]}/#{@config.options[:repo]}"
-          
+
           Resources::Issue.new(
             self,
             id: issue_data["id"].to_s,

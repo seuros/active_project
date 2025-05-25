@@ -41,7 +41,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @dummy_github_repo = ActiveProject::Resources::Project.new(@github_repo_adapter, id: "repo1", name: "GitHub Repo",
                                                                               key: "owner/repo", adapter_source: :github)
     @dummy_github_issue = ActiveProject::Resources::Issue.new(@github_repo_adapter, id: "issue1", key: "1",
-                                                                             title: "GitHub Issue", project_id: "owner/repo", 
+                                                                             title: "GitHub Issue", project_id: "owner/repo",
                                                                              status: :open, adapter_source: :github)
 
     # Stub adapter methods that will be called by factory/proxy
@@ -64,7 +64,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @basecamp_adapter.stubs(:find_issue).with(2, { project_id: 1 }).returns(@dummy_bc_todo)
     # Basecamp add_comment is called by association proxy, stub it if testing comments.all
     # @basecamp_adapter.stubs(:list_comments).with(2, { project_id: 1 }).returns([@dummy_bc_comment]) # Assuming list_comments exists
-    
+
     # GitHub adapter stubs
     @github_repo_adapter.stubs(:list_projects).with({}).returns([ @dummy_github_repo ])
     @github_repo_adapter.stubs(:find_project).with("owner/repo").returns(@dummy_github_repo)

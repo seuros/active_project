@@ -125,7 +125,7 @@ module ActiveProject
         # NOTE: Requires you to preload field mappings, because GitHub’s GraphQL API
         # refuses to help unless you memorize all their withcrafts.
         #
-        def update_issue(project_id, item_id, attrs = {})
+        def update_issue_original(project_id, item_id, attrs = {})
           field_ids = project_field_ids(project_id)
 
           # -- Update Title (basic) --
@@ -171,7 +171,7 @@ module ActiveProject
         # Delete a ProjectV2Item from a project.
         # No soft delete, no grace period — just *execute Order 66*.
         #
-        def delete_issue(project_id, item_id)
+        def delete_issue_original(project_id, item_id)
           mutation = <<~GQL
             mutation($proj:ID!, $item:ID!){
               deleteProjectV2Item(input:{projectId:$proj, itemId:$item}){deletedItemId}

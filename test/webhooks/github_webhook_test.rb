@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../adapters/github_repo_adapter_base_test"
 
 class GithubRepoWebhookTest < GithubRepoAdapterBaseTest
   def setup
@@ -92,7 +91,7 @@ class GithubRepoWebhookTest < GithubRepoAdapterBaseTest
 
     # Test event properties
     assert_instance_of ActiveProject::WebhookEvent, event
-    assert_equal :github, event.source
+    assert_equal :github_repo, event.source
     assert_equal :issue_created, event.type
     assert_equal :issue, event.resource_type
     assert_equal "1", event.resource_id
@@ -116,7 +115,7 @@ class GithubRepoWebhookTest < GithubRepoAdapterBaseTest
 
     # Test event properties
     assert_instance_of ActiveProject::WebhookEvent, event
-    assert_equal :github, event.source
+    assert_equal :github_repo, event.source
     assert_equal :issue_closed, event.type
     assert_equal :issue, event.resource_type
     assert_equal "1", event.resource_id
@@ -138,7 +137,7 @@ class GithubRepoWebhookTest < GithubRepoAdapterBaseTest
 
     # Test event properties
     assert_instance_of ActiveProject::WebhookEvent, event
-    assert_equal :github, event.source
+    assert_equal :github_repo, event.source
     assert_equal :comment_created, event.type
     assert_equal :comment, event.resource_type
     assert_equal "1234567891", event.resource_id

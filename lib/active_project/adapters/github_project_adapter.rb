@@ -24,6 +24,20 @@ module ActiveProject
         false
       end
 
+      def adapter_type
+        :github_project
+      end
+
+      def update_issue(id, attributes, context = {})
+        project_id = context[:project_id] || raise(ArgumentError, "GithubProjectAdapter requires :project_id in context")
+        update_issue_internal(project_id, id, attributes)
+      end
+
+      def delete_issue(id, context = {})
+        project_id = context[:project_id] || raise(ArgumentError, "GithubProjectAdapter requires :project_id in context")
+        delete_issue_internal(project_id, id)
+      end
+
       private
 
       def map_user_data(person_data)
@@ -35,6 +49,14 @@ module ActiveProject
                             email: person_data["email"],
                             adapter_source: :github_project,
                             raw_data: person_data)
+      end
+
+      def update_issue_internal(project_id, item_id, attrs = {})
+        update_issue_original(project_id, item_id, attrs)
+      end
+
+      def delete_issue_internal(project_id, item_id)
+        delete_issue_original(project_id, item_id)
       end
     end
   end

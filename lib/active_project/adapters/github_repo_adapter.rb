@@ -4,10 +4,6 @@ require "faraday"
 require "faraday/retry"
 require "json"
 require "time"
-require_relative "github/connection"
-require_relative "github/projects"
-require_relative "github/issues"
-require_relative "github/webhooks"
 
 module ActiveProject
   module Adapters
@@ -17,10 +13,10 @@ module ActiveProject
     class GithubRepoAdapter < Base
       attr_reader :config
 
-      include Github::Connection
-      include Github::Projects
-      include Github::Issues
-      include Github::Webhooks
+      include GithubRepo::Connection
+      include GithubRepo::Projects
+      include GithubRepo::Issues
+      include GithubRepo::Webhooks
 
       # Retrieves details for the currently authenticated user.
       # @return [ActiveProject::Resources::User] The user object.
@@ -53,6 +49,8 @@ module ActiveProject
       def issues
         ResourceFactory.new(adapter: self, resource_class: Resources::Issue)
       end
+
+      protected
 
       private
 

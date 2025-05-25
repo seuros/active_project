@@ -608,4 +608,202 @@ http_interactions:
       encoding: UTF-8
       string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest","status":"401"}'
   recorded_at: Sun, 25 May 2025 19:27:46 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues
+    body:
+      encoding: UTF-8
+      string: '{"title":"Test Issue via ActiveProject for_find_test <BIG_INT>","body":"Test
+        issue created by ActiveProject tests at <BIG_INT>"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '95'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '53'
+      X-Ratelimit-Reset:
+      - '1748210146'
+      X-Ratelimit-Used:
+      - '7'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 3A22:43DA3:5E19982:618FCC9:683383E6
+    body:
+      encoding: UTF-8
+      string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest","status":"401"}'
+  recorded_at: Sun, 25 May 2025 20:56:06 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues
+    body:
+      encoding: UTF-8
+      string: '{"title":"Test Issue via ActiveProject for_find_test <BIG_INT>","body":"Test
+        issue created by ActiveProject tests at <BIG_INT>"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '95'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '46'
+      X-Ratelimit-Reset:
+      - '1748210146'
+      X-Ratelimit-Used:
+      - '14'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - BB42:7C6C5:167100:175B55:68338486
+    body:
+      encoding: UTF-8
+      string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest","status":"401"}'
+  recorded_at: Sun, 25 May 2025 20:58:46 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/aviflombaum/test-repo/issues
+    body:
+      encoding: UTF-8
+      string: '{"title":"Test Issue via ActiveProject for_find_test <BIG_INT>","body":"Test
+        issue created by ActiveProject tests at <BIG_INT>"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '95'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '34'
+      X-Ratelimit-Reset:
+      - '1748210146'
+      X-Ratelimit-Used:
+      - '26'
+      X-Ratelimit-Resource:
+      - core
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 73B4:2F19D4:622B386:65A6112:6833869C
+    body:
+      encoding: UTF-8
+      string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest","status":"401"}'
+  recorded_at: Sun, 25 May 2025 21:07:41 GMT
 recorded_with: VCR 6.3.1

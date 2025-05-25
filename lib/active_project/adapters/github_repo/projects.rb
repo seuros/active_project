@@ -2,7 +2,7 @@
 
 module ActiveProject
   module Adapters
-    module Github
+    module GithubRepo
       module Projects
         # Lists projects accessible by the configured credentials.
         # In GitHub's context, this returns the configured repository as a "project".
@@ -10,7 +10,7 @@ module ActiveProject
         def list_projects
           # Get the configured repository
           repo_data = make_request(:get, @repo_path)
-          [map_repository_to_project(repo_data)]
+          [ map_repository_to_project(repo_data) ]
         end
 
         # Finds a specific project by its ID or name.
@@ -22,13 +22,13 @@ module ActiveProject
           if id.nil? || id.to_s.empty?
             id = @config.options[:repo]
           end
-          
+
           # If id matches our configured repo, return that
           if id.to_s == @config.options[:repo] || id.to_s == "#{@config.options[:owner]}/#{@config.options[:repo]}"
             repo_data = make_request(:get, @repo_path)
             return map_repository_to_project(repo_data)
           end
-          
+
           # Otherwise, try to find by ID or full name
           begin
             repo_data = make_request(:get, "repositories/#{id}")
@@ -57,7 +57,7 @@ module ActiveProject
         def create_project(attributes)
           # Create in organization or user account based on config
           owner = @config.options[:owner]
-          
+
           # Determine if creating in org or personal account
           begin
             make_request(:get, "orgs/#{owner}")
@@ -65,14 +65,14 @@ module ActiveProject
           rescue NotFoundError
             path = "user/repos"
           end
-          
+
           data = {
             name: attributes[:name],
             description: attributes[:description],
             private: attributes[:private] || false,
             has_issues: attributes[:has_issues] || true
           }
-          
+
           repo_data = make_request(:post, path, data)
           map_repository_to_project(repo_data)
         end
@@ -85,7 +85,7 @@ module ActiveProject
           # Find the repository first to get its full path
           repo = find_project(repo_id)
           raise NotFoundError, "Repository not found" unless repo
-          
+
           # Delete requires the full path in "owner/repo" format
           full_path = repo.name # We store full_name in the name field
           make_request(:delete, "repos/#{full_path}")
