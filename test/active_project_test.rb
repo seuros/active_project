@@ -27,20 +27,25 @@ class ActiveProjectModuleTest < ActiveSupport::TestCase
       config.add_adapter :trello, :primary, key: "DUMMY_KEY", token: "DUMMY_TOKEN"
       config.add_adapter :jira, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME", api_token: "DUMMY_API_TOKEN"
       config.add_adapter :basecamp, account_id: "DUMMY_ACCOUNT_ID", access_token: "DUMMY_ACCESS_TOKEN"
+      config.add_adapter :github_repo, owner: "owner", repo: "repo", access_token: "DUMMY_ACCESS_TOKEN"
     end
 
     trello_adapter = ActiveProject.adapter(:trello)
     jira_adapter = ActiveProject.adapter(:jira)
     basecamp_adapter = ActiveProject.adapter(:basecamp)
+    github_repo_adapter = ActiveProject.adapter(:github_repo)
 
     assert_instance_of ActiveProject::Adapters::TrelloAdapter, trello_adapter
     assert_instance_of ActiveProject::Adapters::JiraAdapter, jira_adapter
     assert_instance_of ActiveProject::Adapters::BasecampAdapter, basecamp_adapter
+    assert_instance_of ActiveProject::Adapters::GithubAdapter, github_repo_adapter
 
     # Verify config was passed
     assert_equal "DUMMY_KEY", trello_adapter.config.key
     assert_equal "DUMMY_SITE_URL", jira_adapter.config.options[:site_url]
     assert_equal "DUMMY_ACCOUNT_ID", basecamp_adapter.config.options[:account_id]
+    assert_equal "owner", github_repo_adapter.config.options[:owner]
+    assert_equal "repo", github_repo_adapter.config.options[:repo]
   end
 
   test ".adapter memoizes adapter instances" do

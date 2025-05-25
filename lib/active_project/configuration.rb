@@ -12,7 +12,7 @@ module ActiveProject
       trello: Configurations::TrelloConfiguration,
       jira: Configurations::JiraConfiguration,
       basecamp: Configurations::BasecampConfiguration,
-      github: Configurations::GithubConfiguration,
+      github_repo: Configurations::GithubConfiguration,
       github_project: Configurations::GithubConfiguration
     }.freeze
 
