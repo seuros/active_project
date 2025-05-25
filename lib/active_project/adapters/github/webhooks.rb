@@ -97,7 +97,7 @@ module ActiveProject
           project_id = repository ? repository["full_name"] : nil
           
           WebhookEvent.new(
-            source: :github,
+            source: webhook_type,
             type: event_type,
             resource_type: :issue,
             resource_id: issue_data["number"].to_s,
@@ -138,7 +138,7 @@ module ActiveProject
           
           # Create a webhook event with comment and issue data
           WebhookEvent.new(
-            source: :github,
+            source: webhook_type,
             type: event_type,
             resource_type: :comment,
             resource_id: comment_data["id"].to_s,
@@ -182,7 +182,7 @@ module ActiveProject
           pr_issue = map_webhook_pull_request_to_issue(pull_request_data)
           
           WebhookEvent.new(
-            source: :github,
+            source: webhook_type,
             type: event_type,
             resource_type: :issue, # Map PRs to issues for consistency
             resource_id: pull_request_data["number"].to_s,

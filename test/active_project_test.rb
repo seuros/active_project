@@ -38,7 +38,7 @@ class ActiveProjectModuleTest < ActiveSupport::TestCase
     assert_instance_of ActiveProject::Adapters::TrelloAdapter, trello_adapter
     assert_instance_of ActiveProject::Adapters::JiraAdapter, jira_adapter
     assert_instance_of ActiveProject::Adapters::BasecampAdapter, basecamp_adapter
-    assert_instance_of ActiveProject::Adapters::GithubAdapter, github_repo_adapter
+    assert_instance_of ActiveProject::Adapters::GithubRepoAdapter, github_repo_adapter
 
     # Verify config was passed
     assert_equal "DUMMY_KEY", trello_adapter.config.key
