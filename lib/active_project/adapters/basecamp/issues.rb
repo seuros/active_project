@@ -25,10 +25,10 @@ module ActiveProject
           loop do
             response = @connection.get(path, query)
             todos_data = begin
-                           JSON.parse(response.body)
-                         rescue StandardError
-                           []
-                         end
+              JSON.parse(response.body)
+            rescue StandardError
+              []
+            end
             break if todos_data.empty?
 
             todos_data.each do |todo_data|
@@ -145,7 +145,8 @@ module ActiveProject
         def delete_issue(todo_id, context = {})
           project_id = context[:project_id]
           unless project_id
-            raise ArgumentError, "Missing required context: :project_id must be provided for BasecampAdapter#delete_issue"
+            raise ArgumentError,
+                  "Missing required context: :project_id must be provided for BasecampAdapter#delete_issue"
           end
 
           path = "buckets/#{project_id}/todos/#{todo_id}.json"

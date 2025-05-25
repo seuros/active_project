@@ -1,50 +1,66 @@
 # ActiveProject Gem
 
-A standardized Ruby interface for multiple project management APIs (Jira, Basecamp, Trello, etc.).
+A standardized Ruby interface for multiple project-management APIs  
+(Jira, Basecamp, Trello, GitHub Projects, …).
 
 ## Problem
 
-Integrating with various project management platforms like Jira, Basecamp, and Trello often requires writing separate, complex clients for each API. Developers face challenges in handling different authentication methods, error formats, data structures, and workflow concepts across these platforms.
+Every platform—Jira, Basecamp, Trello, GitHub—ships its **own** authentication flow, error vocabulary, data model, and workflow quirks.  
+Teams end up maintaining a grab-bag of fragile, bespoke clients.
 
 ## Solution
 
-The ActiveProject gem aims to solve this by providing a unified, opinionated interface built on the **Adapter pattern**. It abstracts away the complexities of individual APIs, offering:
+ActiveProject wraps those APIs behind a single, opinionated interface:
 
-*   **Normalized Data Models:** Common Ruby objects for core concepts like `Project`, `Issue` (Issue/Task/Card/To-do), `Comment`, and `User`.
-*   **Standardized Operations:** Consistent methods for creating, reading, updating, and transitioning issues (e.g., `issue.close!`, `issue.reopen!`).
-*   **Unified Error Handling:** A common set of exceptions (`AuthenticationError`, `NotFoundError`, `RateLimitError`, etc.) regardless of the underlying platform.
-*   **Co-operative Concurrency:** Optional fiber-based I/O (powered by the [`async`](https://github.com/socketry/async) ecosystem) for bulk operations without threads.
+| Feature | What you get |
+|---------|--------------|
+| **Normalized models** | `Project`, `Issue` (Task/Card/To-do), `Comment`, `User`—same Ruby objects everywhere. |
+| **Standard CRUD** | `issue.close!`, `issue.reopen!`, `project.list_issues`, etc. |
+| **Unified errors** | `AuthenticationError`, `NotFoundError`, `RateLimitError`, … regardless of the backend. |
+| **Co-operative concurrency** | Fiber-based I/O (via [`async`](https://github.com/socketry/async)) for painless parallel fan-out. |
 
-## Supported Platforms
 
-The initial focus is on integrating with platforms primarily via their **REST APIs**:
+## Supported Platforms (initial wave)
 
-*   **Jira (Cloud & Server):** REST API (v3)
-*   **Basecamp (v3+):** REST API
-*   **Trello:** REST API
+| Platform                  | API        | Notes                        |
+|---------------------------|------------|------------------------------|
+| **Jira** (Cloud & Server) | REST v3    | Full issue & project support |
+| **Basecamp**              | REST v3+   | Maps To-dos ↔ Issues         |
+| **Trello**                | REST       | Cards ↔ Issues               |
+| **GitHub Projects V2**    | GraphQL v4 |                              |
 
-Future integrations might include platforms like Asana (REST), Monday.com (GraphQL), and Linear (GraphQL). For GraphQL-based APIs, the adapter will encapsulate the query logic, maintaining a consistent interface for the gem user.
+_Planned next_: Asana, Monday.com, Linear, etc.
 
 ## Core Concepts
 
-*   **Project:** Represents a Jira Project, Basecamp Project, or Trello Board.
-*   **Task:** A unified representation of a Jira Issue, Basecamp To-do, or Trello Card. Includes normalized fields like `title`, `description`, `assignees`, `status`, and `priority`.
-*   **Status Normalization:** Maps platform-specific statuses (Jira statuses, Basecamp completion, Trello lists) to a common set like `:open`, `:in_progress`, `:closed`.
-*   **Priority Normalization:** Maps priorities (where available, like in Jira) to a standard scale (e.g., `:low`, `:medium`, `:high`).
+* **Project** – Jira Project, Basecamp Project, Trello Board, or GitHub ProjectV2.  
+* **Issue** – Unified wrapper around Jira Issue, Basecamp To-do, Trello Card, GitHub Issue/PR.  
+  *GitHub DraftIssues intentionally omitted for now.*  
+* **Status** – Normalized to `:open`, `:in_progress`, `:closed`.  
+* **Priority** – Normalized to `:low`, `:medium`, `:high` (where supported).
+
+---
 
 ## Architecture
 
-The gem uses an **Adapter pattern**, with specific adapters (`Adapters::JiraAdapter`, `Adapters::BasecampAdapter`, etc.) implementing a common interface. This allows for easy extension to new platforms.
+```
+
+ActiveProject
+└── Adapters
+  ├── JiraAdapter
+  ├── BasecampAdapter
+  ├── TrelloAdapter
+  └── GithubProjectAdapter
+
+````
+Add a new platform by subclassing and conforming to the common contract.
+---
 
 ## Planned Features
 
-*   CRUD operations for Projects and Tasks.
-*   Unified status transitions.
-*   Comment management.
-*   Standardized error handling and reporting.
-*   Webhook support for real-time updates from platforms.
-*   Configuration management for API credentials.
-*   Utilization of **Mermaid diagrams** to visualize workflows and integration logic within documentation.
+* Webhook helpers for real-time updates  
+* Centralised credential/config store  
+* Mermaid diagrams for docs & SDK flow-charts  
 
 ## Installation
 
@@ -74,46 +90,26 @@ Configure multiple adapters, optionally with named instances (default is `:prima
 
 ```ruby
 ActiveProject.configure do |config|
-  # Primary Jira instance (default name :primary)
-  config.add_adapter(:jira,
-    site_url: ENV.fetch('JIRA_SITE_URL'),
-    username: ENV.fetch('JIRA_USERNAME'),
-    api_token: ENV.fetch('JIRA_API_TOKEN')
-  )
+  config.add_adapter :jira,
+    site_url:  ENV["JIRA_SITE_URL"],
+    username:  ENV["JIRA_USERNAME"],
+    api_token: ENV["JIRA_API_TOKEN"]
 
-  # Secondary Jira instance
-  config.add_adapter(:jira, :secondary,
-    site_url: ENV.fetch('JIRA_SECOND_SITE_URL'),
-    username: ENV.fetch('JIRA_SECOND_USERNAME'),
-    api_token: ENV.fetch('JIRA_SECOND_API_TOKEN')
-  )
+  config.add_adapter :basecamp,
+    account_id:   ENV["BASECAMP_ACCOUNT_ID"],
+    access_token: ENV["BASECAMP_ACCESS_TOKEN"]
 
-  # Basecamp primary instance
-  config.add_adapter(:basecamp,
-    account_id: ENV.fetch('BASECAMP_ACCOUNT_ID'),
-    access_token: ENV.fetch('BASECAMP_ACCESS_TOKEN')
-  )
+  config.add_adapter :trello,
+    key:   ENV["TRELLO_KEY"],
+    token: ENV["TRELLO_TOKEN"]
 
-  # Trello primary instance
-  config.add_adapter(:trello,
-    key: ENV.fetch('TRELLO_KEY'),
-    token: ENV.fetch('TRELLO_TOKEN')
-  )
+  # GitHub Projects – real Issues/PRs only
+  config.add_adapter :github_project,
+    access_token: ENV["GITHUB_TOKEN"]
 end
 ```
 
-### Accessing adapters
-
-Fetch a specific adapter instance:
-
-```ruby
-jira_primary = ActiveProject.adapter(:jira) # defaults to :primary
-jira_secondary = ActiveProject.adapter(:jira, :secondary)
-basecamp = ActiveProject.adapter(:basecamp) # defaults to :primary
-trello = ActiveProject.adapter(:trello) # defaults to :primary
-```
-
-### Basic Usage (Jira Example)
+### Create & attach a GitHub Issue (draft-free)
 
 ```ruby
 # Get the configured Jira adapter instance
@@ -175,8 +171,7 @@ end
 
 ```ruby
 # Get the configured Basecamp adapter instance
-basecamp_config = ActiveProject.configuration.adapter_config(:basecamp)
-basecamp_adapter = ActiveProject::Adapters::BasecampAdapter.new(**basecamp_config)
+basecamp_adapter = ActiveProject.adapter(:basecamp)
 
 begin
   # List projects
@@ -244,8 +239,6 @@ Enable the non-blocking adapter by setting an ENV var **before** your process bo
 ```bash
 AP_DEFAULT_ADAPTER=async_http
 ```
-
-### Parallel fan-out example
 
 ```ruby
 ActiveProject::Async.run do |task|

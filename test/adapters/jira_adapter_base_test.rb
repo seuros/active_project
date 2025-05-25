@@ -39,7 +39,11 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
       if @original_jira_config_options.any?
         config.add_adapter :jira, @original_jira_config_options
       else
-        config.add_adapter :jira, {}
+        config.add_adapter :jira, {
+          site_url: "DUMMY_SITE_URL",
+          username: "DUMMY_USERNAME",
+          api_token: "DUMMY_API_TOKEN"
+        }
       end
     end
     # --- Project Deletion REMOVED from base teardown ---

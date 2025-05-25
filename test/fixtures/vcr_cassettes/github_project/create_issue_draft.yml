@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.github.com/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"query($login: String!, $num: Int!) {\n  user(login: $login)
+        {\n    projectV2(number: $num) { id number title }\n  }\n}\n","variables":{"login":"seuros","num":1}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      X-Github-Next-Global-Id:
+      - '1'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Oauth-Scopes:
+      - project, read:org, repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Github-Authentication-Token-Expiration:
+      - 2025-05-26 08:33:50 UTC
+      X-Github-Media-Type:
+      - github.v4
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4950'
+      X-Ratelimit-Reset:
+      - '1746744769'
+      X-Ratelimit-Used:
+      - '50'
+      X-Ratelimit-Resource:
+      - graphql
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - github.com
+      X-Github-Request-Id:
+      - 04CB:128A55:1F535FF:2033E9E:681D2DE3
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":{"user":{"projectV2":{"id":"PVT_kwHOACSKT84AyJ2j","number":1,"title":"@seuros''s
+        untitled project"}}}}'
+  recorded_at: Thu, 08 May 2025 22:19:15 GMT
+recorded_with: VCR 6.3.1

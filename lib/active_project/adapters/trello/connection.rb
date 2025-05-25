@@ -6,13 +6,13 @@ module ActiveProject
       module Connection
         include Connections::Rest
 
-        BASE_URL = "https://api.trello.com/1/".freeze
+        BASE_URL = "https://api.trello.com/1/"
 
         def initialize(config:)
-          @config = config
+          super(config: config)
           init_rest(
             base_url: BASE_URL,
-            auth_middleware: ->(_c) { },           # Trello uses query-string auth
+            auth_middleware: ->(_c) { }, # Trello uses query-string auth
             extra_headers: { "Accept" => "application/json" }
           )
         end
@@ -21,13 +21,16 @@ module ActiveProject
         # Adapter-specific wrapper around HttpClient#request
         # ------------------------------------------------------------------
         def make_request(method, path, body = nil, query_params = {})
-          auth = { key: @config.api_key, token: @config.api_token }
+          auth = { key: @config.key, token: @config.token }
           request(method, path,
-                  body:  body,
+                  body: body,
                   query: auth.merge(query_params))
         rescue ActiveProject::ValidationError => e
-          # Trello signals “resource not found / malformed id” with 400 + "invalid id"
-          if e.status_code == 400 && e.message&.match?(/invalid id/i)
+          # Trello signals “resource not found / malformed id” with 400  "invalid id"
+          invalid_id = /invalid id/i
+          if (e.status_code.nil? || e.status_code == 400) &&
+             (e.message&.match?(invalid_id) ||
+               e.response_body.to_s.match?(invalid_id))
             raise ActiveProject::NotFoundError, e.message
           else
             raise

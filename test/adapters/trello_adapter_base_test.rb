@@ -26,7 +26,7 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
     @original_trello_config_options = ActiveProject.configuration.adapter_config(:trello)&.options&.dup || {}
 
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
+      config.add_adapter :trello, key: @api_key, token: @api_token do |trello_config|
         # Default empty mappings, tests will override if needed
         trello_config.status_mappings = {}
       end
@@ -58,9 +58,8 @@ class TrelloAdapterBaseTest < ActiveSupport::TestCase
           config.add_adapter :trello, @original_trello_config_options
         end
       else
-        # If no original config, potentially remove the adapter config entirely
-        # For simplicity, we'll just ensure it's reset to empty options if needed
-        config.add_adapter :trello, {}
+        # If no original config, use dummy values to avoid validation errors in tests
+        config.add_adapter :trello, key: "DUMMY_KEY", token: "DUMMY_TOKEN"
       end
     end
     # Clear memoized adapter instance again after teardown

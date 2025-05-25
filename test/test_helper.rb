@@ -7,44 +7,104 @@ require "dotenv/load" # Load .env before environment
 require_relative "dummy/config/environment"
 require "rails/test_help"
 require "vcr"
-require "webmock/minitest" # Or :rspec if using RSpec
-require "mocha/minitest"   # Added for stubbing
-require_relative "../lib/active_project/errors" # Explicitly require custom errors
+require "webmock/minitest"
+require "mocha/minitest"
 
 # VCR Configuration
+# test/test_helper.rb  (or wherever your VCR config lives)
+require "base64"
+
 VCR.configure do |config|
+  # ------------------------------------------------------------------
+  # Cassette folder & driver
+  # ------------------------------------------------------------------
   config.cassette_library_dir = File.expand_path("fixtures/vcr_cassettes", __dir__)
   config.hook_into :webmock
 
-  # Optional: Filter sensitive data like API tokens or passwords
-  # Replace 'YOUR_JIRA_API_TOKEN' and 'YOUR_JIRA_USERNAME' with actual values or ENV vars if needed for filtering
-  # Ensure these placeholders match how you might provide credentials during tests
-  config.filter_sensitive_data("<JIRA_API_TOKEN>") { ENV["JIRA_API_TOKEN"] || "DUMMY_JIRA_API_TOKEN" }
-  config.filter_sensitive_data("<JIRA_USERNAME>") { ENV["JIRA_USERNAME"] || "DUMMY_JIRA_USERNAME" }
-  config.filter_sensitive_data("<BASECAMP_ACCOUNT_ID>") { ENV["BASECAMP_ACCOUNT_ID"] || "DUMMY_ACCOUNT_ID" }
+  # ------------------------------------------------------------------
+  # Record mode / request matching
+  #   :none  – CI/playback only
+  #   :new_episodes – record new calls the first time and keep existing
+  #   :all   – wipe + re-record every run (use sparingly)
+  # ------------------------------------------------------------------
+  config.default_cassette_options = {
+    record: :new_episodes,
+    match_requests_on: %i[method path body]
+  }
 
-  # Filter the Basic Auth header
-  # This creates a placeholder based on the username and token being filtered
-  config.filter_sensitive_data("<JIRA_BASIC_AUTH>") do |interaction|
-    # Only filter if the request URI matches the Jira site URL
-    next unless interaction.request.uri.include?(ENV["JIRA_SITE_URL"] || "DUMMY_JIRA_SITE")
+  # ------------------------------------------------------------------
+  # 1. Filter obvious tokens & usernames
+  # ------------------------------------------------------------------
+  {
+    "<JIRA_API_TOKEN>" => ENV["JIRA_API_TOKEN"],
+    "<JIRA_USERNAME>" => ENV["JIRA_USERNAME"],
+    "<GITHUB_TOKEN>" => ENV["GITHUB_PROJECT_ACCESS_TOKEN"],
+    "<GITHUB_OWNER>" => ENV["GITHUB_PROJECT_OWNER"],
+    "<BASECAMP_ACCOUNT_ID>" => ENV["BASECAMP_ACCOUNT_ID"],
+    "<TRELLO_API_KEY>" => ENV["TRELLO_API_KEY"],
+    "<TRELLO_API_TOKEN>" => ENV["TRELLO_API_TOKEN"]
+  }.each do |placeholder, value|
+    next unless value && !value.empty?
 
-    auth_header = interaction.request.headers["Authorization"]&.first
-    if auth_header&.start_with?("Basic ")
-      # Decode, check if it matches filtered credentials, then return placeholder
-      # This is a simplified example; real implementation might need more robust checking
-      decoded = Base64.decode64(auth_header.split(" ", 2).last)
-      username, token = decoded.split(":", 2)
-      if username == (ENV["JIRA_USERNAME"] || "DUMMY_JIRA_USERNAME") && token == (ENV["JIRA_API_TOKEN"] || "DUMMY_JIRA_API_TOKEN")
-        "Basic <ENCODED_JIRA_CREDENTIALS>" # Placeholder for the encoded string
-      else
-        auth_header # Return original if it doesn't match
-      end
+    config.filter_sensitive_data(placeholder) { value }
+  end
+
+  # ------------------------------------------------------------------
+  # 2.  Strip or mangle auth headers that VCR doesn’t catch by value
+  # ------------------------------------------------------------------
+  SENSITIVE_HEADERS = %w[
+    Authorization
+    Cookie
+    X-Api-Key
+  ].freeze
+
+  config.before_record do |i|
+    SENSITIVE_HEADERS.each do |h|
+      i.request.headers.delete(h)
+      i.response.headers.delete(h)
     end
   end
 
-  config.default_cassette_options = {
-    record: :none,
-    match_requests_on: %i[method path body]
-  }
+  # ------------------------------------------------------------------
+  # 3.  Replace dynamic node-IDs / numbers so they never leak
+  # ------------------------------------------------------------------
+  DYNAMIC_PATTERNS = {
+    /PVTI_[A-Za-z0-9]+/ => "<PVTI_ID>",
+    /PROJECTV2_[A-Za-z0-9]+/ => "<PROJECT_NODE_ID>",
+    /[A-Z]{2,10}-\d+/ => "<ISSUE_KEY>", # Jira keys
+    /\b\d{10,}\b/ => "<BIG_INT>" # Unix-ish timestamps
+  }.freeze
+
+  config.before_record do |i|
+    DYNAMIC_PATTERNS.each do |regex, placeholder|
+      i.request.body&.gsub!(regex, placeholder)
+      i.response.body&.gsub!(regex, placeholder)
+    end
+  end
+
+  # ------------------------------------------------------------------
+  # 4.  Collapse volatile headers so cassettes stay deterministic
+  # ------------------------------------------------------------------
+  VOLATILE_HEADERS = %w[
+    X-RateLimit-Remaining
+    X-RateLimit-Reset
+    Date
+  ].freeze
+
+  config.before_record do |i|
+    VOLATILE_HEADERS.each { |h| i.response.headers.delete(h) }
+  end
+
+  # ------------------------------------------------------------------
+  # 5.  Special-case basic-auth for Jira (keeps your existing logic)
+  # ------------------------------------------------------------------
+  config.filter_sensitive_data("<JIRA_BASIC_AUTH>") do |interaction|
+    next unless interaction.request.uri.include?(ENV["JIRA_SITE_URL"].to_s)
+
+    auth_header = interaction.request.headers["Authorization"]&.first
+    if auth_header&.start_with?("Basic ")
+      # always replace the *whole* header value – no need to decode
+      auth_header
+    end
+  end
 end

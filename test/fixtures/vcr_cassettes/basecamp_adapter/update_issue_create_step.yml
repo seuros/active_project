@@ -5,12 +5,10 @@ http_interactions:
     uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
     body:
       encoding: UTF-8
-      string: '{"content":"To-do to be updated 1700000000"}'
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
     headers:
       Content-Type:
       - application/json; charset=utf-8
-      Authorization:
-      - Bearer <ACCESS_TOKEN>
       User-Agent:
       - Faraday v2.9.0
   response:
@@ -24,20 +22,1137 @@ http_interactions:
       - https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890
     body:
       encoding: UTF-8
-      string: '{
-        "id": 1234567890,
-        "content": "To-do to be updated 1700000000",
-        "description": "",
-        "assignees": [],
-        "completed": false,
-        "created_at": "2025-03-20T00:00:00Z",
-        "updated_at": "2025-03-20T00:00:00Z",
-        "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/1234567890",
-        "parent": {
-          "id": 8514014894,
-          "type": "Todolist",
-          "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894"
-        }
-      }'
+      string: '{ "id": <BIG_INT>, "content": "To-do to be updated <BIG_INT>", "description":
+        "", "assignees": [], "completed": false, "created_at": "2025-03-20T00:00:00Z",
+        "updated_at": "2025-03-20T00:00:00Z", "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todos/<BIG_INT>",
+        "parent": { "id": <BIG_INT>, "type": "Todolist", "url": "https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/<BIG_INT>"
+        } }'
   recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/id/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-09T00:18:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-09T00:18:00Z"}'
+      X-Request-Id:
+      - 05a9b87d-c200-4919-93ef-dca7b4ee3b0f
+      X-Runtime:
+      - '0.002707'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 93cd04341ba5e096-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Fri, 09 May 2025 00:17:53 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T08:35:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T08:35:20Z"}'
+      X-Request-Id:
+      - 85f0e8f5-cc00-4c6c-ae2b-ab5354a416c7
+      X-Runtime:
+      - '0.002867'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9453b2a4b81ef771-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 08:35:10 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:03:40Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:03:40Z"}'
+      X-Request-Id:
+      - 3bc14548-0005-4806-b8aa-0c8d4107db95
+      X-Runtime:
+      - '0.002851'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 945434229c3fec99-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 10:03:34 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:05:40Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:05:40Z"}'
+      X-Request-Id:
+      - a6e2214a-978d-4ee1-801b-da42f99918f3
+      X-Runtime:
+      - '0.001745'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 94543707ae1565f8-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 10:05:32 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:06:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T10:06:00Z"}'
+      X-Request-Id:
+      - 5a0db1e9-e62c-4869-a328-bce67b339750
+      X-Runtime:
+      - '0.002046'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 94543781e92966a1-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 10:05:52 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T13:20:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T13:20:00Z"}'
+      X-Request-Id:
+      - 96047fae-f17c-4460-8770-4d1c90273fa2
+      X-Runtime:
+      - '0.002590'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 945553b28d7b03c7-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 13:19:52 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T13:20:10Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T13:20:10Z"}'
+      X-Request-Id:
+      - a7915166-37a0-48ee-8e49-2b58823b4857
+      X-Runtime:
+      - '0.003385'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 945554002ae02150-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 13:20:05 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:25:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:25:20Z"}'
+      X-Request-Id:
+      - cb75aa8c-8e91-4ff8-9d97-ddeed9bdbbee
+      X-Runtime:
+      - '0.002403'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b36d3944e05f-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:25:14 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:25:40Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:25:40Z"}'
+      X-Request-Id:
+      - ffe282ab-4ba5-4153-b4f0-113012319101
+      X-Runtime:
+      - '0.003686'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b4086c030321-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:25:38 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:20Z"}'
+      X-Request-Id:
+      - d37c1701-becf-46cc-a9f3-367c4fbcd695
+      X-Runtime:
+      - '0.003625'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b4de9b4fcc57-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:26:13 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:30Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:30Z"}'
+      X-Request-Id:
+      - 620c512b-2ad2-4982-834e-c38f123d1895
+      X-Runtime:
+      - '0.003251'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b516db55cfd8-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:26:22 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:40Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:26:40Z"}'
+      X-Request-Id:
+      - dbb960d1-9692-42cf-9970-063ff8ab3e61
+      X-Runtime:
+      - '0.002238'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b5514e1dcfc2-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:26:31 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:27:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:27:00Z"}'
+      X-Request-Id:
+      - e3ffa762-4b49-4991-b94c-5c8c7a9b77c8
+      X-Runtime:
+      - '0.003119'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455b5f988ad0391-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:26:58 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:30:10Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:30:10Z"}'
+      X-Request-Id:
+      - 8654143f-1fbd-4abc-b6e9-1b46ac769000
+      X-Runtime:
+      - '0.003522'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455ba9a9c1fcfea-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:30:07 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:32:50Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:32:50Z"}'
+      X-Request-Id:
+      - 774bb6da-7658-4f14-be3a-c9cffbee5e08
+      X-Runtime:
+      - '0.001982'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455be55be980355-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:32:40 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:33:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T14:33:00Z"}'
+      X-Request-Id:
+      - 022024b5-71f7-4b15-990d-be893a4b76f6
+      X-Runtime:
+      - '0.002298'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455bebf5973cfd2-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 14:32:57 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:05:00Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:05:00Z"}'
+      X-Request-Id:
+      - 2327e74a-f213-4f91-85e1-8bea1c9640bf
+      X-Runtime:
+      - '0.001853'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455eda7a8522159-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:04:58 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:06:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:06:20Z"}'
+      X-Request-Id:
+      - b8831767-aafa-44e1-b948-32f84dbf42f2
+      X-Runtime:
+      - '0.002256'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455ef9f092e37df-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:06:19 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:06:40Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:06:40Z"}'
+      X-Request-Id:
+      - a7feba29-8e45-4ad3-ae02-210756dc30fb
+      X-Runtime:
+      - '0.002273'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455efef8e7f74dc-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:06:32 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:10:10Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:10:10Z"}'
+      X-Request-Id:
+      - e3bb480c-1996-4612-b6d8-42123b7de583
+      X-Runtime:
+      - '0.001949'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455f52a79b80419-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:10:06 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:11:10Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:11:10Z"}'
+      X-Request-Id:
+      - '008fc0f3-1a83-4ff2-b5f2-debb0d6de988'
+      X-Runtime:
+      - '0.002781'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455f6977c38cbee-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:11:04 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:11:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:11:20Z"}'
+      X-Request-Id:
+      - c997fa8d-d669-4324-84ff-650d0ff0bd90
+      X-Runtime:
+      - '0.002490'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9455f6bd780f216e-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:11:11 GMT
+- request:
+    method: post
+    uri: https://3.basecampapi.com/<BASECAMP_ACCOUNT_ID>/buckets/41789030/todolists/8514014894/todos.json
+    body:
+      encoding: UTF-8
+      string: '{"content":"To-do to be updated <BIG_INT>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '34'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Ratelimit:
+      - '{"name":"API","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:56:20Z"}'
+      - '{"name":"API_PATH","period":10,"limit":50,"remaining":49,"until":"2025-05-25T15:56:20Z"}'
+      X-Request-Id:
+      - 8333c4ce-b98a-44fa-a5be-e4ff2efc4037
+      X-Runtime:
+      - '0.002338'
+      Set-Cookie:
+      - force-primary-dc=true; Path=/; Version=1; Max-Age=5
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 945638dc8ed274dc-MAD
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"error":"Not Found"}'
+  recorded_at: Sun, 25 May 2025 15:56:19 GMT
 recorded_with: VCR 6.3.1

@@ -8,7 +8,7 @@ class BasecampWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :basecamp, :primary, account_id: "dummy", access_token: "dummy"
+      config.add_adapter :basecamp, :primary, account_id: "DUMMY_ACCOUNT_ID", access_token: "DUMMY_ACCESS_TOKEN"
     end
     @adapter = ActiveProject.adapter(:basecamp)
     # Clear memoized adapter instance
@@ -18,7 +18,7 @@ class BasecampWebhookTest < ActiveSupport::TestCase
   def teardown
     # Reset config
     ActiveProject.configure do |config|
-      config.add_adapter :basecamp, :primary, {}
+      config.add_adapter :basecamp, :primary, account_id: "DUMMY_ACCOUNT_ID", access_token: "DUMMY_ACCESS_TOKEN"
     end
     ActiveProject.reset_adapters
   end

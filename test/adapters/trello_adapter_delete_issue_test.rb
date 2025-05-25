@@ -9,14 +9,14 @@ class TrelloAdapterDeleteIssueTest < TrelloAdapterBaseTest
     # Now delete the card
     VCR.use_cassette("trello_adapter/delete_issue") do
       # Execute the deletion
-      result = @adapter.delete_issue(10000)
+      result = @adapter.delete_issue(10_000)
 
       # Check that deletion was successful
       assert result, "delete_issue should return true on success"
 
       # Verify card is no longer accessible
       assert_raises(ActiveProject::NotFoundError) do
-        @adapter.find_issue(10000)
+        @adapter.find_issue(10_000)
       end
     end
   end

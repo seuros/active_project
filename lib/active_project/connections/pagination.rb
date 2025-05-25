@@ -16,6 +16,7 @@ module ActiveProject
           link_header = @last_response&.headers&.[]("Link")
           next_url = parse_link_header(link_header)["next"]
           break unless next_url
+
           # After first request we follow absolute URLs; zero out body/query for GETs
           body = nil if method == :get
           query = {}
@@ -32,8 +33,9 @@ module ActiveProject
           vars = variables.merge(after_key => cursor)
           data = yield(vars) # caller executes GraphQL request, returns data hash
           conn = data.dig(*connection_path)
-          conn["edges"].each { |edge| yield_edge(edge["node"]) }
+          conn["edges"].each { |edge| yield edge["node"] }
           break unless conn["pageInfo"]["hasNextPage"]
+
           cursor = conn["pageInfo"]["endCursor"]
         end
       end

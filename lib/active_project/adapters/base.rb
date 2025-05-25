@@ -1,10 +1,27 @@
 # frozen_string_literal: true
 
+require_relative "../status_mapper"
+
 module ActiveProject
   module Adapters
     # Base abstract class defining the interface for all adapters.
     # Concrete adapters should inherit from this class and implement its abstract methods.
     class Base
+      include ErrorMapper
+
+      # ─────────────────── Central HTTP-status → exception map ────────────
+      rescue_status 401..403, with: ActiveProject::AuthenticationError
+      rescue_status 404, with: ActiveProject::NotFoundError
+      rescue_status 429, with: ActiveProject::RateLimitError
+      rescue_status 400, 422, with: ActiveProject::ValidationError
+
+      attr_reader :config
+
+      def initialize(config:)
+        @config = config
+        @status_mapper = StatusMapper.from_config(adapter_type, config)
+      end
+
       # Lists projects accessible by the configured credentials.
       # @return [Array<ActiveProject::Project>]
       def list_projects
@@ -52,8 +69,13 @@ module ActiveProject
 
       # Finds a specific issue by its ID or key.
       # @param id [String, Integer] The ID or key of the issue.
-      # @param context [Hash] Optional context hash (e.g., { project_id: '...' } for Basecamp).
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: Optional { fields: '...' }
+      #   - Trello: Optional { fields: '...' }
+      #   - GitHub: Ignored
       # @return [ActiveProject::Issue, nil] The issue object or nil if not found.
+      # @raise [ArgumentError] if required context is missing (platform-specific).
       def find_issue(id, context = {})
         raise NotImplementedError, "#{self.class.name} must implement #find_issue"
       end
@@ -69,14 +91,30 @@ module ActiveProject
       # Updates an existing issue.
       # @param id [String, Integer] The ID or key of the issue to update.
       # @param attributes [Hash] Issue attributes to update.
-      # @param context [Hash] Optional context hash (e.g., { project_id: '...' } for Basecamp).
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: Optional { fields: '...' }
+      #   - Trello: Optional { fields: '...' }
+      #   - GitHub: Uses different signature: update_issue(project_id, item_id, attrs)
       # @return [ActiveProject::Issue] The updated issue object.
+      # @raise [ArgumentError] if required context is missing (platform-specific).
+      # @note GitHub adapter overrides this with update_issue(project_id, item_id, attrs)
+      #   due to GraphQL API requirements for project-specific field operations.
       def update_issue(id, attributes, context = {})
         raise NotImplementedError, "#{self.class.name} must implement #update_issue"
       end
 
-      # Base implementation of delete_issue that raises NotImplementedError
-      # This will be included in the base adapter class and overridden by specific adapters
+      # Deletes an issue from a project.
+      # @param id [String, Integer] The ID or key of the issue to delete.
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: Optional { delete_subtasks: true/false }
+      #   - Trello: Ignored
+      #   - GitHub: Uses different signature: delete_issue(project_id, item_id)
+      # @return [Boolean] true if deletion was successful.
+      # @raise [ArgumentError] if required context is missing (platform-specific).
+      # @note GitHub adapter overrides this with delete_issue(project_id, item_id)
+      #   due to GraphQL API requirements.
       def delete_issue(id, context = {})
         raise NotImplementedError, "The #{self.class.name} adapter does not implement delete_issue"
       end
@@ -84,21 +122,36 @@ module ActiveProject
       # Adds a comment to an issue.
       # @param issue_id [String, Integer] The ID or key of the issue.
       # @param comment_body [String] The text of the comment.
-      # @param context [Hash] Optional context hash (e.g., { project_id: '...' } for Basecamp).
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: Ignored
+      #   - Trello: Ignored
+      #   - GitHub: Optional { content_node_id: '...' } for optimization
       # @return [ActiveProject::Comment] The created comment object.
+      # @raise [ArgumentError] if required context is missing (platform-specific).
       def add_comment(issue_id, comment_body, context = {})
         raise NotImplementedError, "#{self.class.name} must implement #add_comment"
       end
 
+      # Checks if the adapter supports webhook processing.
+      # @return [Boolean] true if the adapter can process webhooks
+      def supports_webhooks?
+        respond_to?(:parse_webhook, true) &&
+          !method(:parse_webhook).source_location.nil? &&
+          method(:parse_webhook).source_location[0] != __FILE__
+      end
+
       # Verifies the signature of an incoming webhook request, if supported by the platform.
-      # @param _request_body [String] The raw request body.
-      # @param _signature_header [String] The value of the platform-specific signature header (e.g., 'X-Trello-Webhook').
-      # @return [Boolean] true if the signature is valid or verification is not supported/needed, false otherwise.
-      # @raise [NotImplementedError] if verification is applicable but not implemented by a subclass.
-      def verify_webhook_signature(_request_body, _signature_header)
-        # Default implementation assumes no verification needed or supported.
-        # Adapters supporting verification should override this.
-        true
+      # @param request_body [String] The raw request body.
+      # @param signature_header [String] The value of the platform-specific signature header.
+      # @param webhook_secret [String] Optional webhook secret for verification.
+      # @return [Boolean] true if the signature is valid or verification is not supported, false otherwise.
+      # @note Override this method in adapter subclasses to implement platform-specific verification.
+      def verify_webhook_signature(request_body, signature_header, webhook_secret: nil)
+        # Default implementation assumes no verification needed.
+        # Adapters supporting verification should override this method.
+        return true unless supports_webhooks? # Allow non-webhook flows by default
+        false # Adapters must override this method to implement verification
       end
 
       # Parses an incoming webhook payload into a standardized WebhookEvent struct.
@@ -107,7 +160,9 @@ module ActiveProject
       # @return [ActiveProject::WebhookEvent, nil] The parsed event object or nil if the payload is irrelevant/unparseable.
       # @raise [NotImplementedError] if webhook parsing is not implemented for the adapter.
       def parse_webhook(request_body, headers = {})
-        raise NotImplementedError, "#{self.class.name} must implement #parse_webhook"
+        raise NotImplementedError,
+              "#{self.class.name} does not support webhook parsing. " \
+              "Webhook support is optional. Check #supports_webhooks? before calling this method."
       end
 
       # Retrieves details for the currently authenticated user.
@@ -123,6 +178,48 @@ module ActiveProject
       # @return [Boolean] true if connection is successful, false otherwise.
       def connected?
         raise NotImplementedError, "#{self.class.name} must implement #connected?"
+      end
+
+      # Adapters that do **not** support a custom “status” field can simply rely
+      # on this default implementation.  Adapters that _do_ care (e.g. the
+      # GitHub project adapter which knows its single-select options) already
+      # override it.
+      #
+      # @return [Boolean] _true_ if the symbol is safe to pass through.
+      def status_known?(project_id, status_sym)
+        @status_mapper.status_known?(status_sym, project_id: project_id)
+      end
+
+      # Returns all valid statuses for the given project context.
+      # @param project_id [String, Integer] The project context
+      # @return [Array<Symbol>] Array of valid status symbols
+      def valid_statuses(project_id = nil)
+        @status_mapper.valid_statuses(project_id: project_id)
+      end
+
+      # Normalizes a platform-specific status to a standard symbol.
+      # @param platform_status [String, Symbol] Platform-specific status
+      # @param project_id [String, Integer] Optional project context
+      # @return [Symbol] Normalized status symbol
+      def normalize_status(platform_status, project_id: nil)
+        @status_mapper.normalize_status(platform_status, project_id: project_id)
+      end
+
+      # Converts a normalized status back to platform-specific format.
+      # @param normalized_status [Symbol] Normalized status symbol
+      # @param project_id [String, Integer] Optional project context
+      # @return [String, Symbol] Platform-specific status
+      def denormalize_status(normalized_status, project_id: nil)
+        @status_mapper.denormalize_status(normalized_status, project_id: project_id)
+      end
+
+      protected
+
+      # Returns the adapter type symbol for status mapping.
+      # Override in subclasses if the adapter type differs from class name pattern.
+      # @return [Symbol] The adapter type
+      def adapter_type
+        self.class.name.split("::").last.gsub("Adapter", "").downcase.to_sym
       end
     end
   end

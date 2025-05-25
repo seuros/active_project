@@ -22,7 +22,7 @@ class TrelloAdapterErrorTest < TrelloAdapterBaseTest
     # Configure with bad credentials specifically for this test
     # This overrides the base setup for this specific test case
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: "invalid-key", api_token: "invalid-token"
+      config.add_adapter :trello, key: "DUMMY_INVALID_KEY", token: "DUMMY_INVALID_TOKEN"
     end
     # Clear memoized adapter instance to pick up bad config
     ActiveProject.reset_adapters

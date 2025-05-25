@@ -12,11 +12,12 @@ module ActiveProject
       #
       # @yieldparam conn [Faraday::Connection] A lovely, dependable object where you slap on your auth.
       # Unlike GraphQL, this one doesn’t need you to bend the knee or cite the Book of Steve Job.
-      def init_rest(base_url:, auth_middleware:, extra_headers: {})
+      def init_rest(base_url:, auth_middleware:, extra_headers: {}, retry_options: {})
         build_connection(
           base_url: base_url,
           auth_middleware: auth_middleware,
-          extra_headers: extra_headers
+          extra_headers: extra_headers,
+          retry_options: retry_options
         )
       end
 
@@ -25,7 +26,7 @@ module ActiveProject
       def request_rest(method, path, body = nil, query = nil, headers = {})
         request(method, path, body: body, query: query, headers: headers)
       rescue Faraday::Error => e
-        raise map_faraday_error(e)  # Wrap Faraday errors in our custom trauma response.
+        raise map_faraday_error(e) # Wrap Faraday errors in our custom trauma response.
       end
     end
   end

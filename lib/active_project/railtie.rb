@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails/railtie"
-require "async"                       # async is now a hard dependency
+require "async" # async is now a hard dependency
 
 module ActiveProject
   class Railtie < ::Rails::Railtie
