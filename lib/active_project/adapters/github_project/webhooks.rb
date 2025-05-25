@@ -112,7 +112,7 @@ module ActiveProject
             project_id: project_id,
             actor: actor,
             timestamp: Time.parse(payload["created_at"] || Time.now.iso8601),
-            adapter_source: :github_project,
+            adapter_source: webhook_type,
             changes: changes,
             object_data: object_data,
             raw_data: payload
@@ -156,7 +156,7 @@ module ActiveProject
             project_id: project["node_id"],
             actor: actor,
             timestamp: Time.parse(payload["created_at"] || Time.now.iso8601),
-            adapter_source: :github_project,
+            adapter_source: webhook_type,
             changes: changes,
             object_data: project,
             raw_data: payload

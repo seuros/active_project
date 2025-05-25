@@ -68,16 +68,14 @@ module ActiveProject
           end
 
           WebhookEvent.new(
-            event_type: event_type,
-            object_kind: object_kind,
-            event_object_id: event_object_id,
-            object_key: object_key,
+            type: event_type,
+            resource_type: object_kind,
+            resource_id: event_object_id,
             project_id: project_id,
             actor: map_user_data(actor_data),
             timestamp: timestamp,
-            adapter_source: :jira,
-            changes: changes,
-            object_data: object_data,
+            source: webhook_type,
+            data: (object_data || {}).merge(changes: changes, object_key: object_key),
             raw_data: payload
           )
         rescue JSON::ParserError

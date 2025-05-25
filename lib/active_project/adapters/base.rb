@@ -141,6 +141,22 @@ module ActiveProject
           method(:parse_webhook).source_location[0] != __FILE__
       end
 
+      # Returns the webhook type identifier for this adapter class.
+      # This distinguishes between different adapter types for the same platform.
+      # @return [Symbol] The webhook type (e.g., :github_repo, :github_project, :jira, :basecamp)
+      def self.webhook_type
+        # Default implementation extracts from class name
+        # GithubRepoAdapter -> :github_repo, BasecampAdapter -> :basecamp
+        class_name = name.split("::").last
+        class_name.gsub(/Adapter$/, "").gsub(/([a-z])([A-Z])/, '\1_\2').downcase.to_sym
+      end
+
+      # Instance method that delegates to class method
+      # @return [Symbol] The webhook type
+      def webhook_type
+        self.class.webhook_type
+      end
+
       # Verifies the signature of an incoming webhook request, if supported by the platform.
       # @param request_body [String] The raw request body.
       # @param signature_header [String] The value of the platform-specific signature header.
