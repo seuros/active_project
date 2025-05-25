@@ -9,7 +9,7 @@ module ActiveProject
         ENDPOINT = "https://api.github.com/graphql"
 
         def initialize(config:)
-          @config = config
+          super(config: config)
           token = @config.options.fetch(:access_token)
 
           init_graphql(

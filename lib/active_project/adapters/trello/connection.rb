@@ -9,7 +9,7 @@ module ActiveProject
         BASE_URL = "https://api.trello.com/1/"
 
         def initialize(config:)
-          @config = config
+          super(config: config)
           init_rest(
             base_url: BASE_URL,
             auth_middleware: ->(_c) { }, # Trello uses query-string auth
@@ -21,7 +21,7 @@ module ActiveProject
         # Adapter-specific wrapper around HttpClient#request
         # ------------------------------------------------------------------
         def make_request(method, path, body = nil, query_params = {})
-          auth = { key: @config.api_key, token: @config.api_token }
+          auth = { key: @config.key, token: @config.token }
           request(method, path,
                   body: body,
                   query: auth.merge(query_params))

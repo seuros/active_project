@@ -16,7 +16,7 @@ module ActiveProject
             raise ArgumentError, "BasecampAdapter requires a BaseAdapterConfiguration object"
           end
 
-          @config = config
+          super(config: config)
 
           account_id   = @config.options.fetch(:account_id)
           access_token = @config.options.fetch(:access_token)

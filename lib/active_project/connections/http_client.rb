@@ -15,13 +15,29 @@ module ActiveProject
         "Accept" => "application/json",
         "User-Agent" => -> { ActiveProject.user_agent }
       }.freeze
-      RETRY_OPTS = { max: 5, interval: 0.5, backoff_factor: 2 }.freeze
 
-      def build_connection(base_url:, auth_middleware:, extra_headers: {})
+      # Default retry configuration - can be overridden in adapter configs
+      DEFAULT_RETRY_OPTS = {
+        max: 3,                           # Maximum number of retries
+        interval: 0.5,                    # Initial delay between retries (seconds)
+        backoff_factor: 2,                # Exponential backoff multiplier
+        retry_statuses: [ 429, 500, 502, 503, 504 ], # HTTP status codes to retry
+        exceptions: [
+          Faraday::TimeoutError,
+          Faraday::ConnectionFailed,
+          Faraday::SSLError
+        ]
+      }.freeze
+
+      def build_connection(base_url:, auth_middleware:, extra_headers: {}, retry_options: {})
         @base_url = base_url
+
+        # Merge custom retry options with defaults
+        final_retry_opts = DEFAULT_RETRY_OPTS.merge(retry_options)
+
         @connection = Faraday.new(url: base_url) do |conn|
           auth_middleware.call(conn)                 # Let the adapter sprinkle its secret sauce here.
-          conn.request  :retry, **RETRY_OPTS         # Retry like a desperate job applicant in LinkedIn.
+          conn.request  :retry, **final_retry_opts   # Intelligent retry with configurable options
           conn.response :raise_error                 # Yes, we want the failure loud and flaming.
           default_adapter = ENV.fetch("AP_DEFAULT_ADAPTER", "net_http").to_sym
           conn.adapter default_adapter

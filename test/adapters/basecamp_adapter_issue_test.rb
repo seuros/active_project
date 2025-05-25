@@ -102,6 +102,9 @@ class BasecampAdapterIssueTest < BasecampAdapterBaseTest
   end
 
   test "update_issue updates a todo" do
+    # Skip test if using dummy credentials since this requires a valid project/todolist
+    skip("Set BASECAMP_ACCESS_TOKEN to enable update tests") if @access_token.start_with?("DUMMY")
+
     # Create an issue first to update
     issue_to_update = nil
     VCR.use_cassette("basecamp_adapter/update_issue_create_step") do

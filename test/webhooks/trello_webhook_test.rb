@@ -10,7 +10,7 @@ class TrelloWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary, api_key: "dummy", api_token: "dummy" do |trello_config|
+      config.add_adapter :trello, :primary, key: "DUMMY_KEY", token: "DUMMY_TOKEN" do |trello_config|
         trello_config.status_mappings = {}
       end
     end
@@ -22,7 +22,7 @@ class TrelloWebhookTest < ActiveSupport::TestCase
   def teardown
     # Reset config
     ActiveProject.configure do |config|
-      config.add_adapter :trello, :primary, {}
+      config.add_adapter :trello, :primary, key: "DUMMY_KEY", token: "DUMMY_TOKEN"
     end
     ActiveProject.reset_adapters
   end

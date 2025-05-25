@@ -2,7 +2,6 @@
 
 require "test_helper"
 require_relative "trello_adapter_base_test"
-# webmock/minitest is required in the base class
 
 class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
   # setup and teardown are now inherited from TrelloAdapterBaseTest
@@ -18,7 +17,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
     # Configure status mappings specifically for this test
     # This overrides the base setup configuration for this test scope
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
+      config.add_adapter :trello, key: @api_key, token: @api_token do |trello_config|
         trello_config.status_mappings = {
           board_id => {
             list_open_id => :open,
@@ -90,7 +89,7 @@ class TrelloAdapterStatusMappingTest < TrelloAdapterBaseTest
 
     # Configure status mappings specifically for this test
     ActiveProject.configure do |config|
-      config.add_adapter :trello, api_key: @api_key, api_token: @api_token do |trello_config|
+      config.add_adapter :trello, key: @api_key, token: @api_token do |trello_config|
         trello_config.status_mappings = {
           board_id => {
             list_open_id => :open,

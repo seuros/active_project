@@ -19,7 +19,7 @@ module ActiveProject
             raise ArgumentError, "JiraAdapter requires a BaseAdapterConfiguration object"
           end
 
-          @config = config
+          super(config: config)
 
           # --- Build an absolute base URL ------------------------------------
           raw_url = @config.options.fetch(:site_url)

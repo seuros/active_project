@@ -10,9 +10,10 @@ module ActiveProject
     # Add other adapters here when they need specific config classes.
     ADAPTER_CONFIG_CLASSES = {
       trello: Configurations::TrelloConfiguration,
-      # :jira => Configurations::JiraConfiguration,
-      # :basecamp => Configurations::BasecampConfiguration,
-      github: Configurations::GithubConfiguration
+      jira: Configurations::JiraConfiguration,
+      basecamp: Configurations::BasecampConfiguration,
+      github: Configurations::GithubConfiguration,
+      github_project: Configurations::GithubConfiguration
     }.freeze
 
     def initialize

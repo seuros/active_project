@@ -11,6 +11,9 @@ class GithubProjectAdapterBaseTest < ActiveSupport::TestCase
     @token = ENV.fetch("GITHUB_PROJECT_ACCESS_TOKEN", "DUMMY_TOKEN")
     skip("Set GITHUB_PROJECT_ACCESS_TOKEN to enable GitHub-Project tests") if @token.start_with?("DUMMY")
 
+    # Skip if using default environment user as owner (not a valid GitHub owner)
+    skip("Set GITHUB_PROJECT_OWNER to a valid GitHub username") if TEST_GH_OWNER == ENV["USER"]
+
     @orig_cfg = ActiveProject.configuration.adapter_config(:github_project)&.options.dup || {}
 
     ActiveProject.configure do |c|
@@ -21,7 +24,13 @@ class GithubProjectAdapterBaseTest < ActiveSupport::TestCase
   end
 
   def teardown
-    ActiveProject.configure { |c| c.add_adapter :github_project, @orig_cfg }
+    ActiveProject.configure do |c|
+      if @orig_cfg.any?
+        c.add_adapter :github_project, @orig_cfg
+      else
+        c.add_adapter :github_project, access_token: "DUMMY_TOKEN"
+      end
+    end
     ActiveProject.reset_adapters
   end
 end

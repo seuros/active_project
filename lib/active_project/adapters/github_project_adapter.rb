@@ -7,6 +7,7 @@ module ActiveProject
       include GithubProject::Projects
       include GithubProject::Issues
       include GithubProject::Comments
+      include GithubProject::Webhooks
 
       def projects = ResourceFactory.new(adapter: self, resource_class: Resources::Project)
       def issues   = ResourceFactory.new(adapter: self, resource_class: Resources::Issue)
