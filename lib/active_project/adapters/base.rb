@@ -150,7 +150,8 @@ module ActiveProject
       def verify_webhook_signature(request_body, signature_header, webhook_secret: nil)
         # Default implementation assumes no verification needed.
         # Adapters supporting verification should override this method.
-        supports_webhooks? # Only return true if webhooks are supported
+        return true unless supports_webhooks? # Allow non-webhook flows by default
+        false # Adapters must override this method to implement verification
       end
 
       # Parses an incoming webhook payload into a standardized WebhookEvent struct.
