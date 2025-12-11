@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.0](https://github.com/seuros/active_project/compare/active_project/v0.3.0...active_project/v0.4.0) (2025-12-11)
+
+
+### Features
+
+* Add Support for Github Issues with Repo Mapping to Project ([#8](https://github.com/seuros/active_project/issues/8)) ([e79bc39](https://github.com/seuros/active_project/commit/e79bc39e3903c65e5ecd5d3b8cf032c7e11fa510))
+* GithubProjects  adapter. ([#13](https://github.com/seuros/active_project/issues/13)) ([a3a7b02](https://github.com/seuros/active_project/commit/a3a7b02f0aa54c861e8d954905acab6550598eaa))
+
+
+### Bug Fixes
+
+* rename github =&gt; github_repo ([59432f3](https://github.com/seuros/active_project/commit/59432f329de82a464b177c418246147c87077a2e))
+
 ## [0.3.0](https://github.com/seuros/active_project/compare/active_project/v0.2.0...active_project/v0.3.0) (2025-04-23)
 
 
