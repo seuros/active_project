@@ -13,6 +13,19 @@ module ActiveProject
   # Raised when the external API rate limit is exceeded
   class RateLimitError < Error; end
 
+  # Raised for configuration errors (e.g., missing required settings, invalid mappings)
+  class ConfigurationError < Error; end
+
+  # Raised for connection errors (e.g., network failures, timeouts)
+  class ConnectionError < Error
+    attr_reader :original_error
+
+    def initialize(message = nil, original_error: nil)
+      super(message)
+      @original_error = original_error
+    end
+  end
+
   # Raised for general API errors (e.g., 5xx status codes)
   class ApiError < Error
     attr_reader :original_error, :status_code, :response_body

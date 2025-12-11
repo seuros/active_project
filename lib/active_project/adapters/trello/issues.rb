@@ -122,8 +122,9 @@ module ActiveProject
 
         # Deletes a Trello card.
         # @param card_id [String] The ID of the Trello Card to delete.
+        # @param context [Hash] Optional context (ignored).
         # @return [Boolean] True if successfully deleted.
-        def delete_issue(card_id, **)
+        def delete_issue(card_id, _context = {})
           path = "cards/#{card_id}"
           make_request(:delete, path)
           true

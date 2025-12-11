@@ -133,6 +133,33 @@ module ActiveProject
         raise NotImplementedError, "#{self.class.name} must implement #add_comment"
       end
 
+      # Updates an existing comment.
+      # @param comment_id [String, Integer] The ID of the comment to update.
+      # @param body [String] The new comment body text.
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: REQUIRES { issue_id: '...' }
+      #   - Trello: Ignored
+      #   - GitHub: Ignored
+      # @return [ActiveProject::Comment] The updated comment object.
+      # @raise [NotImplementedError] if the adapter does not support comment updates.
+      def update_comment(comment_id, body, context = {})
+        raise NotImplementedError, "#{self.class.name} does not support #update_comment"
+      end
+
+      # Deletes a comment.
+      # @param comment_id [String, Integer] The ID of the comment to delete.
+      # @param context [Hash] Optional context hash. Platform-specific requirements:
+      #   - Basecamp: REQUIRES { project_id: '...' }
+      #   - Jira: REQUIRES { issue_id: '...' }
+      #   - Trello: Ignored
+      #   - GitHub: Ignored
+      # @return [Boolean] true if deletion was successful.
+      # @raise [NotImplementedError] if the adapter does not support comment deletion.
+      def delete_comment(comment_id, context = {})
+        raise NotImplementedError, "#{self.class.name} does not support #delete_comment"
+      end
+
       # Checks if the adapter supports webhook processing.
       # @return [Boolean] true if the adapter can process webhooks
       def supports_webhooks?

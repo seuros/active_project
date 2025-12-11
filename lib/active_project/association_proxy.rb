@@ -103,8 +103,9 @@ module ActiveProject
 
     # Determines the context hash needed for adapter calls based on the owner.
     def determine_context
-      # Basecamp needs project_id for issue/comment operations
-      if @adapter.is_a?(Adapters::BasecampAdapter) && (@association_name == :issues || @association_name == :comments)
+      # Basecamp and GitHub Project need project_id for issue/comment operations
+      if (@adapter.is_a?(Adapters::BasecampAdapter) || @adapter.is_a?(Adapters::GithubProjectAdapter)) &&
+         (@association_name == :issues || @association_name == :comments)
         { project_id: @owner.id }
       else
         {} # Other adapters might not need explicit context hash for find_issue/find_comment

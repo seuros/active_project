@@ -23,12 +23,13 @@ VCR.configure do |config|
 
   # ------------------------------------------------------------------
   # Record mode / request matching
-  #   :none  – CI/playback only
+  #   :none  – CI/playback only (default, safe for development)
   #   :new_episodes – record new calls the first time and keep existing
   #   :all   – wipe + re-record every run (use sparingly)
+  # Set VCR_RECORD_MODE=new_episodes to record new cassettes
   # ------------------------------------------------------------------
   config.default_cassette_options = {
-    record: :new_episodes,
+    record: ENV.fetch("VCR_RECORD_MODE", "none").to_sym,
     match_requests_on: %i[method path body]
   }
 
@@ -124,9 +125,4 @@ VCR.configure do |config|
     end
   end
 
-  # Get record mode from env var or default to :new_episodes
-  record_mode = ENV["VCR_RECORD_MODE"]&.to_sym || :new_episodes
-
-  # Update the record mode if specified
-  config.default_cassette_options[:record] = record_mode
 end

@@ -37,9 +37,14 @@ module ActiveProject
 
       private
 
-      # Raise only when **no** useful data arrived.
-      # GitHub sometimes returns “partial success” (data + errors) when we query
+      # Handle GraphQL errors with configurable behavior for partial success.
+      # GitHub sometimes returns "partial success" (data + errors) when we query
       # both `user` and `organization` for the same login.
+      #
+      # @param result [Hash] The GraphQL response containing "data" and/or "errors"
+      # @raise [ActiveProject::AuthenticationError] for auth-related errors
+      # @raise [ActiveProject::NotFoundError] for not-found errors
+      # @raise [ActiveProject::ValidationError] for other GraphQL errors
       def raise_graphql_errors!(result)
         errs = result["errors"]
         return unless errs&.any?          # no errors → nothing to do
@@ -53,9 +58,15 @@ module ActiveProject
           else            !data.nil?
           end
 
-        return if has_useful_data         # partial success – ignore errors
+        # Log partial errors for debugging even when we have useful data
+        if has_useful_data && defined?(ActiveProject.logger) && ActiveProject.logger
+          partial_msg = errs.map { |e| e["message"] }.join("; ")
+          ActiveProject.logger.warn("[ActiveProject::GraphQL] Partial errors ignored: #{partial_msg}")
+        end
 
-        # ─── Still here? Treat as fatal. Map message to our error hierarchy. ──
+        return if has_useful_data         # partial success – continue with data
+
+        # ─── No useful data. Treat as fatal. Map message to our error hierarchy. ──
         msg = errs.map { |e| e["message"] }.join("; ")
 
         case msg

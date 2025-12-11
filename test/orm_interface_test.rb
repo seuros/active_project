@@ -48,7 +48,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @jira_adapter.stubs(:list_projects).with({}).returns([ @dummy_jira_project ]) # list_projects takes options hash
     @jira_adapter.stubs(:find_project).with("JRA").returns(@dummy_jira_project)
     @jira_adapter.stubs(:list_issues).with("10000", {}).returns([ @dummy_jira_issue ])
-    @jira_adapter.stubs(:find_issue).with("JRA-1").returns(@dummy_jira_issue)
+    @jira_adapter.stubs(:find_issue).with("JRA-1", {}).returns(@dummy_jira_issue)
     # Stub create_issue on the adapter, as factory#create calls adapter#create_issue
     # Factory#create now passes attributes hash directly
     @jira_adapter.stubs(:create_issue).with(has_entries(summary: "Create Test")).returns(@dummy_jira_issue)
@@ -56,7 +56,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @trello_adapter.stubs(:list_projects).with({}).returns([ @dummy_trello_board ])
     @trello_adapter.stubs(:find_project).with("board1").returns(@dummy_trello_board)
     @trello_adapter.stubs(:list_issues).with("board1", {}).returns([ @dummy_trello_card ])
-    @trello_adapter.stubs(:find_issue).with("card1").returns(@dummy_trello_card)
+    @trello_adapter.stubs(:find_issue).with("card1", {}).returns(@dummy_trello_card)
 
     @basecamp_adapter.stubs(:list_projects).with({}).returns([ @dummy_bc_project ])
     @basecamp_adapter.stubs(:find_project).with(1).returns(@dummy_bc_project)
@@ -69,7 +69,7 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     @github_repo_adapter.stubs(:list_projects).with({}).returns([ @dummy_github_repo ])
     @github_repo_adapter.stubs(:find_project).with("owner/repo").returns(@dummy_github_repo)
     @github_repo_adapter.stubs(:list_issues).with("owner/repo", {}).returns([ @dummy_github_issue ])
-    @github_repo_adapter.stubs(:find_issue).with("1").returns(@dummy_github_issue)
+    @github_repo_adapter.stubs(:find_issue).with("1", {}).returns(@dummy_github_issue)
     @github_repo_adapter.stubs(:create_issue).with(has_entries(title: "Create Test")).returns(@dummy_github_issue)
   end
 

@@ -35,24 +35,21 @@ module ActiveProject
         ResourceFactory.new(adapter: self, resource_class: Resources::Issue)
       end
 
-      # create_issue is already called with 2 args in tests and
-      # with (project_id, attrs) from Resources::Issue; both are fine.
-      def create_issue(*args)
-        project_or_key, attrs = args
-        super(project_or_key, normalize_issue_attrs(attrs))
+      # Creates an issue in Jira.
+      # @param project_id_or_key [String, Integer] The project ID or key (used by Jira to determine project).
+      # @param attributes [Hash] Issue attributes including :project, :summary, :issue_type.
+      # @return [ActiveProject::Resources::Issue] The created issue.
+      def create_issue(project_id_or_key, attributes)
+        super(project_id_or_key, normalize_issue_attrs(attributes))
       end
 
-      # Accept:
-      #   * (id_or_key, attrs) ← direct test-suite call
-      #   * (project_id, id_or_key, attrs) ← Resources::Issue#update
-      def update_issue(*args)
-        if args.size == 3
-          _proj, id_or_key, attrs = args
-          super(id_or_key, normalize_issue_attrs(attrs), {})
-        else
-          id_or_key, attrs, ctx = args
-          super(id_or_key, normalize_issue_attrs(attrs), ctx || {})
-        end
+      # Updates an issue in Jira.
+      # @param id_or_key [String, Integer] The issue ID or key.
+      # @param attributes [Hash] Attributes to update.
+      # @param context [Hash] Optional context (e.g., :fields for return selection).
+      # @return [ActiveProject::Resources::Issue] The updated issue.
+      def update_issue(id_or_key, attributes, context = {})
+        super(id_or_key, normalize_issue_attrs(attributes), context)
       end
 
       # Retrieves details for the currently authenticated user.
