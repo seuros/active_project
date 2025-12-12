@@ -67,7 +67,7 @@ class GithubRepoAdapterBaseTest < ActiveSupport::TestCase
 
     cassette_name = "github_repo_adapter/helper_create_issue_#{title_suffix.gsub(/\s+/, '_')}"
 
-    VCR.use_cassette(cassette_name, record: :new_episodes) do
+    VCR.use_cassette(cassette_name) do
       begin
         attributes = {
           title: title,

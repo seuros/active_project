@@ -71,7 +71,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
 
     cassette_name = "jira_adapter/helper_create_project_#{project_key}"
     puts "\nAttempting to create test project '#{project_key}'..."
-    VCR.use_cassette(cassette_name, record: :new_episodes) do
+    VCR.use_cassette(cassette_name) do
       attributes = {
         key: project_key,
         name: project_name,
@@ -112,7 +112,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
     # Use a more specific cassette name for helper-created issues
     # Keep :new_episodes as different tests might create different helper issues
     cassette_name = "jira_adapter/helper_create_issue_#{project.key}_#{summary_suffix.gsub(/\s+/, '_')}"
-    VCR.use_cassette(cassette_name, record: :new_episodes) do
+    VCR.use_cassette(cassette_name) do
       issue_type_name = ENV.fetch("JIRA_TEST_ISSUE_TYPE_NAME", "Task")
       priority_name = ENV.fetch("JIRA_TEST_PRIORITY_NAME", "Medium")
       due_date = Date.today + 7
@@ -143,7 +143,7 @@ class JiraAdapterBaseTest < ActiveSupport::TestCase
 
     puts "\nAttempting to delete test project '#{project_key}'..."
     cassette_name = "jira_adapter/helper_delete_project_#{project_key}"
-    VCR.use_cassette(cassette_name, record: :new_episodes) do
+    VCR.use_cassette(cassette_name) do
       deleted = @adapter.delete_project(project_key)
       puts "    Deletion request for project #{project_key} successful." if deleted
     rescue ActiveProject::AuthenticationError => e

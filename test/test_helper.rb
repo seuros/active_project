@@ -30,7 +30,9 @@ VCR.configure do |config|
   # ------------------------------------------------------------------
   config.default_cassette_options = {
     record: ENV.fetch("VCR_RECORD_MODE", "none").to_sym,
-    match_requests_on: %i[method path body]
+    match_requests_on: %i[method path body],
+    allow_unused_http_interactions: true,
+    clean_outdated_http_interactions: false
   }
 
   # ------------------------------------------------------------------
@@ -102,14 +104,19 @@ VCR.configure do |config|
   # ------------------------------------------------------------------
   # 4.  Collapse volatile headers so cassettes stay deterministic
   # ------------------------------------------------------------------
-  VOLATILE_HEADERS = %w[
+  VOLATILE_RESPONSE_HEADERS = %w[
     X-RateLimit-Remaining
     X-RateLimit-Reset
     Date
   ].freeze
 
+  VOLATILE_REQUEST_HEADERS = %w[
+    User-Agent
+  ].freeze
+
   config.before_record do |i|
-    VOLATILE_HEADERS.each { |h| i.response.headers.delete(h) }
+    VOLATILE_RESPONSE_HEADERS.each { |h| i.response.headers.delete(h) }
+    VOLATILE_REQUEST_HEADERS.each { |h| i.request.headers.delete(h) }
   end
 
   # ------------------------------------------------------------------
@@ -124,5 +131,4 @@ VCR.configure do |config|
       auth_header
     end
   end
-
 end
