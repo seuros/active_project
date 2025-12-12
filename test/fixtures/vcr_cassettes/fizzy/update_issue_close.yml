@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://fizzy.localhost:3006/897362094/cards/1/closure.json
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-4/BXZ0RmwFq3NKMHBIlmWA=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - f970a2c8-76cb-4fe3-99f7-67b2a9412cc2
+      X-Runtime:
+      - '0.125352'
+      Server-Timing:
+      - sql.active_record;dur=45.97, instantiation.active_record;dur=0.83, start_processing.action_controller;dur=0.01,
+        start_transaction.active_record;dur=0.03, transaction.active_record;dur=74.91,
+        enqueue.active_job;dur=0.55, process_action.action_controller;dur=115.24
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/cards/1.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Etag:
+      - W/"c38eb3e69bda481367750ec954d6f290"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-ITw3fglao+Lz7b+as/g8ag=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 93d9c302-f427-415e-8f17-6db4ad084ad2
+      X-Runtime:
+      - '0.341553'
+      Server-Timing:
+      - sql.active_record;dur=1.29, instantiation.active_record;dur=0.52, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, cache_read.active_support;dur=0.07,
+        read_fragment.action_controller;dur=0.14, render_partial.action_view;dur=17.31,
+        cache_write.active_support;dur=0.14, write_fragment.action_controller;dur=16.02,
+        render_template.action_view;dur=14.23, process_action.action_controller;dur=45.11
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '1824'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7agcrzrd9lf2qgo4ipxum9","number":1,"title":"Updated Title
+        \u003cBIG_INT\u003e","status":"published","description":"We need to do this
+        before the launch.","description_html":"\u003c!-- BEGIN app/views/layouts/action_text/contents/_content.html.erb\n--\u003e\u003cdiv
+        class=\"action-text-content\"\u003e\n  \u003c!-- BEGIN /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb\n--\u003eWe
+        need to do this before the launch.\n\u003c!-- END /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb
+        --\u003e\u003c/div\u003e\n\u003c!-- END app/views/layouts/action_text/contents/_content.html.erb
+        --\u003e","image_url":null,"tags":[],"closed":true,"golden":false,"last_active_at":"2025-12-12T09:10:33.369Z","created_at":"2025-12-12T08:47:55.190Z","url":"http://fizzy.localhost:3006/897362094/cards/1","board":{"id":"03f7agcrvnqk92t28j6back5t","name":"Fizzy","all_access":true,"created_at":"2025-12-12T08:47:55.046Z","url":"http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t","creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"}},"creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"},"comments_url":"http://fizzy.localhost:3006/897362094/cards/1/comments","steps":[]}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1

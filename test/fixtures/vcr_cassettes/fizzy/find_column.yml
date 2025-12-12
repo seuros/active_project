@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/columns.json
+    body:
+      encoding: UTF-8
+      string: '{"column":{"name":"Column to Find \u003cBIG_INT\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json
+      Location:
+      - "/897362094/boards/03f7agcrvnqk92t28j6back5t/columns/03f7akt2eu4zfqa64xeyuotql.json"
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-3/LcZ/k3hGK48WlfztRPkg=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 158171c8-b659-4d6f-af8d-1bb752df8206
+      X-Runtime:
+      - '0.017599'
+      Server-Timing:
+      - sql.active_record;dur=1.14, instantiation.active_record;dur=0.18, start_processing.action_controller;dur=0.00,
+        start_transaction.active_record;dur=0.00, transaction.active_record;dur=2.54,
+        process_action.action_controller;dur=9.97
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/columns/03f7akt2eu4zfqa64xeyuotql.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Etag:
+      - W/"156b8bdb33414f7616066934f62d6eae"
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      X-Total-Count:
+      - '0'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-2MkXZuIVyevDyPTsOWqHyw=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 07c24a8e-09e1-40a6-a855-d09353b5b896
+      X-Runtime:
+      - '0.018929'
+      Server-Timing:
+      - sql.active_record;dur=0.74, instantiation.active_record;dur=0.21, start_processing.action_controller;dur=0.00,
+        cache_read.active_support;dur=0.01, read_fragment.action_controller;dur=0.04,
+        cache_write.active_support;dur=0.03, write_fragment.action_controller;dur=0.12,
+        render_partial.action_view;dur=0.42, render_template.action_view;dur=0.59,
+        process_action.action_controller;dur=11.10
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '178'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7akt2eu4zfqa64xeyuotql","name":"Column to Find \u003cBIG_INT\u003e","color":{"name":"Blue","value":"var(--color-card-default)"},"created_at":"2025-12-12T09:10:42.644Z"}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/columns/03f7akt2eu4zfqa64xeyuotql.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Etag:
+      - W/"156b8bdb33414f7616066934f62d6eae"
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      X-Total-Count:
+      - '0'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-9O0iEtyj/fceFqxykVVFTw=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - b417e206-0070-41f8-a5a9-71d851d471c9
+      X-Runtime:
+      - '0.017951'
+      Server-Timing:
+      - sql.active_record;dur=0.66, instantiation.active_record;dur=0.21, start_processing.action_controller;dur=0.00,
+        cache_read.active_support;dur=0.02, read_fragment.action_controller;dur=0.04,
+        cache_write.active_support;dur=0.03, write_fragment.action_controller;dur=0.12,
+        render_partial.action_view;dur=0.33, render_template.action_view;dur=0.47,
+        process_action.action_controller;dur=10.06
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '178'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7akt2eu4zfqa64xeyuotql","name":"Column to Find \u003cBIG_INT\u003e","color":{"name":"Blue","value":"var(--color-card-default)"},"created_at":"2025-12-12T09:10:42.644Z"}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1

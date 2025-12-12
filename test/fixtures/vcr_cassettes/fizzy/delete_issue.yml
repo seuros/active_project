@@ -1,0 +1,195 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/cards.json
+    body:
+      encoding: UTF-8
+      string: '{"card":{"title":"Card to Delete \u003cBIG_INT\u003e","status":"published"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json
+      Location:
+      - "/897362094/cards/9.json"
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-mvX/zPk1Lgf7PYmsAm2DtA=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 72f2b41e-c5da-415c-bed7-4a87007cd8f4
+      X-Runtime:
+      - '0.038324'
+      Server-Timing:
+      - sql.active_record;dur=3.54, instantiation.active_record;dur=0.29, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, start_transaction.active_record;dur=0.00,
+        transaction.active_record;dur=13.60, enqueue.active_job;dur=0.37, process_action.action_controller;dur=27.86
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/cards/9.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Etag:
+      - W/"1fe8230f37e9e52c107523cace4a0b31"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-sSeFAUrUHb9xB2sRxB0nag=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - a3608513-2b4e-422f-87c3-a8432669d3b5
+      X-Runtime:
+      - '0.105386'
+      Server-Timing:
+      - sql.active_record;dur=1.06, instantiation.active_record;dur=0.31, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, cache_read.active_support;dur=0.06,
+        read_fragment.action_controller;dur=0.12, cache_write.active_support;dur=0.12,
+        write_fragment.action_controller;dur=9.75, render_partial.action_view;dur=10.45,
+        render_template.action_view;dur=8.33, process_action.action_controller;dur=16.77
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '1147'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7aks2ouskb2k55oihkjxbr","number":9,"title":"Card to Delete
+        \u003cBIG_INT\u003e","status":"published","description":"","description_html":"","image_url":null,"tags":[],"closed":false,"golden":false,"last_active_at":"2025-12-12T09:10:34.179Z","created_at":"2025-12-12T09:10:34.179Z","url":"http://fizzy.localhost:3006/897362094/cards/9","board":{"id":"03f7agcrvnqk92t28j6back5t","name":"Fizzy","all_access":true,"created_at":"2025-12-12T08:47:55.046Z","url":"http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t","creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"}},"creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"},"comments_url":"http://fizzy.localhost:3006/897362094/cards/9/comments","steps":[]}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: delete
+    uri: http://fizzy.localhost:3006/897362094/cards/9.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-LkIQECogBe/eV02CWOgAGA=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 9b71847f-f0d7-4ee4-bbec-b13b22960dff
+      X-Runtime:
+      - '0.054040'
+      Server-Timing:
+      - sql.active_record;dur=6.99, instantiation.active_record;dur=0.57, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, start_transaction.active_record;dur=0.01,
+        transaction.active_record;dur=30.91, perform_start.active_job;dur=0.00, perform.active_job;dur=4.57,
+        broadcast.action_cable;dur=6.15, process_action.action_controller;dur=45.85
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1

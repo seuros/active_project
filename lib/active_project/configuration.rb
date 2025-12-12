@@ -13,7 +13,8 @@ module ActiveProject
       jira: Configurations::JiraConfiguration,
       basecamp: Configurations::BasecampConfiguration,
       github_repo: Configurations::GithubConfiguration,
-      github_project: Configurations::GithubConfiguration
+      github_project: Configurations::GithubConfiguration,
+      fizzy: Configurations::FizzyConfiguration
     }.freeze
 
     def initialize

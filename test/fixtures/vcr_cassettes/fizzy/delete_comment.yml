@@ -1,0 +1,197 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://fizzy.localhost:3006/897362094/cards/1/comments.json
+    body:
+      encoding: UTF-8
+      string: '{"comment":{"body":"Comment to delete \u003cBIG_INT\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json
+      Location:
+      - "/897362094/cards/1/comments/03f7al2kd665ntzf9snfuga0b.json"
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-ccf7Cv8yyCNWGf5CwwJ12Q=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - c66b63f1-10f9-41b3-8b5c-8fff49d50aab
+      X-Runtime:
+      - '0.064361'
+      Server-Timing:
+      - sql.active_record;dur=7.59, instantiation.active_record;dur=0.77, start_processing.action_controller;dur=0.00,
+        start_transaction.active_record;dur=0.02, transaction.active_record;dur=27.33,
+        enqueue.active_job;dur=0.43, process_action.action_controller;dur=55.93
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/cards/1/comments/03f7al2kd665ntzf9snfuga0b.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Etag:
+      - W/"5e6566d80ab7ec8e2eaa4c9c6876ba88"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-3+Y3jv09nVD4M6i020HMOg=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - c428d6a7-bd53-4a88-90d7-8e5d1c2707c7
+      X-Runtime:
+      - '0.215057'
+      Server-Timing:
+      - sql.active_record;dur=0.87, instantiation.active_record;dur=0.41, start_processing.action_controller;dur=0.00,
+        cache_read.active_support;dur=0.02, read_fragment.action_controller;dur=0.06,
+        render_partial.action_view;dur=5.33, cache_write.active_support;dur=0.10,
+        write_fragment.action_controller;dur=4.68, render_template.action_view;dur=4.36,
+        process_action.action_controller;dur=23.36
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '1298'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7al2kd665ntzf9snfuga0b","created_at":"2025-12-12T09:12:03.689Z","updated_at":"2025-12-12T09:12:03.691Z","body":{"plain_text":"Comment
+        to delete ","html":"\u003c!-- BEGIN app/views/layouts/action_text/contents/_content.html.erb\n--\u003e\u003cdiv
+        class=\"action-text-content\"\u003e\n  \u003c!-- BEGIN /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb\n--\u003eComment
+        to delete \n\u003c!-- END /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb
+        --\u003e\u003c/div\u003e\n\u003c!-- END app/views/layouts/action_text/contents/_content.html.erb
+        --\u003e"},"creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David Heinemeier
+        Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"},"reactions_url":"http://fizzy.localhost:3006/897362094/cards/03f7agcrzrd9lf2qgo4ipxum9/comments/03f7al2kd665ntzf9snfuga0b/reactions","url":"http://fizzy.localhost:3006/897362094/cards/03f7agcrzrd9lf2qgo4ipxum9/comments/03f7al2kd665ntzf9snfuga0b"}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: delete
+    uri: http://fizzy.localhost:3006/897362094/cards/1/comments/03f7al2kd665ntzf9snfuga0b.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-YwrMX9rw3SBd0r+GSBylhg=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 703fb204-10a0-411e-bf09-d3cf3f5c4e9a
+      X-Runtime:
+      - '0.071699'
+      Server-Timing:
+      - sql.active_record;dur=6.16, instantiation.active_record;dur=0.75, start_processing.action_controller;dur=0.00,
+        start_transaction.active_record;dur=0.00, transaction.active_record;dur=28.00,
+        process_action.action_controller;dur=43.70
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/columns.json
+    body:
+      encoding: UTF-8
+      string: '{"column":{"name":"Test Column \u003cBIG_INT\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json
+      Location:
+      - "/897362094/boards/03f7agcrvnqk92t28j6back5t/columns/03f7akt2t9t6q88l46t409491.json"
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-OJH/JrL0X3qHTrqd+Qnaxw=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 3b9e29c5-47a7-49d8-aa37-a4396508c4f1
+      X-Runtime:
+      - '0.018895'
+      Server-Timing:
+      - sql.active_record;dur=1.28, instantiation.active_record;dur=0.19, start_processing.action_controller;dur=0.00,
+        start_transaction.active_record;dur=0.00, transaction.active_record;dur=3.13,
+        process_action.action_controller;dur=11.02
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t/columns/03f7akt2t9t6q88l46t409491.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Etag:
+      - W/"e97f54dab83a03685467b0532ff8607e"
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      X-Total-Count:
+      - '0'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-Y4b8z+q/ID7zUumGCYWzqA=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 8f4b38ea-a88e-47e2-82d9-dc8d053984ee
+      X-Runtime:
+      - '0.018201'
+      Server-Timing:
+      - sql.active_record;dur=0.72, instantiation.active_record;dur=0.23, start_processing.action_controller;dur=0.00,
+        cache_read.active_support;dur=0.01, read_fragment.action_controller;dur=0.04,
+        cache_write.active_support;dur=0.03, write_fragment.action_controller;dur=0.12,
+        render_partial.action_view;dur=0.32, render_template.action_view;dur=0.46,
+        process_action.action_controller;dur=10.78
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '175'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7akt2t9t6q88l46t409491","name":"Test Column \u003cBIG_INT\u003e","color":{"name":"Blue","value":"var(--color-card-default)"},"created_at":"2025-12-12T09:10:42.740Z"}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1

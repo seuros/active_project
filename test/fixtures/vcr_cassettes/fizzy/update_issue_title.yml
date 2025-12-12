@@ -1,0 +1,152 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://fizzy.localhost:3006/897362094/cards/1.json
+    body:
+      encoding: UTF-8
+      string: '{"card":{"title":"Updated Title \u003cBIG_INT\u003e"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Etag:
+      - W/"fc4e71ea8f8df2832e67eca32a9f7da6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-ug6RlRk1aL6Pu2L4opYi1w=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - 412cc368-44ae-446f-9e93-f03796ada1f7
+      X-Runtime:
+      - '0.128633'
+      Server-Timing:
+      - sql.active_record;dur=8.81, instantiation.active_record;dur=0.91, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, start_transaction.active_record;dur=0.01,
+        transaction.active_record;dur=36.09, enqueue.active_job;dur=0.54, cache_read.active_support;dur=0.09,
+        read_fragment.action_controller;dur=0.19, render_partial.action_view;dur=24.61,
+        cache_write.active_support;dur=0.86, write_fragment.action_controller;dur=23.16,
+        render_template.action_view;dur=16.71, process_action.action_controller;dur=117.36
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '1825'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7agcrzrd9lf2qgo4ipxum9","number":1,"title":"Updated Title
+        \u003cBIG_INT\u003e","status":"published","description":"We need to do this
+        before the launch.","description_html":"\u003c!-- BEGIN app/views/layouts/action_text/contents/_content.html.erb\n--\u003e\u003cdiv
+        class=\"action-text-content\"\u003e\n  \u003c!-- BEGIN /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb\n--\u003eWe
+        need to do this before the launch.\n\u003c!-- END /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb
+        --\u003e\u003c/div\u003e\n\u003c!-- END app/views/layouts/action_text/contents/_content.html.erb
+        --\u003e","image_url":null,"tags":[],"closed":false,"golden":false,"last_active_at":"2025-12-12T09:10:32.632Z","created_at":"2025-12-12T08:47:55.190Z","url":"http://fizzy.localhost:3006/897362094/cards/1","board":{"id":"03f7agcrvnqk92t28j6back5t","name":"Fizzy","all_access":true,"created_at":"2025-12-12T08:47:55.046Z","url":"http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t","creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"}},"creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"},"comments_url":"http://fizzy.localhost:3006/897362094/cards/1/comments","steps":[]}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+- request:
+    method: get
+    uri: http://fizzy.localhost:3006/897362094/cards/1.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - ActiveProject Gem (github.com/seuros/active_project) v0.4.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Kamal-Target:
+      - ''
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Sec-Fetch-Site
+      X-Robots-Tag:
+      - none
+      Etag:
+      - W/"fc4e71ea8f8df2832e67eca32a9f7da6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''nonce-NrVMeodcle9oc194+Mmfvg=='';
+        connect-src ''self''; frame-src ''self''; style-src ''self'' ''unsafe-inline'';
+        img-src ''self'' blob: data: https:; font-src ''self'' data: https:; media-src
+        ''self'' blob: data: https:; worker-src ''self'' blob:; object-src ''none'';
+        base-uri ''none''; form-action ''self''; frame-ancestors ''self'''
+      X-Request-Id:
+      - e2c3285d-0b6f-4e99-8ddf-50f21c66f780
+      X-Runtime:
+      - '0.229381'
+      Server-Timing:
+      - sql.active_record;dur=1.55, instantiation.active_record;dur=0.47, start_processing.action_controller;dur=0.00,
+        unpermitted_parameters.action_controller;dur=0.00, cache_read.active_support;dur=0.08,
+        read_fragment.action_controller;dur=0.16, render_partial.action_view;dur=21.44,
+        cache_write.active_support;dur=0.21, write_fragment.action_controller;dur=20.24,
+        render_template.action_view;dur=17.85, process_action.action_controller;dur=39.75
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/; httponly; samesite=lax
+      Content-Length:
+      - '1825'
+    body:
+      encoding: UTF-8
+      string: '{"id":"03f7agcrzrd9lf2qgo4ipxum9","number":1,"title":"Updated Title
+        \u003cBIG_INT\u003e","status":"published","description":"We need to do this
+        before the launch.","description_html":"\u003c!-- BEGIN app/views/layouts/action_text/contents/_content.html.erb\n--\u003e\u003cdiv
+        class=\"action-text-content\"\u003e\n  \u003c!-- BEGIN /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb\n--\u003eWe
+        need to do this before the launch.\n\u003c!-- END /Users/seuros/.local/share/mise/installs/ruby/3.4.7/lib/ruby/gems/3.4.0/bundler/gems/rails-4f4e0acaf558/actiontext/app/views/action_text/contents/_content.html.erb
+        --\u003e\u003c/div\u003e\n\u003c!-- END app/views/layouts/action_text/contents/_content.html.erb
+        --\u003e","image_url":null,"tags":[],"closed":false,"golden":false,"last_active_at":"2025-12-12T09:10:32.632Z","created_at":"2025-12-12T08:47:55.190Z","url":"http://fizzy.localhost:3006/897362094/cards/1","board":{"id":"03f7agcrvnqk92t28j6back5t","name":"Fizzy","all_access":true,"created_at":"2025-12-12T08:47:55.046Z","url":"http://fizzy.localhost:3006/897362094/boards/03f7agcrvnqk92t28j6back5t","creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"}},"creator":{"id":"03f7agcrln0o2y2k9f6gmrala","name":"David
+        Heinemeier Hansson","role":"owner","active":true,"email_address":"david@example.com","created_at":"2025-12-12T08:47:54.980Z","url":"http://fizzy.localhost:3006/897362094/users/03f7agcrln0o2y2k9f6gmrala"},"comments_url":"http://fizzy.localhost:3006/897362094/cards/1/comments","steps":[]}'
+  recorded_at: Fri, 12 Dec 2025 08:10:00 GMT
+recorded_with: VCR 6.3.1
