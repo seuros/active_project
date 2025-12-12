@@ -9,6 +9,9 @@ require "rails/test_help"
 require "vcr"
 require "webmock/minitest"
 require "mocha/minitest"
+require "async/safe"
+
+Async::Safe.enable!
 
 # VCR Configuration
 # test/test_helper.rb  (or wherever your VCR config lives)

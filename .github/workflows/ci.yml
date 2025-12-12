@@ -15,7 +15,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ruby-3.4.2
+          ruby-version: ruby-3.4.7
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -23,6 +23,10 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        rails: ["~> 8.0.0", "~> 8.1.0"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -30,11 +34,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ruby-3.4.2
+          ruby-version: ruby-3.4.7
           bundler-cache: true
+        env:
+          RAILS_VERSION: ${{ matrix.rails }}
 
       - name: Run tests
         env:
           RAILS_ENV: test
-          AP_DEFAULT_ADAPTER:   async_http
+          RAILS_VERSION: ${{ matrix.rails }}
         run: bin/test

@@ -20,11 +20,12 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency 'activesupport', '>= 8.0', '< 9.0'
-  spec.add_dependency 'async'
-  spec.add_dependency 'async-http'
-  spec.add_dependency 'async-http-faraday'
+  spec.add_dependency 'async', '>= 2.35'
+  spec.add_dependency 'async-http', '>= 0.92'
+  spec.add_dependency 'async-http-faraday', '>= 0.22'
   spec.add_dependency 'concurrent-ruby', '>= 1.2'
   spec.add_dependency 'faraday', '>= 2.0'
   spec.add_dependency 'faraday-retry'
+  spec.add_development_dependency 'async-safe'
   spec.add_development_dependency 'mocha'
 end

@@ -2,6 +2,7 @@
 
 require "faraday"
 require "faraday/retry"
+require "async/http/faraday"
 require "json"
 
 module ActiveProject

@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in activeproject.gemspec.
 gemspec
 
-gem "railties"
+gem "railties", ENV.fetch("RAILS_VERSION", "~> 8.0")
 
 gem "puma"
 
