@@ -29,12 +29,14 @@ module ActiveProject
       end
 
       def update_issue(id, attributes, context = {})
-        project_id = context[:project_id] || raise(ArgumentError, "GithubProjectAdapter requires :project_id in context")
+        project_id = context[:project_id] || raise(ArgumentError,
+"GithubProjectAdapter requires :project_id in context")
         update_issue_internal(project_id, id, attributes)
       end
 
       def delete_issue(id, context = {})
-        project_id = context[:project_id] || raise(ArgumentError, "GithubProjectAdapter requires :project_id in context")
+        project_id = context[:project_id] || raise(ArgumentError,
+"GithubProjectAdapter requires :project_id in context")
         delete_issue_internal(project_id, id)
       end
 

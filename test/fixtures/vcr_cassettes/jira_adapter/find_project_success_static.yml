@@ -1,26 +1,26 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://clickup-core-team.atlassian.net/rest/api/3/project/LAC
-    body: 
+    body:
       encoding: UTF-8
       string: ""
-    headers: 
-      Accept: 
+    headers:
+      Accept:
       - application/json
-      Authorization: 
+      Authorization:
       - Basic [YOUR_ENCODED_AUTH]
-      User-Agent: 
+      User-Agent:
       - Faraday v1.0
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Content-Type: 
+    headers:
+      Content-Type:
       - application/json;charset=UTF-8
-    body: 
+    body:
       encoding: UTF-8
       string: |
         {

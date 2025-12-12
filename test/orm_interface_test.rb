@@ -12,7 +12,8 @@ class OrmInterfaceTest < ActiveSupport::TestCase
     # Configure dummy adapters
     ActiveProject.configure do |config|
       config.add_adapter :trello, :primary, key: "DUMMY_KEY", token: "DUMMY_TOKEN"
-      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME", api_token: "DUMMY_API_TOKEN"
+      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME",
+api_token: "DUMMY_API_TOKEN"
       config.add_adapter :basecamp, :primary, account_id: "DUMMY_ACCOUNT_ID", access_token: "DUMMY_ACCESS_TOKEN"
       config.add_adapter :github_repo, :primary, owner: "owner", repo: "repo", access_token: "DUMMY_ACCESS_TOKEN"
     end

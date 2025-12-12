@@ -53,7 +53,9 @@ module ActiveProject
         end
 
         # Creates a new project in Jira.
-        # @param attributes [Hash] Project attributes. Required: :key, :name, :project_type_key, :lead_account_id. Optional: :description, :assignee_type.
+        # @param attributes [Hash] Project attributes.
+        #   Required: :key, :name, :project_type_key, :lead_account_id.
+        #   Optional: :description, :assignee_type.
         # @return [ActiveProject::Resources::Project]
         def create_project(attributes)
           required_keys = %i[key name project_type_key lead_account_id]

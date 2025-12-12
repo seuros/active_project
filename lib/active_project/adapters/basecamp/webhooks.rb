@@ -38,7 +38,8 @@ module ActiveProject
           when /todo_created$/
             event_type = :issue_created
             object_kind = :issue
-          when /todo_assignment_changed$/, /todo_completion_changed$/, /todo_content_updated$/, /todo_description_changed$/, /todo_due_on_changed$/
+          when /todo_assignment_changed$/, /todo_completion_changed$/, /todo_content_updated$/,
+               /todo_description_changed$/, /todo_due_on_changed$/
             event_type = :issue_updated
             object_kind = :issue
           when /comment_created$/

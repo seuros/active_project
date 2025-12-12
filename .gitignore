@@ -12,3 +12,4 @@
 .idea
 Gemfile.lock
 .ai
+.dictator/

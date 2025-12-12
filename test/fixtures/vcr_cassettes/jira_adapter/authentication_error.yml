@@ -37,6 +37,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"errorMessages":["Login failed"],"errors":{}}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 20 Mar 2025 00:00:00 GMT
 recorded_with: VCR 6.3.1

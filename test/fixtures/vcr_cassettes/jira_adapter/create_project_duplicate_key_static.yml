@@ -1,28 +1,28 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: post
     uri: https://clickup-core-team.atlassian.net/rest/api/3/project
-    body: 
+    body:
       encoding: UTF-8
       string: '{"key":"LAC","name":"Attempt to Duplicate LAC","projectTypeKey":"software","leadAccountId":"5e9360a3088a7e0c0f4c55f3"}'
-    headers: 
-      Accept: 
+    headers:
+      Accept:
       - application/json
-      Authorization: 
+      Authorization:
       - Basic [YOUR_ENCODED_AUTH]
-      Content-Type: 
+      Content-Type:
       - application/json
-      User-Agent: 
+      User-Agent:
       - Faraday v1.0
-  response: 
-    status: 
+  response:
+    status:
       code: 400
       message: Bad Request
-    headers: 
-      Content-Type: 
+    headers:
+      Content-Type:
       - application/json;charset=UTF-8
-    body: 
+    body:
       encoding: UTF-8
       string: |
         {

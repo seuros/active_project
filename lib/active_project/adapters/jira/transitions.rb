@@ -31,7 +31,8 @@ module ActiveProject
           unless target_transition
             available_names = available_transitions.map { |t| t.dig("to", "name") }.compact.join(", ")
             raise NotFoundError,
-                  "Target transition '#{target_status_name_or_id}' not found or not available for issue '#{issue_id_or_key}'. Available transitions: [#{available_names}]"
+                  "Target transition '#{target_status_name_or_id}' not found for issue " \
+                  "'#{issue_id_or_key}'. Available: [#{available_names}]"
           end
 
           payload = {

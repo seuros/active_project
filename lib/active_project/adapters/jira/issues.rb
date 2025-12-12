@@ -7,6 +7,14 @@ module ActiveProject
         DEFAULT_FIELDS = %w[summary description status assignee reporter created updated project issuetype duedate
                             priority].freeze
 
+        # Converts plain text to Atlassian Document Format (ADF)
+        def adf_text(text)
+          {
+            type: "doc", version: 1,
+            content: [ { type: "paragraph", content: [ { type: "text", text: text } ] } ]
+          }
+        end
+
         # Lists issues within a specific project, optionally filtered by JQL.
         # @param project_id_or_key [String, Integer] The ID or key of the project.
         # @param options [Hash] Optional filtering/pagination options. Accepts :jql, :fields, :start_at, :max_results.
@@ -52,7 +60,9 @@ module ActiveProject
 
         # Creates a new issue in Jira using the V3 endpoint.
         # @param _project_id_or_key [String, Integer] Ignored (project info is in attributes).
-        # @param attributes [Hash] Issue attributes. Required: :project, :summary, :issue_type. Optional: :description, :assignee_id, :due_on, :priority.
+        # @param attributes [Hash] Issue attributes.
+        #   Required: :project, :summary, :issue_type.
+        #   Optional: :description, :assignee_id, :due_on, :priority.
         # @return [ActiveProject::Resources::Issue]
         def create_issue(_project_id_or_key, attributes)
           path = "/rest/api/3/issue"
@@ -61,7 +71,8 @@ module ActiveProject
                  attributes[:summary] && !attributes[:summary].empty? &&
                  attributes[:issue_type] && (attributes[:issue_type][:id] || attributes[:issue_type][:name])
             raise ArgumentError,
-                  "Missing required attributes for issue creation: :project (must be a Hash with id/key), :summary, :issue_type (with id/name)"
+                  "Missing required attributes for issue creation: :project (Hash with id/key), " \
+                  ":summary, :issue_type (with id/name)"
           end
 
           fields_payload = {
@@ -72,7 +83,7 @@ module ActiveProject
 
           if attributes.key?(:description)
             fields_payload[:description] = if attributes[:description].is_a?(String)
-                                             { type: "doc", version: 1, content: [ { type: "paragraph", content: [ { type: "text", text: attributes[:description] } ] } ] }
+                                             adf_text(attributes[:description])
             elsif attributes[:description].is_a?(Hash)
                                              attributes[:description]
             end
@@ -110,7 +121,7 @@ module ActiveProject
 
           if attributes.key?(:description)
             update_fields[:description] = if attributes[:description].is_a?(String)
-                                            { type: "doc", version: 1, content: [ { type: "paragraph", content: [ { type: "text", text: attributes[:description] } ] } ] }
+                                            adf_text(attributes[:description])
             elsif attributes[:description].is_a?(Hash)
                                             attributes[:description]
             end

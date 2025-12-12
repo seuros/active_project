@@ -18,6 +18,7 @@ module ActiveProject
 
           # ---- build query template ------------------------------------------------
           query_tmpl = lambda { |kind|
+            # rubocop:disable Layout/LineLength
             <<~GQL
               query($login:String!, $first:Int!, $after:String){
                 #{kind}(login:$login){
@@ -28,6 +29,7 @@ module ActiveProject
                 }
               }
             GQL
+            # rubocop:enable Layout/LineLength
           }
 
           # ---- fetch pages, trying user first, then organisation -------------------

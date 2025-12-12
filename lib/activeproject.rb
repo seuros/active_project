@@ -74,9 +74,8 @@ module ActiveProject
         begin
           require "active_project/adapters/#{adapter_type}_adapter"
         rescue LoadError
-          error_message = "Could not load adapter '#{adapter_type}'.\n"
-          error_message += "Make sure you have defined the class #{adapter_class_name} in active_project/adapters/#{adapter_type}_adapter.rb"
-          raise LoadError, error_message
+          raise LoadError, "Could not load adapter '#{adapter_type}'. " \
+                          "Expected class #{adapter_class_name} in adapters/#{adapter_type}_adapter.rb"
         end
 
         begin

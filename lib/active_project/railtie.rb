@@ -10,10 +10,8 @@ module ActiveProject
     #   config.active_project.use_async_scheduler = false
     config.active_project.use_async_scheduler = true
 
-    # ──────────────────────────────────────────────────────
     # We run BEFORE Zeitwerk starts autoloading so that
     # every thread inherits the scheduler.
-    # ──────────────────────────────────────────────────────
     initializer "active_project.set_async_scheduler",
                 before: :initialize_dependency_mechanism do |app|
       # 1. Allow opt-out

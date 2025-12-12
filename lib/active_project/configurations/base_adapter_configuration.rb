@@ -61,13 +61,15 @@ module ActiveProject
 
         if retry_opts[:interval]
           unless retry_opts[:interval].is_a?(Numeric) && retry_opts[:interval] > 0
-            raise ArgumentError, "retry_options[:interval] must be a positive number, got #{retry_opts[:interval].inspect}"
+            raise ArgumentError,
+"retry_options[:interval] must be a positive number, got #{retry_opts[:interval].inspect}"
           end
         end
 
         if retry_opts[:backoff_factor]
           unless retry_opts[:backoff_factor].is_a?(Numeric) && retry_opts[:backoff_factor] > 0
-            raise ArgumentError, "retry_options[:backoff_factor] must be a positive number, got #{retry_opts[:backoff_factor].inspect}"
+            raise ArgumentError,
+"retry_options[:backoff_factor] must be a positive number, got #{retry_opts[:backoff_factor].inspect}"
           end
         end
       end

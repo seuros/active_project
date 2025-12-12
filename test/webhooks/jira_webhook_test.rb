@@ -11,7 +11,8 @@ class JiraWebhookTest < ActiveSupport::TestCase
     # but the adapter now requires a config object.
     # We configure it minimally here.
     ActiveProject.configure do |config|
-      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME", api_token: "DUMMY_API_TOKEN"
+      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME",
+api_token: "DUMMY_API_TOKEN"
     end
     @adapter = ActiveProject.adapter(:jira)
     # Clear memoized adapter instance
@@ -21,7 +22,8 @@ class JiraWebhookTest < ActiveSupport::TestCase
   def teardown
     # Reset config
     ActiveProject.configure do |config|
-      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME", api_token: "DUMMY_API_TOKEN"
+      config.add_adapter :jira, :primary, site_url: "DUMMY_SITE_URL", username: "DUMMY_USERNAME",
+api_token: "DUMMY_API_TOKEN"
     end
     ActiveProject.reset_adapters
   end

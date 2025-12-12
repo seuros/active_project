@@ -107,9 +107,9 @@ module ActiveProject
           # Fizzy returns body as { plain_text: "...", html: "..." }
           body = if comment_data["body"].is_a?(Hash)
                    comment_data["body"]["plain_text"] || comment_data["body"]["html"]
-                 else
+          else
                    comment_data["body"]
-                 end
+          end
 
           Resources::Comment.new(
             self,
