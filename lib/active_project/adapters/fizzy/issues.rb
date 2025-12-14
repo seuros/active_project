@@ -197,7 +197,7 @@ module ActiveProject
         end
 
         def determine_card_status(card_data, board_id)
-          # Check for closed status (added in Fizzy PR #2105)
+          # Check for closed status
           return :closed if card_data["closed"] == true
 
           # Check for not_now status
