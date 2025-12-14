@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0](https://github.com/seuros/active_project/compare/active_project/v0.4.0...active_project/v0.5.0) (2025-12-14)
+
+
+### Features
+
+* add Fizzy adapter ([94d8a13](https://github.com/seuros/active_project/commit/94d8a13e4829e1c7b74e6ed94f848491587932be))
+
+
+### Bug Fixes
+
+* prevent VCR cassette modifications during test runs ([f6aa7df](https://github.com/seuros/active_project/commit/f6aa7df9152607a717734bbb6b02867daf3b25ba))
+* resolve adapter context issues and add missing error classes ([a831d08](https://github.com/seuros/active_project/commit/a831d0860b7e8436869cea14374f0f884b001d36))
+* resolve async deadlock in tests with async-safe ([f4b23fa](https://github.com/seuros/active_project/commit/f4b23faaa24a836665bc5ee363d5898e43746646))
+
 ## [0.4.0](https://github.com/seuros/active_project/compare/active_project/v0.3.0...active_project/v0.4.0) (2025-12-11)
 
 
