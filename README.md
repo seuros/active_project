@@ -29,6 +29,7 @@ ActiveProject wraps those APIs behind a single, opinionated interface:
 | **Trello**                | REST       | Cards ↔ Issues               |
 | **GitHub Projects V2**    | GraphQL v4 |                              |
 | **GitHub**                | REST v3    | Issues and repositories      |
+| **Fizzy**                 | REST       | Kanban-style boards by 37signals |
 
 _Planned next_: Asana, Monday.com, Linear, etc.
 
@@ -52,7 +53,8 @@ ActiveProject
   ├── BasecampAdapter
   ├── TrelloAdapter
   ├── GithubProjectAdapter
-  └── GithubAdapter
+  ├── GithubAdapter
+  └── FizzyAdapter
 
 ````
 Add a new platform by subclassing and conforming to the common contract.
@@ -105,6 +107,10 @@ ActiveProject.configure do |config|
     key:   ENV["TRELLO_KEY"],
     token: ENV["TRELLO_TOKEN"]
 
+  config.add_adapter :fizzy,
+    account_slug: ENV["FIZZY_ACCOUNT_SLUG"],
+    access_token: ENV["FIZZY_ACCESS_TOKEN"]
+
   # GitHub Projects – real Issues/PRs only
   config.add_adapter :github_project,
     access_token: ENV["GITHUB_TOKEN"]
@@ -127,6 +133,7 @@ jira_primary = ActiveProject.adapter(:jira) # defaults to :primary
 jira_secondary = ActiveProject.adapter(:jira, :secondary)
 basecamp = ActiveProject.adapter(:basecamp) # defaults to :primary
 trello = ActiveProject.adapter(:trello) # defaults to :primary
+fizzy = ActiveProject.adapter(:fizzy) # defaults to :primary
 github = ActiveProject.adapter(:github) # defaults to :primary
 github_project = ActiveProject.adapter(:github_project) # defaults to :primary
 ```
